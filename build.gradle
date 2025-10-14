@@ -6,6 +6,7 @@ plugins {
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
+description = 'Demo project for Spring Boot'
 
 java {
     toolchain {
@@ -27,6 +28,14 @@ dependencies {
     implementation 'io.github.bonigarcia:webdrivermanager:6.3.1' // web driver manager
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    // WebSocket
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    // JSOUP
+    implementation 'org.jsoup:jsoup:1.21.2'
+    // mybatis
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
+    // AOP 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
 }
 
 
