@@ -28,8 +28,8 @@ export default function App() {
         </ul>
         <div id='eventBox'>
           <ul id='eventCategory'>
-            <li id='eventActive'>전시</li>
-            <li>축제</li>
+            <li id='eventActive'>전시/문화</li>
+            <li>축제/행사</li>
             <li>벼룩시장</li>
             <li>내위치반경</li>
           </ul>
