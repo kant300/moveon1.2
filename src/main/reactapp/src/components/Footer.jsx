@@ -1,7 +1,7 @@
-import './assets/css/Footer.css'
-import home from './assets/images/home_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import person from './assets/images/person_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import more_horiz from './assets/images/more_horiz_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
+import '../assets/css/Footer.css'
+import home from '../assets/images/icons/home_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
+import person from '../assets/images/icons/person_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
+import more_horiz from '../assets/images/icons/more_horiz_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 
 export default function Footer() {
     return (<>
