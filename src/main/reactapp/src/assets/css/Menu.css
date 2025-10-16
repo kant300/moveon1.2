@@ -1,0 +1,70 @@
+@font-face {
+    font-family: 'NanumGothic';
+    src: url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css') format('font-woff');
+    font-weight: normal;
+    font-display: swap;
+}
+
+* { 
+    font-family: 'NanumGothic';
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+#container {
+    background-color: rgb(235, 235, 235);
+}
+
+#menuTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2vh 30px 8vh 30px;
+    font-size: 22px;
+}
+
+#menuTop img {
+    width: 40px;
+    margin-left: 10px;
+}
+
+.menuTitle {
+    display: flex;
+    font-size: 20px;
+}
+
+.menuTitle > span {
+    display: flex;
+    align-items: center;
+    font-size: 11px;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+#mainMenu > ul {
+    display: flex;
+    border-bottom: 1px solid rgb(77, 204, 255);
+    padding: 0 2vh;
+    margin-bottom: 3vh;
+}
+
+#mainMenu > ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 11px;
+    margin-right: 20px;
+    margin-bottom: 1vh;
+    padding: 1vh 0;
+}
+
+#mainMenu li > img {
+    width: 40px;
+}
+
+#inquiryMenu li {
+    font-size: 18px !important;
+}
