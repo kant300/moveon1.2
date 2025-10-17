@@ -1,26 +1,21 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import calendar_clock from './assets/images/icons/calendar_clock_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import Category from './components/main/Category';
-import Event from './components/main/Event';
-import Weather from "./components/main/Weather";
+import './assets/css/App.css'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Index from "./components/Index";
+import Menu from "./components/Menu";
+import Setting from "./components/Setting";
+import MyPage from "./components/MyPage";
 
+// 현재 홈, 마이페이지, 전체메뉴, 설정까지 프로토타입 제작 완료
 export default function App() {
   return (<>
-    <div id='wrap'>
-      <div id="container">
-        <Header />
-        <div id='loginBox'>로그인 후 이용해주세요</div>
-        <Weather />
-        <Category />
-        <Event />
-        <div id='alertBox'>
-          <img src={calendar_clock} />
-          오늘의 알림 : 재활용 배출일입니다.
-        </div>
-        <Footer />
-      </div>
-    </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Index />} />
+          <Route path='/mypage' element={<MyPage />} /> 
+          <Route path='/menu' element={<Menu />} />
+          <Route path='/setting' element={<Setting />} />
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }
