@@ -3,7 +3,7 @@ package web.controller.bulkbuygroupcontroller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import web.Mapper.Bulkbuygroup.BulkbuygroupMapper;
+import web.mapper.bulkbuygroup.BulkbuygroupMapper;
 import web.model.dto.bulkbuygroup.BulkbuygroupDto;
 
 import java.util.List;

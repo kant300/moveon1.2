@@ -2,7 +2,7 @@ package web.service.bulkbuygroupservice;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import web.Mapper.Bulkbuygroup.BulkbuygroupMapper;
+import web.mapper.bulkbuygroup.BulkbuygroupMapper;
 import web.model.dto.bulkbuygroup.BulkbuygroupDto;
 
 import java.util.List;
