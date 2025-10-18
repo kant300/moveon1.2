@@ -3,6 +3,22 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="web.mapper.chatmapper">
+<mapper namespace="web.mapper.chatmapper.ChatMapper">
+    <!-- 채팅방 메세지 내용 저장 DB  -->
+    <insert id="writeChat" parameterType="web.model.dto.chatting.ChattingDto">
+        INSERT INTO chatting(mno , bno , mmessage)
+        values
+        ( #{mno} , #{bno} , #{mmessage} )
+    </insert>
+
+    <!-- 채팅방 메세지 내용 출력 -->
+    <select id="printChat" parameterType="web.model.dto.chatting.ChattingDto">
+        SELECT m.mname , m.mmessage , c.cdate
+        <!-- 검색 join 사용하여 member -> [ 이름 , 메세지 ]을 가져옴
+        채팅방 번호와 회원번호가 일치할시 가져옴 -->
+        FROM chatting c JOIN members m on c.mno = m.mno
+        WHERE c.bno = #{bno}  <!-- 소분모임 목록 번호와 채팅방에서 입력하려는 그 방과 같을때 -->
+        ORDER BY c.cdate ASC <!-- 최신순 -->
+    </select>
 
 </mapper>
