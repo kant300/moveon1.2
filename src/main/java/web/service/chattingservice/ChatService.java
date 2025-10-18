@@ -1,0 +1,30 @@
+package web.service.chattingservice;
+
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import web.controller.chatcontroller.ChatController;
+import web.mapper.chatmapper.ChatMapper;
+import web.model.dto.chatting.ChattingDto;
+
+import java.util.List;
+
+
+@Service
+@AllArgsConstructor
+public class ChatService {
+    private final ChatMapper chatMapper;
+
+    // 메세지 내용 저장
+    public boolean writeChat(ChattingDto dto){
+        System.out.println("ChatController.writeChat");
+        boolean result = chatMapper.writeChat(dto);
+        return result;
+    }
+
+    // 메세지 내용 출력
+    public List<ChattingDto> printChat(int cno){
+        System.out.println("ChatService.printChat");
+        List<ChattingDto> dtos = chatMapper.printChat(cno);
+        return dtos;
+    }
+        }

@@ -1,18 +1,23 @@
 package web.websocket;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+import web.model.dto.chatting.ChattingDto;
+import web.service.chattingservice.ChatService;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
+@RequiredArgsConstructor
 public class ChatHandler extends TextWebSocketHandler {
 
+    private final ChatService chatService;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     // private final MemberService memberservice;  멤버 서비스 만들편 // 풀기
@@ -69,9 +74,19 @@ public class ChatHandler extends TextWebSocketHandler {
                 player.put(cno, list); // 새로운 리스트 방 생성후  세션 목록에 추가
             }
             alarmMessage(cno, mname + "님이 방을 입장하셨습니다. ");
+
         } else if (msg.get("type").equals("msg")) {
             // 채팅방에게 받은 모든 세션들에게 받은 메세지(내역) 보내기
             String cno = (String) session.getAttributes().get("cno");
+            String mno = (String) session.getAttributes().get("mno");
+            String mmessage = msg.get("mmessage");
+
+            // DB 내용 기록
+            ChattingDto dto = new ChattingDto();
+            dto.setCno(Integer.parseInt(cno));
+            dto.setMno(Integer.parseInt(mno));
+            dto.setMmessage(mmessage);
+            chatService.writeChat(dto);
             // 반복 돌려서 client 에 방번호 목록 가져와
             for (WebSocketSession client : player.get(cno)) {
                 client.sendMessage(message); // 메세지 내보내기
