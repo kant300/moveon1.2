@@ -35,17 +35,17 @@ public class ChatHandler extends TextWebSocketHandler {
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         System.out.println("Client stop");
         // 클아이언트 정보
-        String cno = (String) session.getAttributes().get("cno"); // 접속 채팅방 번호
+        String bno = (String) session.getAttributes().get("bno"); // 접속 채팅방 번호
         String mno = (String) session.getAttributes().get("mno"); // 접속 회원 번호
         String mname = (String) session.getAttributes().get("mname"); // 회원 이름
 
-        if (cno != null || mno != null) {
+        if (bno != null || mno != null) {
             // 방 접속 목록 가져와
-            List<WebSocketSession> list = player.get(cno);
+            List<WebSocketSession> list = player.get(bno);
             // 세션 없애기
             list.remove(session);
             // 방 나기기 알림
-            alarmMessage(cno, mname + "님이 방을 나가셨습니다. ");
+            alarmMessage(bno, mname + "님이 방을 나가셨습니다. ");
         }
 
     } // afterClosed end
@@ -61,34 +61,34 @@ public class ChatHandler extends TextWebSocketHandler {
             String mno = msg.get("mno"); // 회원번호
             String mname = msg.get("mname"); // 회원 이름
 
-            String cno = msg.get("cno"); // 채팅방 정보 호출(꺼내기)
-            session.getAttributes().put("cno", cno);
+            String bno = msg.get("bno"); // 채팅방 정보 호출(꺼내기)
+            session.getAttributes().put("bno", bno);
             session.getAttributes().put("mno", mno);
             session.getAttributes().put("mname", mname);
             // 세션 저장 채팅방 인원들 저장하기위해 사용 put ,덮어쓰기 ,추가수정
-            if (player.containsKey(cno)) { // 만약에 방번호가 존재하면
-                player.get(cno).add(session); // 방번호 세션 추가
+            if (player.containsKey(bno)) { // 만약에 방번호가 존재하면
+                player.get(bno).add(session); // 방번호 세션 추가
             } else { // 존재하지 않을 시
                 List<WebSocketSession> list = new Vector<>();
                 list.add(session); // 새로운 세션 추가
-                player.put(cno, list); // 새로운 리스트 방 생성후  세션 목록에 추가
+                player.put(bno, list); // 새로운 리스트 방 생성후  세션 목록에 추가
             }
-            alarmMessage(cno, mname + "님이 방을 입장하셨습니다. ");
+            alarmMessage(bno, mname + "님이 방을 입장하셨습니다. ");
 
         } else if (msg.get("type").equals("msg")) {
             // 채팅방에게 받은 모든 세션들에게 받은 메세지(내역) 보내기
-            String cno = (String) session.getAttributes().get("cno");
+            String bno = (String) session.getAttributes().get("bno");
             String mno = (String) session.getAttributes().get("mno");
             String mmessage = msg.get("mmessage");
 
             // DB 내용 기록
             ChattingDto dto = new ChattingDto();
-            dto.setCno(Integer.parseInt(cno));
+            dto.setBno(Integer.parseInt(bno));
             dto.setMno(Integer.parseInt(mno));
             dto.setMmessage(mmessage);
             chatService.writeChat(dto);
             // 반복 돌려서 client 에 방번호 목록 가져와
-            for (WebSocketSession client : player.get(cno)) {
+            for (WebSocketSession client : player.get(bno)) {
                 client.sendMessage(message); // 메세지 내보내기
             }
             System.out.println("ChatHandler.handleTextMessage");
@@ -96,7 +96,7 @@ public class ChatHandler extends TextWebSocketHandler {
         }
     } // TextMessage end
 
-    public void alarmMessage(String cno, String mmessage) throws Exception {
+    public void alarmMessage(String bno, String mmessage) throws Exception {
         // String cno  몇번방 // String mmessage 무슨 메세지를?
         // 예외 던지기
         // map 보내고자 하는 정보 작성
@@ -106,7 +106,7 @@ public class ChatHandler extends TextWebSocketHandler {
         // map 타입 json 으로 변환
         String jmsg = objectMapper.writeValueAsString(msg);
         // 같은방 모든 메세지 내용 알림 보내기
-        for (WebSocketSession session : player.get(cno)) {
+        for (WebSocketSession session : player.get(bno)) {
             session.sendMessage(new TextMessage(jmsg));
         }
     } // alarmMessage end

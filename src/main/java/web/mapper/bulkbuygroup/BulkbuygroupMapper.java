@@ -22,13 +22,13 @@ public interface BulkbuygroupMapper {
     BulkbuygroupDto listprint(Map<String , Object> maps);
 
     // (소분모임)글 삭제
-    boolean deleteGroup(int mno);
+    boolean deleteGroup(int bno);
 
     // (소분모임)글 수정
     boolean updateGroup(BulkbuygroupDto dto);
 
     // 방 입장
-    int chattingCount(int bno);
+    int countCheck(int bno);
 
 
 

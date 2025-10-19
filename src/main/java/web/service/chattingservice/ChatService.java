@@ -22,9 +22,9 @@ public class ChatService {
     }
 
     // 메세지 내용 출력
-    public List<ChattingDto> printChat(int cno){
+    public List<ChattingDto> printChat(int bno){
         System.out.println("ChatService.printChat");
-        List<ChattingDto> dtos = chatMapper.printChat(cno);
+        List<ChattingDto> dtos = chatMapper.printChat(bno);
         return dtos;
     }
         }

@@ -11,5 +11,5 @@ public interface ChatMapper {
     // 메세지 내용 저장
     boolean writeChat(ChattingDto dto);
     // 메세지 내용 출력
-    List<ChattingDto> printChat(int cno);
+    List<ChattingDto> printChat(int bno);
 }

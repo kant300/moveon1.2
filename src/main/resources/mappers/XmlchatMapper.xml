@@ -12,8 +12,8 @@
     </insert>
 
     <!-- 채팅방 메세지 내용 출력 -->
-    <select id="printChat" parameterType="web.model.dto.chatting.ChattingDto">
-        SELECT m.mname , m.mmessage , c.cdate
+    <select id="printChat" parameterType="int" resultType="web.model.dto.chatting.ChattingDto">
+        SELECT m.mname , c.mmessage , c.cdate
         <!-- 검색 join 사용하여 member -> [ 이름 , 메세지 ]을 가져옴
         채팅방 번호와 회원번호가 일치할시 가져옴 -->
         FROM chatting c JOIN members m on c.mno = m.mno

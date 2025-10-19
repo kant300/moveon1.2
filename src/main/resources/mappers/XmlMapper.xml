@@ -19,7 +19,7 @@
     </select>
 
     <!-- 시 구 동 주소 검색 -->
-    <select id="listaddress" parameterType="map" resultType="web.model.dto.bulkbuygroup.BulkbuygroupDto">
+    <select id="addressGroup" parameterType="map" resultType="web.model.dto.bulkbuygroup.BulkbuygroupDto">
         SELECT b.* , m.maddress1 , m.maddress2 , m.maddress3
         FROM bulkbuygroup b join member m on b.mno = m.mno
         where 1=1
@@ -43,15 +43,15 @@
 
     <!-- 삭제시 본인 회원번호 확인시 삭제 -->
     <delete id="deleteGroup" parameterType="int">
-        DELETE FROM bulkbuygroup where mno = #{mno};
+        DELETE FROM bulkbuygroup where bno = #{bno};
     </delete>
 
-    <!-- 수정시 본인 회원번호 확인후 제목/내용 수정 필요 시 인원수도 하겠음 -->
+    <!-- 수정시 수정하려는 채팅방 확인후 제목/내용 수정 필요 시 인원수도 하겠음 -->
     <update id="updateGroup" parameterType="web.model.dto.bulkbuygroup.BulkbuygroupDto">
-        UPDATE bulkbuygroup set btitle = #{btitle} , bcontent = #{bcontent} where mno = #{mno}
+        UPDATE bulkbuygroup set btitle = #{btitle} , bcontent = #{bcontent} where bno = #{bno}
     </update>
 
-    <update id="chattingCount" parameterType="int">
+    <update id="countCheck" parameterType="int">
         UPDATE bulkbuygroup set bcount = bcount+1 where bno = #{bno} and bcount &lt; btotal
     </update>
 
