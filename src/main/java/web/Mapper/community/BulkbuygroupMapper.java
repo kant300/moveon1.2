@@ -1,4 +1,4 @@
-package web.Mapper.Bulkbuygroup;
+package web.Mapper.community;
 
 import org.apache.ibatis.annotations.Mapper;
 import web.model.dto.bulkbuygroup.BulkbuygroupDto;

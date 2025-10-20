@@ -1,11 +1,9 @@
-package web.service;
+package web.service.safety;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import web.model.dao.CriminalDao;
-import web.model.dto.CriminalDto;
+import web.model.dto.safety.CriminalDto;
 
 import java.util.List;
 import java.util.Map;

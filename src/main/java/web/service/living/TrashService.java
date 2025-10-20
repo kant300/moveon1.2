@@ -1,10 +1,10 @@
-package web.service;
+package web.service.living;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import web.model.dao.TrashDao;
 import web.model.dto.PageDto;
-import web.model.dto.TrashDto;
+import web.model.dto.living.TrashDto;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
-package web.controller;
+package web.controller.safety;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import web.model.dto.CriminalDto;
-import web.service.CriminalService;
+import web.model.dto.safety.CriminalDto;
+import web.service.safety.CriminalService;
 
 import java.util.List;
 import java.util.Map;
