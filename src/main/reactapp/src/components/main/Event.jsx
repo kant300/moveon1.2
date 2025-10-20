@@ -12,7 +12,6 @@ export default function Event() {
                 <li onClick={() => {setEvent(2)}}>벼룩시장</li>
                 <li onClick={() => {setEvent(3)}}>내위치반경</li>
             </ul>
-            <BrowserRouter>
             <ul id='eventList'>
                 {
                     event==0?(
@@ -57,7 +56,6 @@ export default function Event() {
                     ):null
                 }
             </ul>
-            </BrowserRouter>
         </div>
     </>)
 }
