@@ -1,8 +1,8 @@
-package web.controller;
+package web.controller.transport;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import web.service.StationService;
+import web.service.transport.StationService;
 
 import java.util.List;
 import java.util.Map;

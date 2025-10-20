@@ -1,12 +1,10 @@
-package web.controller;
+package web.controller.living;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import web.model.dto.PageDto;
-import web.model.dto.TrashDto;
-import web.service.TrashService;
-
-import java.util.List;
+import web.model.dto.living.TrashDto;
+import web.service.living.TrashService;
 
 @RestController // 1. HTTP 요청/응답 자료 매핑 기술
 @RequestMapping("/living/trash") // 2. HTTP URL 매핑 기술

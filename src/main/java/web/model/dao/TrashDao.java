@@ -1,7 +1,7 @@
 package web.model.dao;
 
 import org.springframework.stereotype.Repository;
-import web.model.dto.TrashDto;
+import web.model.dto.living.TrashDto;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

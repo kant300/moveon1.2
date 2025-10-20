@@ -1,4 +1,4 @@
-package web.model.dto;
+package web.model.dto.living;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

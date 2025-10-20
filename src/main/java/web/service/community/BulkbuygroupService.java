@@ -1,8 +1,8 @@
-package web.service.bulkbuygroupservice;
+package web.service.community;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import web.mapper.bulkbuygroup.BulkbuygroupMapper;
+import web.Mapper.community.BulkbuygroupMapper;
 import web.model.dto.bulkbuygroup.BulkbuygroupDto;
 
 import java.util.List;

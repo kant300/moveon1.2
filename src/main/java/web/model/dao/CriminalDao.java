@@ -1,7 +1,7 @@
 package web.model.dao;
 
 import org.springframework.stereotype.Repository;
-import web.model.dto.CriminalDto;
+import web.model.dto.safety.CriminalDto;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
