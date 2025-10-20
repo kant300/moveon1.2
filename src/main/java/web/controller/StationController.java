@@ -10,6 +10,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/station")
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:5173")
 public class StationController {
     private final StationService stationService;
 

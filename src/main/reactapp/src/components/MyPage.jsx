@@ -39,13 +39,3 @@ export default function MyPage() {
         </div>
     </>)
 }
-
-/*
-<div className='menuTitle'><span>●</span>안전</div>
-                    <ul id='safetyMenu'>
-                        <Link to='/sexOffender'><li><img src={crisis_alert} />성범죄자 위치</li></Link>
-                        <Link to='/ambulance'><li><img src={ambulance} />민간구급차</li></Link>
-                        <Link to='/water'><li><img src={water_drop} />비상급수시설</li></Link>
-                        <Link to='/shelter'><li><img src={night_shelter} />대피소</li></Link>
-                    </ul>
-*/
