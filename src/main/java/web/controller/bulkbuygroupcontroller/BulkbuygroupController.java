@@ -3,7 +3,6 @@ package web.controller.bulkbuygroupcontroller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import web.mapper.bulkbuygroup.BulkbuygroupMapper;
 import web.model.dto.bulkbuygroup.BulkbuygroupDto;
 import web.service.bulkbuygroupservice.BulkbuygroupService;
 
@@ -11,8 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("group")
+@RequestMapping("/group")
 @RequiredArgsConstructor
+
 public class BulkbuygroupController {
     private final BulkbuygroupService bulkbuygroupService;
 

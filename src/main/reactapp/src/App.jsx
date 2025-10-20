@@ -1,5 +1,6 @@
 import './assets/css/App.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Bulkbuygroup from './components/main/bulkbuygroup/bulkbuygroup';
 import Index from "./components/Index";
 import Menu from "./components/Menu";
 import Setting from "./components/Setting";
@@ -10,6 +11,7 @@ export default function App() {
   return (<>
       <BrowserRouter>
         <Routes>
+          <Route path='/bulkBuy' element={<Bulkbuygroup />} />
           <Route path='/' element={<Index />} />
           <Route path='/mypage' element={<MyPage />} /> 
           <Route path='/menu' element={<Menu />} />
