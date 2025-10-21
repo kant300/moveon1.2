@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Header from "../../Header";
-import Footer from "../../Footer";
-import "../../../assets/css/bulkbuygroup.css";
+import Header from "../Header";
+import Footer from "../Footer";
+import "../../assets/css/bulkbuygroup.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Bulkbuygroup() {
   const [groups, setGroups] = useState([]);
@@ -22,16 +23,20 @@ export default function Bulkbuygroup() {
     fetchGroups();
   }, []);
 
+  const navigate = useNavigate();
+
   // ✅ 글쓰기 버튼 클릭
   const handleWriteClick = () => {
-    alert("글쓰기 페이지로 이동 예정!");
+    alert("글쓰기 페이지로 이동");
+    navigate("/group/create")
   };
 
-  const 입장 = ( bno ) => {
-      alert(bno);
+  const 입장 = () => {
+      alert("방입장");
+      navigate("/chatting")
       // 스프링의 @PostMapping("/bcno") 으로 통신하자.성공시 해당 방으로 페이지 전환
         // 만약에 bno가 12 이면 12번방의 인원을 증가하고 12번방으로 페이지 전환
-   }
+   };
 
   return (
     <>

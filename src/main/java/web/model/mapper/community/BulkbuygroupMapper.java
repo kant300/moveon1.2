@@ -31,8 +31,4 @@ public interface BulkbuygroupMapper {
     int countCheck(int bno);
 
 
-
-
-
-
 }

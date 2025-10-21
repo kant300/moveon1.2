@@ -15,7 +15,7 @@ public class ChatController {
     private final ChatService chatService;
 
     // 메세지 내용 저장 (DB 저장)
-    @PostMapping("")
+    @PostMapping("/write")
     public ResponseEntity< ? > writeChat(@RequestBody ChattingDto dto){
         System.out.println("ChatController.saveChat");
         boolean result = chatService.writeChat(dto);
@@ -23,7 +23,7 @@ public class ChatController {
     }
 
     // 메세지 내용 출력 어디에? 메세지 입력한 방(cno)에
-    @GetMapping("")
+    @GetMapping("/print")
     public ResponseEntity< ? > printChat(@RequestParam int bno){
         System.out.println("ChatController.printChat");
         List<ChattingDto> list = chatService.printChat(bno);
