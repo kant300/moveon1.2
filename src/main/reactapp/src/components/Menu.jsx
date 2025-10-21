@@ -1,4 +1,4 @@
-import '../assets/css/Menu.css'
+import '../assets/css/menu.css'
 import Footer from "./Footer";
 import notification_sound from '../assets/images/icons/notification_sound_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import settings from '../assets/images/icons/settings_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'

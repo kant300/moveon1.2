@@ -1,4 +1,4 @@
-import "../assets/css/MyPage.css"
+import "../assets/css/mypage.css"
 import Footer from "./Footer";
 import settings from '../assets/images/icons/settings_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import account_circle from '../assets/images/icons/account_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'

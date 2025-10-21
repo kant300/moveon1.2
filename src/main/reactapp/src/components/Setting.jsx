@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../assets/css/Setting.css'
+import '../assets/css/setting.css'
 import arrow_back_ios_new from '../assets/images/icons/arrow_back_ios_new_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import arrow_forward_ios from '../assets/images/icons/arrow_forward_ios_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import toggle_on from '../assets/images/icons/toggle_on_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'

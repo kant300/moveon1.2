@@ -1,4 +1,4 @@
-import './assets/css/App.css'
+import './assets/css/app.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Bulkbuygroup from './components/main/bulkbuygroup/bulkbuygroup';
 import Index from "./components/Index";

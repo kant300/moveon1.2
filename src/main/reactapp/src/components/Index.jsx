@@ -1,4 +1,4 @@
-import "../assets/css/Index.css"
+import "../assets/css/index.css"
 import Footer from "./Footer";
 import Header from "./Header";
 import calendar_clock from '../assets/images/icons/calendar_clock_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
