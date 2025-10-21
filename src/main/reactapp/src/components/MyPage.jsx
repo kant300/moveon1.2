@@ -1,0 +1,41 @@
+import "../assets/css/MyPage.css"
+import Footer from "./Footer";
+import settings from '../assets/images/icons/settings_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
+import account_circle from '../assets/images/icons/account_circle_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
+import paid from '../assets/images/icons/paid_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
+import handshake from '../assets/images/icons/handshake_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
+import explore_nearby from '../assets/images/icons/explore_nearby_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
+import contact_support from '../assets/images/icons/contact_support_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
+import { Link } from "react-router-dom";
+
+// 마이페이지
+export default function MyPage() {
+    return (<>
+        <div id="wrap">
+            <div id="menu">
+                <div id="menuTop">
+                    <div id="mypageTitle">마이페이지</div>
+                    <div>
+                        <Link to='/setting'><img src={settings} /></Link>
+                    </div>
+                </div>
+                <div id="mainMenu">
+                    <div id="profileBox">
+                        <div><img src={account_circle} /></div>
+                        <div id="profileName">홍길동</div>
+                    </div>
+                    <div className="mypageTitle"><span>●</span>활동내역</div>
+                    <div id="activityBox">
+                        <ul>
+                            <Link to='/bill?id=0'><li><img src={paid} /> 공과금 정산내역</li></Link>
+                            <Link to='/bulkBuy?id=0'><li><img src={handshake} /> 나의 소분모임</li></Link>
+                            <Link to='/localEvent?id=0'><li><img src={explore_nearby} /> 찜한 지역행사</li></Link>
+                            <Link to='/inquiry?id=0'><li><img src={contact_support} /> 문의내역</li></Link>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <Footer />
+        </div>
+    </>)
+}

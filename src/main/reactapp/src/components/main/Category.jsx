@@ -25,7 +25,6 @@ export default function Category() {
             <li onClick={() => {setCategory(2)}}>교통</li>
             <li onClick={() => {setCategory(3)}}>커뮤니티</li>
         </ul>
-        <BrowserRouter>
             <ul id='btnBox'>
                 {
                     category==0?(
@@ -62,6 +61,5 @@ export default function Category() {
                     ):null
                 }
             </ul>
-        </BrowserRouter>
     </>)
 }

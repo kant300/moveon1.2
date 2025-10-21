@@ -14,15 +14,18 @@
     text-decoration: none;
 }
 
-#container {
+#menu {
+    height: 86vh;
+    width: 420px;
     background-color: rgb(235, 235, 235);
+    color: black;
 }
 
 #menuTop {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 2vh 30px 8vh 30px;
+    margin: 2vh 30px 7vh 30px;
     font-size: 22px;
 }
 
@@ -44,10 +47,15 @@
     margin-right: 20px;
 }
 
+#mainMenu {
+    width: 420px;
+}
+
 #mainMenu > ul {
     display: flex;
     border-bottom: 1px solid rgb(77, 204, 255);
     padding: 0 2vh;
+    padding-bottom: 1.7vh;
     margin-bottom: 3vh;
 }
 
@@ -65,6 +73,11 @@
     width: 40px;
 }
 
-#inquiryMenu li {
-    font-size: 18px !important;
+#inquiryMenu {
+    display: flex;
+    justify-content: space-around;
+}
+
+#inquiryMenu > a > li {
+    font-size: 18px;
 }

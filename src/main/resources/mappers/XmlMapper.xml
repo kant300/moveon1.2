@@ -4,8 +4,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="web.mapper.bulkbuygroup.BulkbuygroupMapper"> <!-- mybatis -->
-    <insert id="createGroup" parameterType="web.model.dto.bulkbuygroup.BulkbuygroupDto" useGeneratedKeys="true" keyProperty="bno">
+<mapper namespace="web.model.mapper.community.BulkbuygroupMapper"> <!-- mybatis -->
+    <insert id="createGroup" parameterType="web.model.dto.community.BulkbuygroupDto" useGeneratedKeys="true" keyProperty="bno">
         <!-- 방만들때 회원번호fk , 제목 내용 인원수 설정  -->
         INSERT INTO bulkbuygroup( mno , btitle , bcontent , btotal , bcount )
         values
@@ -14,12 +14,12 @@
 
 
     <!-- 전체 검색 -->
-    <select id="listGroup" resultType="web.model.dto.bulkbuygroup.BulkbuygroupDto">
+    <select id="listGroup" resultType="web.model.dto.community.BulkbuygroupDto">
         SELECT * FROM bulkbuygroup
     </select>
 
     <!-- 시 구 동 주소 검색 -->
-    <select id="addressGroup" parameterType="map" resultType="web.model.dto.bulkbuygroup.BulkbuygroupDto">
+    <select id="addressGroup" parameterType="map" resultType="web.model.dto.community.BulkbuygroupDto">
         SELECT b.* , m.maddress1 , m.maddress2 , m.maddress3
         FROM bulkbuygroup b join member m on b.mno = m.mno
         where 1=1
@@ -35,7 +35,7 @@
     </select>
 
     <!-- 검색 제목/내용 ex) 안녕치면 안녕 이라는 글 포함 나옴 -->
-    <select id="listprint" parameterType="map" resultType="web.model.dto.bulkbuygroup.BulkbuygroupDto">
+    <select id="listprint" parameterType="map" resultType="web.model.dto.community.BulkbuygroupDto">
         SELECT * FROM bulkbuygroup where
         btitle like concat( '%' , #{btitle} , '%' ) or
         bcontent like concat ( '%' , #{bcontent} , '%' )
@@ -47,7 +47,7 @@
     </delete>
 
     <!-- 수정시 수정하려는 채팅방 확인후 제목/내용 수정 필요 시 인원수도 하겠음 -->
-    <update id="updateGroup" parameterType="web.model.dto.bulkbuygroup.BulkbuygroupDto">
+    <update id="updateGroup" parameterType="web.model.dto.community.BulkbuygroupDto">
         UPDATE bulkbuygroup set btitle = #{btitle} , bcontent = #{bcontent} where bno = #{bno}
     </update>
 
