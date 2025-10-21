@@ -1,11 +1,10 @@
-package web.controller.chatcontroller;
+package web.controller.community;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import web.mapper.chatmapper.ChatMapper;
-import web.model.dto.chatting.ChattingDto;
-import web.service.chattingservice.ChatService;
+import web.model.dto.community.ChattingDto;
+import web.service.community.ChatService;
 
 import java.util.List;
 

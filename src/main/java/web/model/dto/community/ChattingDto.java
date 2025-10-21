@@ -1,4 +1,4 @@
-package web.model.dto.chatting;
+package web.model.dto.community;
 
 import lombok.*;
 

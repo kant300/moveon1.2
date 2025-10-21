@@ -1,4 +1,4 @@
-package web.model.dto.bulkbuygroup;
+package web.model.dto.community;
 
 import lombok.*;
 
@@ -13,6 +13,5 @@ public class BulkbuygroupDto {
     private String bdate; // 채팅방 생성 날짜
     private int btotal; // 인원(총)
     private int bcount; // 현재인원
-
 
 }

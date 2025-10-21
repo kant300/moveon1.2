@@ -1,61 +1,70 @@
 import axios from "axios";
-import Footer from "../../Footer";
-import '../../../assets/css/bulkbuygroup.css';
+import { useEffect, useState } from "react";
 import Header from "../../Header";
-import { useEffect, useRef, useState } from "react";
+import Footer from "../../Footer";
+import "../../../assets/css/bulkbuygroup.css";
 
-export default function Bulkbuygroup(props){
+export default function Bulkbuygroup() {
+  const [groups, setGroups] = useState([]);
 
-    const mno = 1; 
-    const btitle = '제목';
-    const bcontent = '내용';
-    const btotal = 10;
-    const bcount = 1;
-
-    const [ count , chatting ] = useState( 0 );
-    const countRef = useRef( count ); // ( 초기값 )
-
-    const textbtn = async()=> { console.log('Bulkbuy'); 
-        try{
-            const obj = { 
-                mno : mno,
-                btitle : btitle,
-                bcontent : bcontent,
-                btotal : btotal,
-                bcount : bcount,
-            }
-        console.log('일단 테스트');            
-
-        const response = await axios.post("http://localhost:8080/group/create" , obj )
-        const data = response.data
-        console.log(data);
-        console.log('일단 테스트2');
-        }catch(e) { console.log(e)} ;
+  // ✅ 글 목록 불러오기
+  const fetchGroups = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/group/list");
+      setGroups(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("❌ 소분모임 목록 조회 실패:", error);
     }
+  };
 
-    console.log('Bulkbuy');
+  useEffect(() => {
+    fetchGroups();
+  }, []);
 
-    useEffect( () => {
-        countRef.current = count;
-    },  [count] );
+  // ✅ 글쓰기 버튼 클릭
+  const handleWriteClick = () => {
+    alert("글쓰기 페이지로 이동 예정!");
+  };
 
+  const 입장 = ( bno ) => {
+      alert(bno);
+      // 스프링의 @PostMapping("/bcno") 으로 통신하자.성공시 해당 방으로 페이지 전환
+        // 만약에 bno가 12 이면 12번방의 인원을 증가하고 12번방으로 페이지 전환
+   }
 
-    
-    return(<>
-
-        <Header/>
-        <div id="main">
-            <a href="#" style={{ color: "black", textDecoration: "none" }}><h4> 소분모임 </h4></a>
-            <br/>
-        <button onClick={textbtn} id="txbtn" type="button"> + 글쓰기 </button> <br/>
-        <button onClick={ (e) =>{chatting(count +1 ); }} id="cathbtn" type="button"> 참치캔 구매 <br/>같이가실분 구해요<br/> 인원 : {count}/{count} 지역 </button>
-
-        {/* <p> 인원 : {count}/{count} </p> */}
-        {/* <p> 위치 : {maddress2} {maddress3} </p> */}
+  return (
+    <>
+      <Header />
+      <div id="main" className="bulk-container">
+        <div className="bulk-header">
+          <h4>소분모임</h4>
+          <button onClick={handleWriteClick} className="write-btn">
+            + 글쓰기
+          </button>
         </div>
-        <Footer />
-    
-    </>)
 
+        {/* ✅ 소분모임 카드 목록 */}
+        <div className="bulk-list">
+          {groups.length === 0 ? (
+            <p style={{ textAlign: "center", marginTop: "30px" }}>
+              등록된 소분모임이 없습니다.
+            </p>
+          ) : (
+            groups.map((item) => (
+              <div key={item.bno} className="bulk-card" onClick={ (  )=>{ 입장( item.bno ) } }>
+                <h5>{item.btitle}</h5>
+                <p className="content">{item.bcontent}</p>
+                <div className="info">
+                  <span>인원 : {item.bcount}/{item.btotal}</span>
+                  <span className="region">인천시 부평구</span>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 }
-

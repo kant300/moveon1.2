@@ -1,10 +1,9 @@
-package web.service.chattingservice;
+package web.service.community;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import web.controller.chatcontroller.ChatController;
-import web.mapper.chatmapper.ChatMapper;
-import web.model.dto.chatting.ChattingDto;
+import web.model.mapper.community.ChatMapper;
+import web.model.dto.community.ChattingDto;
 
 import java.util.List;
 

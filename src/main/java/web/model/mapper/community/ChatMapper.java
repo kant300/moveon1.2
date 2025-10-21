@@ -1,7 +1,7 @@
-package web.mapper.chatmapper;
+package web.model.mapper.community;
 
 import org.apache.ibatis.annotations.Mapper;
-import web.model.dto.chatting.ChattingDto;
+import web.model.dto.community.ChattingDto;
 
 import java.util.List;
 

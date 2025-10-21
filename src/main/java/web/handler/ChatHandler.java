@@ -1,4 +1,4 @@
-package web.websocket;
+package web.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -7,8 +7,8 @@ import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
-import web.model.dto.chatting.ChattingDto;
-import web.service.chattingservice.ChatService;
+import web.model.dto.community.ChattingDto;
+import web.service.community.ChatService;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

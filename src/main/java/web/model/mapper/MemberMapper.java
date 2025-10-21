@@ -1,4 +1,4 @@
-package web.Mapper;
+package web.model.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;

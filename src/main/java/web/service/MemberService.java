@@ -3,7 +3,7 @@ package web.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import web.Mapper.MemberMapper;
+import web.model.mapper.MemberMapper;
 import web.model.dto.MemberDto;
 
 @Service
@@ -33,10 +33,7 @@ public class MemberService {
         // 2-1 : 현재 로그인에서 입력받은 아이디의 계정이 있는지 확인
         MemberDto result = memberMapper.login( memberDto.getMid() );
         if( result == null ){ return null; }
-        // 2-2 : 만약에 입력받은 아이디의 계정이 존재하면, 입력받은 비밀번호와 암호화된 비밀번호 비교
-        System.out.println("[ 평문 : 로그인시 입력받은 비밀번호 ] = " + memberDto.getUpwd() );
-        System.out.println("[ 암호문 : 회원가입시 입력받은 비밀번호 ] = " + result.getUpwd() );
-        boolean result2 = bcrypt.matches( memberDto.getUpwd(), result.getUpwd() );
+        boolean result2 = bcrypt.matches( memberDto.getMpwd(), result.getMpwd() );
         if( result2 == true ){ // 비밀번호 일치하면 로그인 성공
             result.setMpwd( null ); // 비밀번호 성공시 반환되는 계정에는 비밀번호 제외
             return result;

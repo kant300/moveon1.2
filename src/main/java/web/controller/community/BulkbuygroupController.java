@@ -3,9 +3,9 @@ package web.controller.community;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import web.Mapper.community.BulkbuygroupMapper;
-import web.model.dto.bulkbuygroup.BulkbuygroupDto;
-import web.service.bulkbuygroupservice.BulkbuygroupService;
+import web.model.dto.community.BulkbuygroupDto;
+import web.service.community.BulkbuygroupService;
+
 
 import java.util.List;
 import java.util.Map;
