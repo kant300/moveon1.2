@@ -1,6 +1,5 @@
 package web.service.community;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import web.model.dto.community.BulkbuygroupDto;
