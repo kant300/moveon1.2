@@ -2,7 +2,7 @@ package web.service.bulkbuygroupservice;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import web.Mapper.Bulkbuygroup.BulkbuygroupMapper;
+import web.mapper.bulkbuygroup.BulkbuygroupMapper;
 import web.model.dto.bulkbuygroup.BulkbuygroupDto;
 
 import java.util.List;
@@ -39,8 +39,8 @@ public class BulkbuygroupService {
     }
 
     // 글삭제
-    public boolean deleteGroup(int mno){
-        boolean result = bulkbuygroupMapper.deleteGroup(mno);
+    public boolean deleteGroup(int bno){
+        boolean result = bulkbuygroupMapper.deleteGroup(bno);
         return result;
     }
 
@@ -52,7 +52,7 @@ public class BulkbuygroupService {
 
     // 방입장시 인원+1
     public String countCheck(int bno){
-        int result = bulkbuygroupMapper.chattingCount(bno);
+        int result = bulkbuygroupMapper.countCheck(bno);
         if (result==1) return "입장하셨습니다.";
         return "입장실패";
     }
