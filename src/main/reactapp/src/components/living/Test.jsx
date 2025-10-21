@@ -2,10 +2,10 @@ import { mapRun } from "./mapRun.js"
 import { useEffect, useRef } from "react"
 
 export default function Test() {
-    const map = useRef(null);
+    const mapRef = useRef(null);
 
     useEffect(() => {
-        mapRun(map);
+        mapRun(mapRef);
     }, []);
     
     

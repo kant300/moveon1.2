@@ -1,25 +1,3 @@
-@font-face {
-    font-family: 'NanumGothic';
-    src: url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css') format('font-woff');
-    font-weight: normal;
-    font-display: swap;
-}
-
-* { 
-    font-family: 'NanumGothic';
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-    list-style-type: none;
-    text-decoration: none;
-}
-
-#menu {
-    height: 86vh;
-    width: 420px;
-    background-color: rgb(235, 235, 235);
-    color: black;
-}
 
 #menuTop {
     display: flex;
