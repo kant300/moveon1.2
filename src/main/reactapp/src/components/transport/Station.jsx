@@ -14,15 +14,15 @@ export default function Station() {
     }, []);
 
     return (<>
-        <div id="wrap">
         <Header />
+        <div id="wrap">
             <div id="container">
                 <div id="map" style={{width: '420px', height: '79vh'}}>
                     <div id="mapText">지하철 엘리베이터/에스컬레이터 위치 정보</div>
                     <button id="mapLocation" type="button" onClick={() => moveToInitialPosition(mapRef, pos)}><img src={my_location}/></button>
                 </div>
             </div>
+        </div>
         <Footer />
-    </div>
     </>)
 }

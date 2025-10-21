@@ -7,9 +7,7 @@ export default function Header() {
     return (<>
         <div id="header">
             <Link to='/'>mOveOn</Link>
-            <Link to='/login'>
-                <img src={login} id="headerBtn" />
-            </Link>
+            <Link to='/login'><img src={login} id="headerBtn" /></Link>
         </div>
     </>)
 }

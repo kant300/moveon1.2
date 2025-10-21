@@ -1,0 +1,49 @@
+import '../../assets/css/login.css'
+import Footer from "../Footer";
+import Header from "../Header";
+import arrow_back_ios_new from '../../assets/images/icons/arrow_back_ios_new_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
+import { Link } from "react-router-dom";
+import axios from 'axios';
+
+export default function Login() {
+
+    const login = async() => {
+        const id = document.querySelector("#inInput").value;
+        const pwd = document.querySelector("#pwdInput").value;
+        const obj = [id, pwd];
+        
+        const response = await axios.get("http://localhost:8080/", obj);
+        const data = await response.data;
+        console.log(data);
+    }
+
+    return (<>
+        <Header />
+        <div id="wrap">
+            <div id="container">
+                <div id='login'>
+                    <div id="contentTop">
+                        <Link to='/menu'><img src={arrow_back_ios_new} /></Link>
+                        <div id='title'>로그인</div>
+                        <div>　</div>
+                    </div>
+                    <h2>mOveOn</h2>
+                    <div>
+                        <div><input type="text" id="idInput" className='input' placeholder="ID를 입력해주세요."/></div>
+                        <div><input type="text" id="pwdInput" className='input' placeholder="비밀번호를 입력해주세요." /></div>
+                        <div id='linkMenu'>
+                            <div>자동 로그인</div>
+                            <div>아이디 / 비밀번호 찾기</div>
+                        </div>
+                        <div> 
+                            <button type="button" className='button' onClick={() => {login()}}>로그인</button> <br />
+                            <Link to='/signup'><button type="button" className='button'>회원가입</button></Link>
+                        </div>
+                    </div>
+                    <div id='ask'>제휴문의</div>
+                </div>
+            </div>
+        </div>
+        <Footer />
+    </>)
+}

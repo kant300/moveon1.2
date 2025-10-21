@@ -1,0 +1,15 @@
+
+#container {
+    text-align: center;
+}
+
+#address {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+#address > select {
+    padding-right: 30px;
+    margin-left: 20px;
+}
