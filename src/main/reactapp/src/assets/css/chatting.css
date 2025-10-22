@@ -1,0 +1,126 @@
+/* 전체 채팅 화면 */
+.chat-container {
+  background-color: #c8ecff;
+  width: 420px;                /* 앱 가로 고정 */
+  height: 86vh;                /* 세로 비율 지정 */
+  margin: 0 auto;              /* 가운데 정렬 */
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+/* 상단 제목 */
+.chat-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.chat-messages {
+  width: 95%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🔹 스크롤바 숨기기 (투명화) */
+.chat-messages::-webkit-scrollbar {
+  width: 0px; /* 크롬, 엣지, 사파리 */
+  background: transparent;
+}
+
+.chat-messages {
+  scrollbar-width: none; /* 파이어폭스 */
+  -ms-overflow-style: none; /* IE, Edge */
+}
+
+/* 메시지 한 줄 */
+.chat-item {
+  display: flex;
+  flex-direction: column;
+  margin: 8px 0;
+}
+
+/* 이름 */
+.chat-name {
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  margin-left: 5px;
+}
+
+/* 말풍선 */
+.chat-bubble {
+  display: inline-block;
+  background-color: white;
+  border: 2px solid #008cba;
+  padding: 10px 15px;
+  border-radius: 25px;
+  max-width: 75%;
+  word-wrap: break-word;
+}
+
+/* 본인 메시지 오른쪽 정렬 */
+.chat-my {
+  align-items: flex-end;
+}
+
+.chat-my .chat-bubble {
+  background-color: #008cba;
+  color: white;
+  border: none;
+}
+
+/* 입력창 전체 감싸는 영역 */
+.chat-input-area {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  border: 2px solid black;        /* 🔹 검은 테두리 */
+  border-radius: 25px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+/* 입력창 */
+.chat-input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  outline: none;
+  border-radius: 25px;
+  overflow-y: auto;
+}
+
+/* 전송 버튼 */
+.chat-btn {
+  background-color: #008cba;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  margin-left: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.chat-btn:hover {
+  background-color: #0070a5;
+}

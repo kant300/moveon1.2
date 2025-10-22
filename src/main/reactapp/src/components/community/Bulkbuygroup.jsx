@@ -33,7 +33,7 @@ export default function Bulkbuygroup() {
 
   const 입장 = () => {
       alert("방입장");
-      navigate("/chatting")
+      navigate(`/chatting`)
       // 스프링의 @PostMapping("/bcno") 으로 통신하자.성공시 해당 방으로 페이지 전환
         // 만약에 bno가 12 이면 12번방의 인원을 증가하고 12번방으로 페이지 전환
    };

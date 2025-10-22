@@ -15,7 +15,7 @@
 
     <!-- 전체 검색 -->
     <select id="listGroup" resultType="web.model.dto.community.BulkbuygroupDto">
-        SELECT * FROM bulkbuygroup
+        SELECT * FROM bulkbuygroup ORDER BY bdate desc;
     </select>
 
     <!-- 시 구 동 주소 검색 -->

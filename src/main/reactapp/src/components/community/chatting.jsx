@@ -1,50 +1,85 @@
 import axios from "axios";
 import Footer from "../Footer";
 import Header from "../Header";
+import "../../assets/css/chatting.css";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
+export default function Chatting() {
+  const { bno } = useParams();
+  const num = parseInt(bno) || 1;
 
-export default function chatting(props){
-    console.log('chatting');
+  const [mmessage, setmmessage] = useState("");
+  const [chatprint, setchatprint] = useState([]);
+  const mname = "홍길동";
+  const mno = 1;
 
-    const bno = useParams("")
+  const chattingprint = async () => {
+    const response2 = await axios.get("http://localhost:8080/chat/print", {
+      params: { bno: num },
+    });
+    console.log(response2);
+    setchatprint(response2.data);
+  };
 
-    const [ mmessage , setmmessage ] =  useState("");
-    const [ chatprint , setchatprint ] = useState("");
-    const mname = mname;
-    const mno = 1;
+  useEffect(() => {
+    chattingprint();
+  }, [num]);
 
-    const textbtn = async() => {
-        console.log('textbtn');
-        const obj = { bno , mno , mmessage }
-        
-        try{
-            const response = await axios.post("http://localhost:8080/group/write" , obj)
-            const data = response.data;
-            if(data ==true){
-                alert("전송성공");
-                setmmessage("");
-            
-
-            const response2 = await axios.get("http://localhost:8080/group/print" , {
-                params : { bno : bno },
-            });
-            setchatprint(response2.data);
-        }else{
-            alert('메세지 전송 실패 ');
-        }
-        }catch(e) {console.log(e) };
+  useEffect(() => {
+    const chattingtop = document.querySelector('.chat-messages');
+    if(chattingtop){
+        chattingtop.scrollTop = chattingtop.scrollHeight; // 스크롤 자동 
     }
+  })
 
-    return(<>
-        <Header/>
-            <h5> 같이 참치캔 사실분 구해요 </h5> <h3>인원</h3>
-            <div>대화 내용 만들기 </div>
+  const textbtn = async () => {
+    if (!mmessage.trim()) {
+      alert("메시지를 입력하세요");
+      return;
+    }
+    const obj = { bno: num, mno, mmessage };
+    const response = await axios.post("http://localhost:8080/chat/write", obj);
+    if (response.data === true) {
+      setmmessage("");
+      await chattingprint();
+    } else {
+      alert("전송 실패");
+    }
+  };
 
-            <input value={mmessage} id="texxt" /><button onClick={textbtn}
-            onChange={ (e) => setmmessage(e.target.value) }>▶</button>
-        <Footer/>
-        </>)
+  return (
+    <>
+      <Header />
+      <div className="chat-container">
+        <div className="chat-header">같이 구매할 분 구해요</div>
+        
 
+        <div className="chat-messages">
+          {chatprint.map((c) => (
+            <div
+              key={c.cno}
+              className={`chat-item ${c.mname === mname ? "chat-my" : ""}`}
+            >
+              <div className="chat-name">{c.mname}</div>
+              <div className="chat-bubble">{c.mmessage}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="chat-input-area">
+          <input
+            className="chat-input"
+            value={mmessage}
+            onChange={(e) => setmmessage(e.target.value)}
+            placeholder="메시지를 입력하세요" onKeyDown={ (e)=> {if(e.key === "Enter"){textbtn(); }} }
+          />
+          <button className="chat-btn" onClick={textbtn}>
+            ▶
+          </button>
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
 }
