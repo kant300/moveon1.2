@@ -26,7 +26,7 @@ public class MemberController {
     // 2. 로그인
     @PostMapping("/login")
     public ResponseEntity<?> login( @RequestBody MemberDto memberDto ){
-        boolean result = memberService.login(memberDto);
+       MemberDto result = memberService.login(memberDto);
         return ResponseEntity.ok( result );
     }
 

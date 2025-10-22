@@ -25,7 +25,7 @@ public interface MemberMapper {
     // 3. 로그인
     // 아이디(mid)와 비밀번호(mpwd)를 기준으로 회원정보 1건 조회
     @Select("select * from members where mid = #{mid} and mpwd = #{mpwd}")
-    MemberDto login(@RequestParam String mid, String mpwd);
+    MemberDto login(String mid, String mpwd);
 
 
 }
