@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Header from "./Header";
 
+// 존재하지 않는 페이지
 export default function NotFound() {
     return (<>
         <Header />

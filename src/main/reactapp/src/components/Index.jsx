@@ -42,34 +42,34 @@ export default function Index() {
                         {
                             category==0?(
                                 <>
-                                    <Link to='/bill'><li><img src={paid} />공과금정산</li></Link>
-                                    <Link to='/trashInfo'><li><img src={recycling} />쓰레기 배출정보</li></Link>
-                                    <Link to='/clothingBin'><li><img src={apparel} />의류수거함</li></Link>
-                                    <Link to='/wheelchairCharger'><li><img src={ev_station} />전동휠체어</li></Link>
+                                    <Link to='/living/bill'><li><img src={paid} />공과금정산</li></Link>
+                                    <Link to='/living/trashInfo'><li><img src={recycling} />쓰레기 배출정보</li></Link>
+                                    <Link to='/living/clothingBin'><li><img src={apparel} />의류수거함</li></Link>
+                                    <Link to='/living/wheelchairCharger'><li><img src={ev_station} />전동휠체어</li></Link>
                                 </>
                             ):
                             category==1?(
                                 <>
-                                    <Link to='/sexOffender'><li><img src={crisis_alert} />성범죄자 위치</li></Link>
-                                    <Link to='/ambulance'><li><img src={ambulance} />민간구급차</li></Link>
-                                    <Link to='/water'><li><img src={water_drop} />비상급수시설</li></Link>
-                                    <Link to='/shelter'><li><img src={night_shelter} />대피소</li></Link>
+                                    <Link to='/safety/sexOffender'><li><img src={crisis_alert} />성범죄자 위치</li></Link>
+                                    <Link to='/safety/ambulance'><li><img src={ambulance} />민간구급차</li></Link>
+                                    <Link to='/safety/water'><li><img src={water_drop} />비상급수시설</li></Link>
+                                    <Link to='/safety/shelter'><li><img src={night_shelter} />대피소</li></Link>
                                 </>
                             ):
                             category==2?(
                                 <>
-                                    <Link to='/subway'><li><img src={subway} />지하철</li></Link>
-                                    <Link to='/busStation'><li><img src={directions_bus} />버스정류장</li></Link>
-                                    <Link to='/'><li></li></Link>
-                                    <Link to='/'><li></li></Link>
+                                    <Link to='/transport/subway'><li><img src={subway} />지하철</li></Link>
+                                    <Link to='/transport/busStation'><li><img src={directions_bus} />버스정류장</li></Link>
+                                    <Link to='/transport/'><li></li></Link>
+                                    <Link to='/transport/'><li></li></Link>
                                 </>
                             ):
                             category==3?(
                                 <>
-                                    <Link to='/bulkBuy'><li><img src={handshake} />소분모임</li></Link>
-                                    <Link to='/localEvent'><li><img src={explore_nearby} />지역행사</li></Link>
-                                    <Link to='/localStore'><li><img src={storefront} />지역장터</li></Link>
-                                    <Link to='/'><li></li></Link>
+                                    <Link to='/community/bulkBuy'><li><img src={handshake} />소분모임</li></Link>
+                                    <Link to='/community/localEvent'><li><img src={explore_nearby} />지역행사</li></Link>
+                                    <Link to='/community/localStore'><li><img src={storefront} />지역장터</li></Link>
+                                    <Link to='/community/'><li></li></Link>
                                 </>
                             ):null
                         }
@@ -85,46 +85,46 @@ export default function Index() {
                         {
                             event==0?(
                                 <>
-                                    <Link to='/article?id=0'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article?id=0'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
                                 </>
                             ):
                             event==1?(
                                 <>
-                                    <Link to='/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
                                 </>
                             ):
                             event==2?(
                                 <>
-                                    <Link to='/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
                                 </>
                             ):
                             event==3?(
                                 <>
-                                    <Link to='/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
                                 </>
                             ):null
                         }

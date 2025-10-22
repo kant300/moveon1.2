@@ -8,10 +8,14 @@ import MyPage from "./components/MyPage";
 import Station from './components/transport/Station.jsx';
 import Newcreate from './components/community/newcreate.jsx';
 import Chatting from './components/community/chatting.jsx';
-import Test from './components/living/Test.jsx';
 import Login from './components/main/Login.jsx';
 import NotFound from './components/NotFound.jsx';
 import Signup from './components/main/Signup.jsx';
+import Trash from './components/living/Trash.jsx';
+import ClothingBin from './components/living/ClothingBin.jsx';
+import SexOffender from './components/safety/SexOffender.jsx';
+import FindId from './components/main/FindId.jsx';
+import FindPwd from './components/main/FindPwd.jsx';
 
 // 현재 홈, 마이페이지, 전체메뉴, 설정까지 프로토타입 제작 완료
 export default function App() {
@@ -26,20 +30,24 @@ export default function App() {
           <Route path='/' element={<Index />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path='/findId' element={<FindId />} />
+          <Route path='/findPwd' element={<FindPwd />} />
           <Route path='/mypage' element={<MyPage />} />
           <Route path='/menu' element={<Menu />} />
           <Route path='/setting' element={<Setting />} />
 
           {/* living */}
-          <Route path='/trashInfo' element={<Test />} />
+          <Route path='/living/trashInfo' element={<Trash />} />
+          <Route path='/living/clothingBin' element={<ClothingBin />} />
 
           {/* safety */}
+          <Route path='/safety/sexOffender' element={<SexOffender />} />
 
           {/* transport */}
-          <Route path='/subway' element={<Station />} />
+          <Route path='/transport/subway' element={<Station />} />
 
           {/* community */}
-          <Route path='/bulkBuy' element={<Bulkbuygroup />} />
+          <Route path='/community/bulkBuy' element={<Bulkbuygroup />} />
 
         </Routes>
       </BrowserRouter>

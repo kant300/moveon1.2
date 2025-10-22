@@ -6,11 +6,6 @@
     margin: 2vh 30px 7vh 30px;
 }
 
-#settingTop > a {
-    display: flex;
-    align-items: center;
-}
-
 #title {
     margin: 0 auto;
 }

@@ -145,5 +145,5 @@ export function Run(mapRef, pos) {
 
 export function moveToInitialPosition(mapRef, pos) {
     // 지도 중심좌표를 접속위치로 변경합니다
-    mapRef.current.setCenter(pos.current);  
+    mapRef.current.setCenter(pos.current);
 }
