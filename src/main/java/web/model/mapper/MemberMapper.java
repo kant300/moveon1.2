@@ -9,8 +9,8 @@ import web.model.dto.MemberDto;
 @Mapper     // 빈 등록
 public interface MemberMapper {
     // 1. 회원가입
-    @Insert("insert into members( mid, mpwd, mname, mphone, memail, maddress1, maddress2, maddress3, mdate, mdateup) " +
-            "values ( #{mid}, #{mpwd}, #{mname}, #{mphone}, #{memail}, #{maddress1}, #{maddress2}, #{maddress3}, #{mdate}, #{mdateup} )")
+    @Insert("insert into members( mid, mpwd, mname, mphone, memail, maddress1, maddress2, maddress3 ) " +
+            "values ( #{mid}, #{mpwd}, #{mname}, #{mphone}, #{memail}, #{maddress1}, #{maddress2}, #{maddress3} )")
     @Options( useGeneratedKeys = true , keyProperty = "mno" )
     public int signup(MemberDto memberDto);
 
