@@ -23,7 +23,14 @@ public class MemberController {
         return ResponseEntity.ok( result );
     }
 
-    // 2. 로그인(+쿠키 : 클라이언트 브라우저의 임시 저장소)
+    // 2. 로그인
+    @PostMapping("/login")
+    public ResponseEntity<?> login( @RequestBody MemberDto memberDto ){
+        boolean result = memberService.login(memberDto);
+        return ResponseEntity.ok( result );
+    }
+
+    // 3. 로그아웃
 
 
 }
