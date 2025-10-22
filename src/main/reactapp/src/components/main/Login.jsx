@@ -1,14 +1,15 @@
-import '../../assets/css/login.css'
+import '../../assets/css/main/login.css'
 import Footer from "../Footer";
 import Header from "../Header";
 import arrow_back_ios_new from '../../assets/images/icons/arrow_back_ios_new_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import { Link } from "react-router-dom";
 import axios from 'axios';
 
+// 로그인 페이지
 export default function Login() {
 
     const login = async() => {
-        const id = document.querySelector("#inInput").value;
+        const id = document.querySelector("#idInput").value;
         const pwd = document.querySelector("#pwdInput").value;
         const obj = [id, pwd];
         
@@ -32,8 +33,8 @@ export default function Login() {
                         <div><input type="text" id="idInput" className='input' placeholder="ID를 입력해주세요."/></div>
                         <div><input type="text" id="pwdInput" className='input' placeholder="비밀번호를 입력해주세요." /></div>
                         <div id='linkMenu'>
-                            <div>자동 로그인</div>
-                            <div>아이디 / 비밀번호 찾기</div>
+                            <div><input type='checkbox' id='autoLoginInput' /> 자동 로그인</div>
+                            <Link to='/findId'><div>아이디 / 비밀번호 찾기</div></Link>
                         </div>
                         <div> 
                             <button type="button" className='button' onClick={() => {login()}}>로그인</button> <br />

@@ -1,10 +1,11 @@
-import '../../assets/css/signup.css'
+import '../../assets/css/main/signup.css'
 import Footer from "../Footer";
 import Header from "../Header";
 import arrow_back_ios_new from '../../assets/images/icons/arrow_back_ios_new_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import { Link } from "react-router-dom";
 import axios from 'axios';
 
+// 회원가입 페이지
 export default function Signup() {
 
     const signup = async() => {
