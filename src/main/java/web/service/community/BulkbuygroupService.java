@@ -34,8 +34,8 @@ public class BulkbuygroupService {
     }
 
     // 제목/내용 검색하기
-    public BulkbuygroupDto listprint(Map<String , Object> maps){
-        BulkbuygroupDto dto = bulkbuygroupMapper.listprint(maps);
+    public List<BulkbuygroupDto> listprint(Map<String , Object> maps){
+        List<BulkbuygroupDto> dto = bulkbuygroupMapper.listprint(maps);
         return dto;
     }
 

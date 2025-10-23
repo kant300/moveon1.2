@@ -19,7 +19,7 @@ public interface BulkbuygroupMapper {
     List<BulkbuygroupDto> addressGroup(Map<String , Object> maps);
 
     // 조회하기
-    BulkbuygroupDto listprint(Map<String , Object> maps);
+    List<BulkbuygroupDto> listprint(Map<String , Object> maps);
 
     // (소분모임)글 삭제
     boolean deleteGroup(int bno);
