@@ -4,18 +4,26 @@ import Header from "../Header";
 import arrow_back_ios_new from '../../assets/images/icons/arrow_back_ios_new_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'
 
 // 로그인 페이지
 export default function Login() {
 
+    const navigate = useNavigate();
+
     const login = async() => {
-        const id = document.querySelector("#idInput").value;
-        const pwd = document.querySelector("#pwdInput").value;
-        const obj = [id, pwd];
+        const mid = document.querySelector("#idInput").value;
+        const mpwd = document.querySelector("#pwdInput").value;
+        const obj = { mid  , mpwd }
         
-        const response = await axios.get("http://localhost:8080/", obj);
+        const response = await axios.post("http://localhost:8080/api/member/login", obj);
         const data = await response.data;
-        console.log(data);
+        if( data != ""){
+            alert('로그인 성공')
+            navigate( "/" );
+        }else{
+            alert('로그인 실패')
+        }
     }
 
     return (<>
