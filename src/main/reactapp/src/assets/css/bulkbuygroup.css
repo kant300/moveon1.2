@@ -51,3 +51,60 @@ h4{margin-left: 10px; margin-top: 5px;}
   justify-content: space-between;
   font-size: 12px;
 }
+
+/* 검색 영역 전체 */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+/* 입력창 스타일 */
+.search-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+  background-color: #fffaf3;
+}
+
+.search-input:focus {
+  border-color: #00bfff;
+  box-shadow: 0 0 4px rgba(0, 191, 255, 0.4);
+}
+
+/* 돋보기 버튼 */
+.search-btn {
+  background-color: #00bfff;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-btn:hover {
+  background-color: #0099cc;
+}
+
+/* 글쓰기 버튼 기존 스타일 유지 */
+.write-btn {
+  background-color: #ffefc2;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.write-btn:hover {
+  background-color: #ffe490;
+}

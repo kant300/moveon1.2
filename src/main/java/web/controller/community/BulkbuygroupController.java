@@ -42,9 +42,8 @@ public class BulkbuygroupController {
     @GetMapping("/listprint")
     public ResponseEntity< ? > listprint(@RequestParam Map<String , Object> maps){
         System.out.println("BulkbuygroupController.listprint");
-        BulkbuygroupDto dto = bulkbuygroupService.listprint(maps);
+        List<BulkbuygroupDto> dto = bulkbuygroupService.listprint(maps);
         return ResponseEntity.ok(dto);
-
     }
 
     // 글 삭제

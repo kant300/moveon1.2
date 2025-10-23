@@ -7,17 +7,35 @@ import { useNavigate } from "react-router-dom";
 
 export default function Bulkbuygroup() {
   const [groups, setGroups] = useState([]);
+  const [keyword , setkeyword] = useState("");
 
   // ✅ 글 목록 불러오기
   const fetchGroups = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/group/list");
+      const response = await axios.get("http://localhost:8080/group/list" );
       setGroups(response.data);
       console.log(response.data);
     } catch (error) {
       console.error("❌ 소분모임 목록 조회 실패:", error);
     }
   };
+
+  const keybod = async(e) =>{
+    const value = e.target.value; 
+    setkeyword(value);
+    try{
+    if(value.trim() == ""){
+      fetchGroups();
+    } else{
+    const response = await axios.get("http://localhost:8080/group/listprint" , {
+      params : { btitle : value , bcontent : value },    
+    });
+    setGroups(response.data);
+  }
+  }catch(e){console.log(e)}
+
+  }
+
 
   useEffect(() => {
     fetchGroups();
@@ -44,6 +62,9 @@ export default function Bulkbuygroup() {
       <div id="main" className="bulk-container">
         <div className="bulk-header">
           <h4>소분모임</h4>
+           <div className="search-bar">
+    <input type="text"value={keyword}onChange={keybod}placeholder="제목 또는 내용 검색..."className="search-input"    />
+    </div>
           <button onClick={handleWriteClick} className="write-btn">
             + 글쓰기
           </button>
@@ -62,7 +83,7 @@ export default function Bulkbuygroup() {
                 <p className="content">{item.bcontent}</p>
                 <div className="info">
                   <span>인원 : {item.bcount}/{item.btotal}</span>
-                  <span className="region">인천시 부평구</span>
+                  <span className="region">{item.maddress1} {item.maddress2} {item.maddress3}</span>
                 </div>
               </div>
             ))
