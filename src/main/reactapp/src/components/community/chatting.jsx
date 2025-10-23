@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 
 export default function Chatting() {
   const { bno } = useParams();
-  const num = parseInt(bno) || 1;
+  const num = parseInt(bno);
 
   const [mmessage, setmmessage] = useState("");
   const [chatprint, setchatprint] = useState([]);
-  const mname = "홍길동";
-  const mno = 1;
+  const mname = mname;
+  const mno = mno;
 
   const chattingprint = async () => {
     const response2 = await axios.get("http://localhost:8080/chat/print", {

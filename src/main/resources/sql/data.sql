@@ -11,7 +11,7 @@ INSERT INTO members (mid, mpwd, mname, mphone, memail, maddress1, maddress2, mad
 ('yujiae', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '유지애', '010-1234-0007', 'yujiae@test.com', '인천광역시', '부평구', '산곡동', '2025-10-13', '2025-10-14'),
 ('kangsh', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '강승현', '010-1234-0008', 'kangsh@test.com', '인천광역시', '연수구', '송도동', '2025-10-13', '2025-10-14'),
 ('songmj', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '송민정', '010-1234-0009', 'songmj@test.com', '인천광역시', '중구', '운서동', '2025-10-13', '2025-10-14'),
-('songmj2', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '송민종', '010-1234-0010', 'songmj2@test.com', '인천광역시', '중구', '주안동', '2025-10-13', '2025-10-14'),
+('1313', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '송민종', '010-1234-0010', 'songmj2@test.com', '인천광역시', '중구', '주안동', '2025-10-13', '2025-10-14'),
 ('test', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '테스트', '010-9874-6541', 'test@test.com', '인천광역시', '남동구', '주안동', '2025-10-13', '2025-10-14');
 
 

@@ -39,7 +39,7 @@ export default function Newcreate(props){
 
             if(data == true){
                 alert('등록성공');
-                nav("/community/bulkBuy");
+                nav("/bulkBuy");
         }else{
             alert('등록실패');
         }
