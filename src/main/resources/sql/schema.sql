@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS email_verification;
 CREATE TABLE members (
     mno INT AUTO_INCREMENT PRIMARY KEY,        -- 회원번호
     mid VARCHAR(50) NOT NULL UNIQUE,           -- 아이디
-    mpwd VARCHAR(50) NOT NULL,                 -- 비밀번호
+    mpwd VARCHAR(255) NOT NULL,                 -- 비밀번호
     mname VARCHAR(100) NOT NULL,               -- 닉네임
     mphone VARCHAR(20) NOT NULL UNIQUE,        -- 휴대번호
     memail VARCHAR(100) NOT NULL UNIQUE,       -- 이메일
