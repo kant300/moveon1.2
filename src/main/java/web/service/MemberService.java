@@ -31,7 +31,7 @@ public class MemberService {
     // 2. 로그인 : 암호문을 해독하여 평문을 비교하는 방식이 아닌 비교할 대상을 암호화해서 암호문 비교
     public MemberDto login( MemberDto memberDto ){
         // 2-1 : 현재 로그인에서 입력받은 아이디의 계정이 있는지 확인
-        MemberDto result = memberMapper.login( memberDto.getMid() );
+        MemberDto result = memberMapper.login( memberDto.getMid(), memberDto.getMpwd() );
         if( result == null ){ return null; }
         boolean result2 = bcrypt.matches( memberDto.getMpwd(), result.getMpwd() );
         if( result2 == true ){ // 비밀번호 일치하면 로그인 성공
