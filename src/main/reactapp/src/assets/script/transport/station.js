@@ -49,7 +49,7 @@ export function Run(mapRef, pos) {
     
                 // 데이터를 가져와 필요한 데이터를 삽입합니다
                 // 1. 매핑된 데이터를 가져옵니다
-                const response = await axios.get("http://localhost:8080/station/data");
+                const response = await axios.get("http://localhost:8080/station/lift");
                 const data = await response.data;
                 var positions = [];
                 for (let i=0; i<data.length; i++) {
@@ -93,7 +93,7 @@ export function Run(mapRef, pos) {
                     });
     
                     // 3. positions 배열에 삽입한 데이터를 꺼내옵니다
-                    let iwContent = `<div style="width:150px;text-align:center;padding:6px 0;padding-top:18px;font-family: 'NanumGothic';">${obj.title}역의 ${obj.unit}호 ${obj.equipment}는 ${obj.status}입니다.</div>` // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                    let iwContent = `<div style="width:150px;text-align:center;padding:10px;font-family: 'NanumGothic';"><div>${obj.title}역</div><div>${obj.unit}호 ${obj.equipment}</div><div>${obj.status}</div>` // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
                     var iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
     
                     // 인포윈도우를 생성합니다
