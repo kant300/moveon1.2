@@ -39,7 +39,7 @@ public interface MemberMapper {
 
     // 7. 회원탈퇴
     @Delete("delete from members where mid = #{mid}")
-    int signout(String mid)
+    int signout(String mid);
 
 
 }
