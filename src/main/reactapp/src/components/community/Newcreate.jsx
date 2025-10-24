@@ -3,7 +3,7 @@ import Header from "../Header"
 import "../../assets/css/newcreate.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 
 export default function Newcreate(props){
     console.log('Newcreate.jsx');
@@ -12,17 +12,26 @@ export default function Newcreate(props){
     const [ createtitle , setcreatetitle ] = useState("");
     const [ createcontent , setcreatecontent ] = useState("");
     const [ total  , settotal ] = useState("2");
-    const mno = 1; // 테스트
+    const [ auth , setAuth ] = useState( { check : null } );
 
-    // 회원들어오면 써야할것
-    // const mno = localStorage.getItem("mno"); 
-    // if(!mno){
-    //     alert("로그인후 이용해주세요.");
-    //     nav('/login')
-    //     return;
-    // }
+    // 로그인 정보 가져오기 쿠키 
+    const checkcookie = async() => {
+        try{
+            const res = await axios.get("http://localhost:8080/api/member/info" ,
+                { withCredentials : true } );
+                setAuth(res.data);
+                console.log(res.data);
+                if(res.data === null){
+                    alert('로그인후 이용해주세요');
+                    nav('/login');
+                }
+        } catch(e) {setAuth( { check : false } ) };
+        
+
+    }
 
 
+    useEffect( ()=> {checkcookie() } , [] );
 
     const addbtn = async() => {
         console.log('등록테스트');
@@ -30,10 +39,10 @@ export default function Newcreate(props){
                 alert('비워두지마세요.');
                 return;
             }
-
-            const obj = { mno : mno , btitle : createtitle , bcontent : createcontent , btotal : total }
+            const obj = {btitle : createtitle , bcontent : createcontent , btotal : total }
 
         try{
+        
             const response = await axios.post("http://localhost:8080/group/create" , obj )
             const data =  response.data;
 

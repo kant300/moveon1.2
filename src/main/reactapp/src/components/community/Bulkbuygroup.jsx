@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function Bulkbuygroup() {
   const [groups, setGroups] = useState([]);
   const [keyword , setkeyword] = useState("");
+  const [ auth , setAuth ] = useState( { check : null } ) 
 
   // ✅ 글 목록 불러오기
   const fetchGroups = async () => {
@@ -19,7 +20,7 @@ export default function Bulkbuygroup() {
       console.error("❌ 소분모임 목록 조회 실패:", error);
     }
   };
-
+  // 검색 키워드
   const keybod = async(e) =>{
     const value = e.target.value; 
     setkeyword(value);
@@ -36,12 +37,31 @@ export default function Bulkbuygroup() {
 
   }
 
-
+ // 최촛 ㅣㄹ행 렌더링1번
   useEffect(() => {
+    checkcookie();
     fetchGroups();
+  
   }, []);
 
   const navigate = useNavigate();
+      // 로그인 정보 가져오기
+      const checkcookie = async() => {
+        try{
+            const res = await axios.get("http://localhost:8080/api/member/info" ,
+                { withCredentials : true } );
+                setAuth(res.data);
+                console.log(res.data)
+                if(res.data === null){
+                    alert('로그인후 이용해주세요');
+                    navigate('/login');
+                }
+        } catch(e) { setAuth( { check : false } ) };
+        
+
+    }
+
+
 
   // ✅ 글쓰기 버튼 클릭
   const handleWriteClick = () => {
