@@ -20,16 +20,16 @@ public class MemberService {
     private final BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
 
     // 1. 회원가입
-    public int signup(MemberDto memberDto){
+    public boolean signup(MemberDto memberDto){
         // 1-3 : 회원가입 하기전에 비크립트 를 이용한 비밀번호 암호화
         memberDto.setMpwd( bcrypt.encode( memberDto.getMpwd() ) );
         System.out.println("[암호화 결과] = " + memberDto.getMpwd() );
 
-        memberMapper.signup(memberDto); // mapper 이용한 SQL 처리
-        if( memberDto.getMno() > 0 ){   // 만약에 mno 생성되었다면 회원가입 SQL 처리 성공
-            return memberDto.getMno();  // 회원번호 반환
+        int result = memberMapper.signup(memberDto); // mapper 이용한 SQL 처리
+        if( result > 0 && memberDto.getMno() > 0 ){   // 만약에 mno 생성되었다면 회원가입 SQL 처리 성공
+            return true;  // 성공
         }else{
-             return 0; // 회원가입 실패를 0으로 가정한다.
+             return false; // 실패
         }
     } // m end
 
@@ -79,4 +79,6 @@ public class MemberService {
         return null;
     }
 
-}
+
+
+}// class e

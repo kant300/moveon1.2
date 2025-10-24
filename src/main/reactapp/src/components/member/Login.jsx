@@ -1,4 +1,4 @@
-import '../../assets/css/main/login.css'
+import '../../assets/css/member/login.css'
 import Footer from "../Footer";
 import Header from "../Header";
 import arrow_back_ios_new from '../../assets/images/icons/arrow_back_ios_new_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
@@ -16,7 +16,7 @@ export default function Login() {
         const mpwd = document.querySelector("#pwdInput").value;
         const obj = { mid  , mpwd }
         
-        const response = await axios.post("http://localhost:8080/api/member/login", obj , { withCredentials : true } );
+        const response = await axios.post("http://localhost:8080/api/member/login", obj , { withCredentials: true } );
         const data = await response.data;
         if( data != ""){
             alert('로그인 성공')
