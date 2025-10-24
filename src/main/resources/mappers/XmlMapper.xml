@@ -59,4 +59,5 @@
         UPDATE bulkbuygroup set bcount = bcount+1 where bno = #{bno} and bcount &lt; btotal
     </update>
 
+
 </mapper>

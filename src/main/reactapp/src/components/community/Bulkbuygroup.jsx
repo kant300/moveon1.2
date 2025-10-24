@@ -9,6 +9,7 @@ export default function Bulkbuygroup() {
   const [groups, setGroups] = useState([]);
   const [keyword , setkeyword] = useState("");
   const [ auth , setAuth ] = useState( { check : null } ) 
+  const [ bcount , setbcount ] = useState(0); // 기본
 
   // ✅ 글 목록 불러오기
   const fetchGroups = async () => {
@@ -57,9 +58,11 @@ export default function Bulkbuygroup() {
                     navigate('/login');
                 }
         } catch(e) { setAuth( { check : false } ) };
-        
-
+      
     }
+
+ 
+
 
 
 
@@ -69,9 +72,24 @@ export default function Bulkbuygroup() {
     navigate("/group/create")
   };
 
-  const 입장 = () => {
-      alert("방입장");
-      navigate(`/chatting`)
+
+  // 방입장시 인원 + 1 
+  const 입장 = async(item) => {
+      const response = await axios.post("http://localhost:8080/group/bcno" , 
+        { bno : item.bno } , {withCredentials : true ,
+          headers: { "Content-Type": "application/json" },
+
+      })
+      if(response.data == true || response.data == "true" ){
+        alert(`방입장 ${  item.bno }`);
+    navigate(`/community/chatting/${item.bno}`, {
+        state: { btotal: item.btotal, bcount: item.bcount + 1 },
+      });
+
+      }else{
+        alert('인원 가득참')
+      }
+      
       // 스프링의 @PostMapping("/bcno") 으로 통신하자.성공시 해당 방으로 페이지 전환
         // 만약에 bno가 12 이면 12번방의 인원을 증가하고 12번방으로 페이지 전환
    };
@@ -98,7 +116,7 @@ export default function Bulkbuygroup() {
             </p>
           ) : (
             groups.map((item) => (
-              <div key={item.bno} className="bulk-card" onClick={ (  )=>{ 입장( item.bno ) } }>
+              <div key={item.bno} className="bulk-card" onClick={ (  )=>{ 입장( item ) } }>
                 <h5>{item.btitle}</h5>
                 <p className="content">{item.bcontent}</p>
                 <div className="info">

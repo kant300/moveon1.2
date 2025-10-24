@@ -26,8 +26,6 @@ export default function Newcreate(props){
                     nav('/login');
                 }
         } catch(e) {setAuth( { check : false } ) };
-        
-
     }
 
 
@@ -43,12 +41,12 @@ export default function Newcreate(props){
 
         try{
         
-            const response = await axios.post("http://localhost:8080/group/create" , obj )
+            const response = await axios.post("http://localhost:8080/group/create" , obj , { withCredentials : true }  )
             const data =  response.data;
 
             if(data == true){
                 alert('등록성공');
-                nav("/bulkBuy");
+                nav("/community/bulkBuy");
         }else{
             alert('등록실패');
         }

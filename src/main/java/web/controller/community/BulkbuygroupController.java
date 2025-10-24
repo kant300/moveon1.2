@@ -1,9 +1,12 @@
 package web.controller.community;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import web.model.dto.MemberDto;
 import web.model.dto.community.BulkbuygroupDto;
+import web.service.MemberService;
 import web.service.community.BulkbuygroupService;
 
 
@@ -15,10 +18,19 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class BulkbuygroupController {
     private final BulkbuygroupService bulkbuygroupService;
+    private final MemberService memberService;
 
     // 글쓰기
     @PostMapping("/create")
-    public ResponseEntity< ? > createGroup(@RequestBody BulkbuygroupDto dto){
+    public ResponseEntity< ? > createGroup(@RequestBody BulkbuygroupDto dto , HttpServletRequest request){
+
+        MemberDto memberDto = memberService.myInfo(request);
+
+        if (memberDto == null){
+            ResponseEntity.status(403).body("로그인 바람");
+        }
+        dto.setMno(memberDto.getMno());
+        System.out.println("memberDto = " + memberDto);
         System.out.println("BulkbuygroupController.createGroup");
         boolean result = bulkbuygroupService.createGroup(dto);
         return ResponseEntity.ok(result);
@@ -62,8 +74,8 @@ public class BulkbuygroupController {
 
     // 방 입장 인원
     @PostMapping("/bcno")
-    public ResponseEntity< ? > countCheck(@RequestBody int bno){
-        String result = bulkbuygroupService.countCheck(bno);
+    public ResponseEntity< ? > countCheck(@RequestBody Map<String , Object> map){
+        int result = bulkbuygroupService.countCheck(map);
         return ResponseEntity.ok(result);
     }
 }

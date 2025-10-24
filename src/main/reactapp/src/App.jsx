@@ -25,8 +25,8 @@ export default function App() {
           <Route path='*' element={<NotFound />} />
 
           {/* main */}
-          <Route path="/chatting" element={<Chatting />} />
-          <Route path='/group/create' element={<Newcreate/>} />
+          
+          
           <Route path='/' element={<Index />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
@@ -48,6 +48,8 @@ export default function App() {
 
           {/* community */}
           <Route path='/community/bulkBuy' element={<Bulkbuygroup />} />
+          <Route path="/community/chatting/:bno" element={<Chatting />} />
+          <Route path='/group/create' element={<Newcreate/>} />
 
         </Routes>
       </BrowserRouter>

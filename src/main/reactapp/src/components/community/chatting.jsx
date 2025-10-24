@@ -2,27 +2,45 @@ import axios from "axios";
 import Footer from "../Footer";
 import Header from "../Header";
 import "../../assets/css/chatting.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function Chatting() {
   const { bno } = useParams();
   const num = parseInt(bno);
-
+  const nav = useNavigate();
   const [mmessage, setmmessage] = useState("");
   const [chatprint, setchatprint] = useState([]);
-  const mname = mname;
-  const mno = mno;
+  const [ auth , setAuth ] = useState ( { check : null } );
 
+  // 로그인 정보 가져오기 쿠키 
+    const checkcookie = async() => {
+        try{
+            const res = await axios.get("http://localhost:8080/api/member/info" ,
+                { withCredentials : true } );
+                setAuth(res.data);
+                console.log(res.data);
+                if(res.data === null){
+                    alert('로그인후 이용해주세요');
+                    nav('/login');
+                }
+        } catch(e) {setAuth( { check : false } ) };
+    }
+
+
+
+  // 채팅 내용 출력
   const chattingprint = async () => {
     const response2 = await axios.get("http://localhost:8080/chat/print", {
-      params: { bno: num },
-    });
+       withCredentials : true, params: { bno: num }, 
+     } );
     console.log(response2);
     setchatprint(response2.data);
   };
 
   useEffect(() => {
+    console.log("현재 방 번호:", num);
+    checkcookie();
     chattingprint();
   }, [num]);
 
@@ -33,13 +51,16 @@ export default function Chatting() {
     }
   })
 
+
+  // 메세지 전송 db 저장
   const textbtn = async () => {
     if (!mmessage.trim()) {
       alert("메시지를 입력하세요");
       return;
     }
-    const obj = { bno: num, mno, mmessage };
-    const response = await axios.post("http://localhost:8080/chat/write", obj);
+    const obj = { bno: num, mmessage };
+    const response = await axios.post("http://localhost:8080/chat/write", obj ,
+      {withCredentials : true });
     if (response.data === true) {
       setmmessage("");
       await chattingprint();
@@ -59,7 +80,7 @@ export default function Chatting() {
           {chatprint.map((c) => (
             <div
               key={c.cno}
-              className={`chat-item ${c.mname === mname ? "chat-my" : ""}`}
+              className={`chat-item ${c.mname === auth.mname ? "chat-my" : ""}`}
             >
               <div className="chat-name">{c.mname}</div>
               <div className="chat-bubble">{c.mmessage}</div>

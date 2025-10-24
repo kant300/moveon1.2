@@ -1,9 +1,12 @@
 package web.controller.community;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import web.model.dto.MemberDto;
 import web.model.dto.community.ChattingDto;
+import web.service.MemberService;
 import web.service.community.ChatService;
 
 import java.util.List;
@@ -13,10 +16,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ChatController {
     private final ChatService chatService;
+    private final MemberService memberService;
 
     // 메세지 내용 저장 (DB 저장)
     @PostMapping("/write")
-    public ResponseEntity< ? > writeChat(@RequestBody ChattingDto dto){
+    public ResponseEntity< ? > writeChat(@RequestBody ChattingDto dto , HttpServletRequest request){
+
+        MemberDto memberDto = memberService.myInfo(request);
+        
+        dto.setMno(memberDto.getMno());
+        System.out.println("memberDto = " + memberDto);
         System.out.println("ChatController.saveChat");
         boolean result = chatService.writeChat(dto);
         return ResponseEntity.ok(result);

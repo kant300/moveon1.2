@@ -28,7 +28,7 @@ public interface BulkbuygroupMapper {
     boolean updateGroup(BulkbuygroupDto dto);
 
     // 방 입장
-    int countCheck(int bno);
+    int countCheck( Map<String , Object> map);
 
 
 }

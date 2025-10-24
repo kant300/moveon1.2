@@ -52,9 +52,9 @@ public class BulkbuygroupService {
     }
 
     // 방입장시 인원+1
-    public String countCheck(int bno){
-        int result = bulkbuygroupMapper.countCheck(bno);
-        if (result==1) return "입장하셨습니다.";
-        return "입장실패";
+    public int countCheck( Map<String , Object> map){
+        int result = bulkbuygroupMapper.countCheck(map);
+        if (result==1) return 1;
+        return 0;
     }
 }
