@@ -1,16 +1,19 @@
 -- ===============================
---  MEMBERS 초기 데이터
+--  MEMBERS 초기 데이터 -- 모든 회원들의 비밀번호는 비크립트로 적용 했으므로 '1234' 로 샘플 사용
 -- ===============================
 INSERT INTO members (mid, mpwd, mname, mphone, memail, maddress1, maddress2, maddress3, mdate, mdateup) VALUES
-('hong123', 'pw1234', '홍길동', '010-1234-0001', 'hong123@test.com', '인천광역시', '부평구', '십정동', '2025-10-13', '2025-10-14'),
-('kimsky', 'pw1234', '김하늘', '010-1234-0002', 'kimsky@test.com', '인천광역시', '계양구', '작전동', '2025-10-13', '2025-10-14'),
-('parkyh', 'pw1234', '박영희', '010-1234-0003', 'parkyh@test.com', '인천광역시', '연수구', '송도동', '2025-10-13', '2025-10-14'),
-('choijs', 'pw1234', '조지수', '010-1234-0004', 'choijs@test.com', '인천광역시', '부평구', '부개동', '2025-10-13', '2025-10-14'),
-('leesmile', 'pw1234', '이미소', '010-1234-0005', 'leesmile@test.com', '인천광역시', '남동구', '구월동', '2025-10-13', '2025-10-14'),
-('janghm', 'pw1234', '장한민', '010-1234-0006', 'janghm@test.com', '인천광역시', '미추홀구', '주안동', '2025-10-13', '2025-10-14'),
-('yujiae', 'pw1234', '유지애', '010-1234-0007', 'yujiae@test.com', '인천광역시', '부평구', '산곡동', '2025-10-13', '2025-10-14'),
-('kangsh', 'pw1234', '강승현', '010-1234-0008', 'kangsh@test.com', '인천광역시', '연수구', '송도동', '2025-10-13', '2025-10-14'),
-('songmj', 'pw1234', '송민정', '010-1234-0009', 'songmj@test.com', '인천광역시', '중구', '운서동', '2025-10-13', '2025-10-14');
+('hong123', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '홍길동', '010-1234-0001', 'hong123@test.com', '인천광역시', '부평구', '십정동', '2025-10-13', '2025-10-14'),
+('kimsky', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '김하늘', '010-1234-0002', 'kimsky@test.com', '인천광역시', '계양구', '작전동', '2025-10-13', '2025-10-14'),
+('parkyh', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '박영희', '010-1234-0003', 'parkyh@test.com', '인천광역시', '연수구', '송도동', '2025-10-13', '2025-10-14'),
+('choijs', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '조지수', '010-1234-0004', 'choijs@test.com', '인천광역시', '부평구', '부개동', '2025-10-13', '2025-10-14'),
+('leesmile', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '이미소', '010-1234-0005', 'leesmile@test.com', '인천광역시', '남동구', '구월동', '2025-10-13', '2025-10-14'),
+('janghm', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '장한민', '010-1234-0006', 'janghm@test.com', '인천광역시', '미추홀구', '주안동', '2025-10-13', '2025-10-14'),
+('yujiae', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '유지애', '010-1234-0007', 'yujiae@test.com', '인천광역시', '부평구', '산곡동', '2025-10-13', '2025-10-14'),
+('kangsh', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '강승현', '010-1234-0008', 'kangsh@test.com', '인천광역시', '연수구', '송도동', '2025-10-13', '2025-10-14'),
+('songmj', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '송민정', '010-1234-0009', 'songmj@test.com', '인천광역시', '중구', '운서동', '2025-10-13', '2025-10-14'),
+('1313', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '송민종', '010-1234-0010', 'songmj2@test.com', '인천광역시', '중구', '주안동', '2025-10-13', '2025-10-14'),
+('test', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '테스트', '010-9874-6541', 'test@test.com', '인천광역시', '남동구', '주안동', '2025-10-13', '2025-10-14');
+
 
 -- ===============================
 --  BULKBUYGROUP 초기 데이터
@@ -24,8 +27,7 @@ INSERT INTO bulkbuygroup (mno, btitle, bcontent, bdate, btotal, bcount) VALUES
 (6, '물품 공동구매', '내용들', '2025-10-06', 10, 8),
 (7, '의류 공동구매', '내용들', '2025-10-07', 5, 3),
 (8, '전자제품 공동구매', '내용들', '2025-10-08', 7, 6),
-(9, '책상 공동 구매', '내용들', '2025-10-09', 6, 5),
-(10, '반찬 나눔', '내용들', '2025-10-10', 4, 1);
+(9, '책상 공동 구매', '내용들', '2025-10-09', 6, 5);
 
 -- ===============================
 --  CHATTING 초기 데이터
@@ -39,5 +41,4 @@ INSERT INTO chatting (mno, bno, mmessage, cdate) VALUES
 (6, 6, '같이 해요!', '2025-10-06'),
 (7, 7, '연락 주세요.', '2025-10-07'),
 (8, 8, '구매 희망합니다.', '2025-10-08'),
-(9, 9, '좋은 하루 되세요.', '2025-10-09'),
-(10, 10, '채팅 남깁니다.', '2025-10-10');
+(9, 9, '좋은 하루 되세요.', '2025-10-09');

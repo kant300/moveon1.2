@@ -1,0 +1,135 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Header from "../Header";
+import Footer from "../Footer";
+import "../../assets/css/bulkbuygroup.css";
+import { useNavigate } from "react-router-dom";
+
+export default function Bulkbuygroup() {
+  const [groups, setGroups] = useState([]);
+  const [keyword, setkeyword] = useState("");
+  const [auth, setAuth] = useState({ check: null })
+  const [bcount, setbcount] = useState(0); // 기본
+
+  // ✅ 글 목록 불러오기
+  const fetchGroups = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/group/list");
+      setGroups(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error("❌ 소분모임 목록 조회 실패:", error);
+    }
+  };
+  // 검색 키워드
+  const keybod = async (e) => {
+    const value = e.target.value;
+    setkeyword(value);
+    try {
+      if (value.trim() == "") {
+        fetchGroups();
+      } else {
+        const response = await axios.get("http://localhost:8080/group/listprint", {
+          params: { btitle: value, bcontent: value },
+        });
+        setGroups(response.data);
+      }
+    } catch (e) { console.log(e) }
+
+  }
+
+  // 최촛 ㅣㄹ행 렌더링1번
+  useEffect(() => {
+    checkcookie();
+    fetchGroups();
+
+  }, []);
+
+  const navigate = useNavigate();
+  // 로그인 정보 가져오기
+  const checkcookie = async () => {
+    try {
+      const res = await axios.get("http://localhost:8080/api/member/info",
+        { withCredentials: true });
+      setAuth(res.data);
+      console.log(res.data)
+      if (res.data === null) {
+        alert('로그인후 이용해주세요');
+        navigate('/login');
+      }
+    } catch (e) { setAuth({ check: false }) };
+
+  }
+
+
+
+
+
+
+  // ✅ 글쓰기 버튼 클릭
+  const handleWriteClick = () => {
+    alert("글쓰기 페이지로 이동");
+    navigate("/group/create")
+  };
+
+
+  // 방입장시 인원 + 1 
+  const 입장 = async (item) => {
+    const response = await axios.post("http://localhost:8080/group/bcno",
+      { bno: item.bno }, {
+        withCredentials: true,
+      headers: { "Content-Type": "application/json" },
+
+    })
+    if (response.data === 1) {
+      alert(`방입장 ${item.bno}`);
+      navigate(`/community/chatting/${item.bno}`, {
+        state: { btotal: item.btotal, bcount: item.bcount + 1 },
+      });
+    } else {
+      alert("인원 가득참");
+    }
+
+
+    // 스프링의 @PostMapping("/bcno") 으로 통신하자.성공시 해당 방으로 페이지 전환
+    // 만약에 bno가 12 이면 12번방의 인원을 증가하고 12번방으로 페이지 전환
+  };
+
+  return (
+    <>
+      <Header />
+      <div id="main" className="bulk-container">
+        <div className="bulk-header">
+          <h4>소분모임</h4>
+          <div className="search-bar">
+            <input type="text" value={keyword} onChange={keybod} placeholder="제목 또는 내용 검색..." className="search-input" />
+          </div>
+          <button onClick={handleWriteClick} className="write-btn">
+            + 글쓰기
+          </button>
+        </div>
+
+        {/* ✅ 소분모임 카드 목록 */}
+        <div className="bulk-list">
+          {groups.length === 0 ? (
+            <p style={{ textAlign: "center", marginTop: "30px" }}>
+              등록된 소분모임이 없습니다.
+            </p>
+          ) : (
+            groups.map((item) => (
+              <div key={item.bno} className="bulk-card" onClick={() => { 입장(item) }}>
+                <h5>{item.btitle}</h5>
+                <p className="content">{item.bcontent}</p>
+                <div className="info">
+                  <span>인원 : {item.bcount}/{item.btotal}</span>
+                  <span className="region">{item.maddress1} {item.maddress2} {item.maddress3}</span>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
+      <Footer />
+    </>
+  );
+}

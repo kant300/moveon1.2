@@ -4,11 +4,12 @@
 DROP TABLE IF EXISTS chatting;
 DROP TABLE IF EXISTS bulkbuygroup;
 DROP TABLE IF EXISTS members;
+DROP TABLE IF EXISTS email_verification;
 
 CREATE TABLE members (
     mno INT AUTO_INCREMENT PRIMARY KEY,        -- 회원번호
     mid VARCHAR(50) NOT NULL UNIQUE,           -- 아이디
-    mpwd VARCHAR(50) NOT NULL,                 -- 비밀번호
+    mpwd VARCHAR(255) NOT NULL,                 -- 비밀번호
     mname VARCHAR(100) NOT NULL,               -- 닉네임
     mphone VARCHAR(20) NOT NULL UNIQUE,        -- 휴대번호
     memail VARCHAR(100) NOT NULL UNIQUE,       -- 이메일
@@ -17,6 +18,17 @@ CREATE TABLE members (
     maddress3 VARCHAR(50) NOT NULL,            -- 주소(동)
     mdate DATE DEFAULT (CURRENT_DATE),         -- 날짜(생성)
     mdateup DATE DEFAULT (CURRENT_DATE)        -- 날짜(수정)
+);
+-- ===============================
+--  EMAIL TABLE (이메일)
+-- ===============================
+CREATE TABLE email_verification (
+id INT AUTO_INCREMENT PRIMARY KEY,
+memail VARCHAR(100) NOT NULL UNIQUE,
+code VARCHAR(10) NOT NULL,
+purpose VARCHAR(20), -- findpwd, signup 등
+mdate DATE DEFAULT (CURRENT_DATE),
+used TINYINT(1) DEFAULT 0
 );
 
 -- ===============================
