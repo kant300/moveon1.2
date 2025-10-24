@@ -189,9 +189,9 @@ public class StationService {
             HSSFWorkbook workbook = new HSSFWorkbook(fis);
             HSSFSheet sheet = workbook.getSheet("평일_상선");
 
-            HSSFRow row = sheet.getRow(0); // 가로 데이터
+            HSSFRow row = sheet.getRow(0);
             for (int i=0; i<row.getLastCellNum(); i++) {
-                HSSFCell cell = row.getCell(i); // 세로 데이터 (A1, B1, C1...)
+                HSSFCell cell = row.getCell(i);
                 // 역 이름이 일치하는 셀 찾기
                 if (cell.getStringCellValue().equals(station_name)) { // 인천터미널
                     for (int j=0; j<sheet.getLastRowNum(); j++) {
@@ -203,9 +203,6 @@ public class StationService {
                         System.out.println(cell.getStringCellValue());
                     }
                 }
-
-
-
             }
 
             workbook.close();
