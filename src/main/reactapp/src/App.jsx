@@ -8,14 +8,14 @@ import MyPage from "./components/MyPage";
 import Station from './components/transport/Station.jsx';
 import Newcreate from './components/community/newcreate.jsx';
 import Chatting from './components/community/chatting.jsx';
-import Login from './components/main/Login.jsx';
+import Login from './components/member/Login.jsx';
 import NotFound from './components/NotFound.jsx';
-import Signup from './components/main/Signup.jsx';
+import Signup from './components/member/Signup.jsx';
 import Trash from './components/living/Trash.jsx';
 import ClothingBin from './components/living/ClothingBin.jsx';
 import SexOffender from './components/safety/SexOffender.jsx';
-import FindId from './components/main/FindId.jsx';
-import FindPwd from './components/main/FindPwd.jsx';
+import FindId from './components/member/FindId.jsx';
+import FindPwd from './components/member/FindPwd.jsx';
 
 // 현재 홈, 마이페이지, 전체메뉴, 설정까지 프로토타입 제작 완료
 export default function App() {

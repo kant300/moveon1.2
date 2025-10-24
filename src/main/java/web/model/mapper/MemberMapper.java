@@ -17,9 +17,12 @@ public interface MemberMapper {
     @Options( useGeneratedKeys = true , keyProperty = "mno" )
     public int signup(MemberDto memberDto);
 
-    // 2 : 패스워드를 제외한 아이디로 계정 정보 조회
+    // 2 : 패스워드를 제외한 아이디로 계정 정보 조회(아이디 중복조회)
     @Select("select * from members where mid = #{mid} ")
     MemberDto myInfo( String mid );
+
+    // 3. 로그인용 계정조회
+    
 
 
 }
