@@ -1,4 +1,4 @@
-import '../../assets/css/main/signup.css'
+import '../../assets/css/member/signup.css'
 import Footer from "../Footer";
 import Header from "../Header";
 import arrow_back_ios_new from '../../assets/images/icons/arrow_back_ios_new_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'

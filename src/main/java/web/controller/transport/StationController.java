@@ -13,8 +13,21 @@ import java.util.Map;
 public class StationController {
     private final StationService stationService;
 
-    @GetMapping("/data")
-    public List<Map<String, String>> getData() {
-        return stationService.getData();
+    @GetMapping("/lift")
+    public List<Map<String, String>> getLiftData() {
+        return stationService.getLiftData();
+    }
+
+    /* @GetMapping("/schedule")
+    public List<Map<String, String>> getScheduleData() {
+        return stationService.getScheduleData();
+    } */
+
+    public List<Map<String, String>> getStationLocationData() {
+        return stationService.getStationLocationData();
+    }
+
+    public List<Map<String, String>> getScheduleData() {
+        return stationService.getScheduleData();
     }
 }
