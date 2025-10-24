@@ -21,4 +21,11 @@
         ORDER BY c.cdate ASC <!-- 최신순 -->
     </select>
 
+    <!-- 인원 확인 -->
+    <select id="countCheck" parameterType="int" resultType="web.model.dto.community.BulkbuygroupDto">
+        SELECT bcount , btotal
+        FROM bulkbuygroup
+        WHERE bno = #{bno};
+    </select>
+
 </mapper>
