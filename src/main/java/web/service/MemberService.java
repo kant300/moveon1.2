@@ -78,7 +78,16 @@ public class MemberService {
         }
         return null;
     }
-    // 5.
+    // 5.아이디찾기
+    public String findId(MemberDto dto){
+        return memberMapper.findId(dto);
+    }
+
+    // 6. 비밀번호찾기/재설정
+    public boolean findPwd(MemberDto dto){
+        dto.setMpwd(bcrypt.encode( dto.getMpwd() ) );
+        return memberMapper.findPwd(dto) > 0;
+    }
 
 
 }// class e

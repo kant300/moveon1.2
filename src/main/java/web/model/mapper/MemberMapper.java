@@ -30,7 +30,7 @@ public interface MemberMapper {
 
     // 5. 비밀번호찾기 (이메일인증후 비밀번호 재설정)
     @Update("update members set mpwd = #{mpwd}, mdateup = now() where mid = #{mid}")
-    int findpwd(MemberDto dto);
+    int findPwd(MemberDto dto);
 
     // 6. 회원정보 수정
     @Update("update members set mname = #{mname}, memail = #{memail}, mphone=#{mphone}, " +

@@ -86,5 +86,28 @@ public class MemberController {
         return ResponseEntity.ok( true );
     }
 
+    // 5. 아이디찾기
+    @GetMapping("/findid")
+    public ResponseEntity<?> findId(@RequestParam String memail, @RequestParam String mphone){
+        MemberDto dto = new MemberDto();
+        dto.setMemail(memail);
+        dto.setMphone(mphone);
+        String result = memberService.findId(dto);
+        return ResponseEntity.ok(result);
+    }
 
-}
+    // 6. 비밀번호찾기/재설정
+    @PutMapping("/findpwd")
+    public ResponseEntity<?> findPwd(@RequestBody MemberDto dto){
+        boolean result = memberService.findPwd(dto);
+        return ResponseEntity.ok(result);
+    }
+
+    // 7. 회원정보수정
+    @PutMapping("/update")
+    public ResponseEntity<?> updateInfo
+
+
+
+
+}// class e
