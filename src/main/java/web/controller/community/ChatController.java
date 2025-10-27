@@ -40,4 +40,12 @@ public class ChatController {
 
     }
 
+    // 인원 조회
+    @GetMapping("/cocheck")
+    public ResponseEntity< ? > countChat(@RequestParam int bno){
+        System.out.println("bno = " + bno);
+        int result = chatService.countChat(bno);
+        return ResponseEntity.ok(result);
+    }
+
 }

@@ -12,4 +12,6 @@ public interface ChatMapper {
     boolean writeChat(ChattingDto dto);
     // 메세지 내용 출력
     List<ChattingDto> printChat(int bno);
+
+    int countChat(int bno);
 }

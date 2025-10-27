@@ -26,4 +26,9 @@ public class ChatService {
         List<ChattingDto> dtos = chatMapper.printChat(bno);
         return dtos;
     }
+    public int countChat(int bno){
+        System.out.println("ChatService.countChat");
+        int result = chatMapper.countChat(bno);
+        return result;
+    }
         }
