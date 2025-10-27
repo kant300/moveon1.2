@@ -48,5 +48,19 @@ public class ChatController {
         BulkbuygroupDto result = chatService.countChat(bno);
         return ResponseEntity.ok(result);
     }
+    // 인원 증가
+    @PutMapping("/count/pp")
+    public ResponseEntity< ? > countpp(int bno){
+        System.out.println("ChatService.countChat");
+         chatService.countpp(bno);
+        return ResponseEntity.ok().build();
+    }
+    // 인원 감소
+    @PutMapping("/count/mm")
+    public ResponseEntity< ? > countmm(int bno){
+        System.out.println("ChatService.countChat");
+          chatService.countmm(bno);
+        return ResponseEntity.ok().build();
+    }
 
 }

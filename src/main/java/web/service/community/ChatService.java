@@ -32,4 +32,19 @@ public class ChatService {
         BulkbuygroupDto result = chatMapper.countChat(bno);
         return result;
     }
+
+    public int countpp(int bno){
+        System.out.println("ChatService.countChat");
+        int result = chatMapper.countpp(bno);
+        return result;
+    }
+
+    public int countmm(int bno){
+        System.out.println("ChatService.countChat");
+        int result = chatMapper.countmm(bno);
+        return result;
+    }
+
+
+
         }

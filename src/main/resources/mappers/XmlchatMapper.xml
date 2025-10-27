@@ -28,4 +28,18 @@
         WHERE bno = #{bno};
     </select>
 
+    <!-- +1 -->
+    <update id="countpp" parameterType="int" >
+        UPDATE bulkbuygroup SET bcount = bcount + 1
+        WHERE bno = #{bno}
+    </update>
+
+    <!-- -1 -->
+    <update id="countmm" parameterType="int">
+        UPDATE bulkbuygroup
+        SET bcount = bcount - 1
+        WHERE bno = #{bno} AND bcount > 0
+    </update>
+
+
 </mapper>

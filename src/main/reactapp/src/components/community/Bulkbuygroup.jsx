@@ -9,9 +9,8 @@ export default function Bulkbuygroup() {
   const [groups, setGroups] = useState([]);
   const [keyword, setkeyword] = useState("");
   const [auth, setAuth] = useState({ check: null })
-  const [bcount, setbcount] = useState(0); // 기본
 
-  // ✅ 글 목록 불러오기
+  //  글 목록 불러오기
   const fetchGroups = async () => {
     try {
       const response = await axios.get("http://localhost:8080/group/list");
@@ -61,39 +60,53 @@ export default function Bulkbuygroup() {
 
   }
 
-
-
-
-
-
-  // ✅ 글쓰기 버튼 클릭
+  //  글쓰기 버튼 클릭
   const handleWriteClick = () => {
     alert("글쓰기 페이지로 이동");
     navigate("/group/create")
   };
 
 
-  // 방입장시 인원 + 1 
-  const 입장 = async (item) => {
-    const response = await axios.post("http://localhost:8080/group/bcno",
-      { bno: item.bno }, {
-        withCredentials: true,
-      headers: { "Content-Type": "application/json" },
+  // 방 입장 시 인원 +1
+const 입장 = async (item) => {
+  if (item.bcount < item.btotal) { // 인원 제한 조건 수정
+    try {
+      const response = await axios.put(
+        "http://localhost:8080/chat/count/pp",
+        null,
+        {
+          params: { bno: item.bno },
+          withCredentials: true,
+        }
+      );
 
-    })
-    if (response.data === 1) {
-      alert(`방입장 ${item.bno}`);
-      navigate(`/community/chatting/${item.bno}`, {
-        state: { btotal: item.btotal, bcount: item.bcount + 1 },
-      });
-    } else {
-      alert("인원 가득참");
+      if (response.status === 200) {
+        await fetchGroups();
+        alert(`방 입장 성공 (${item.bno})`);
+        navigate(`/community/chatting/${item.bno}`, {
+          state: { btotal: item.btotal, bcount: item.bcount + 1 },
+        });
+      } else {
+        alert(" 인원 가득참 또는 실패");
+      }
+    } catch (e) {
+      console.error(" 입장 오류:", e);
     }
+  } else {
+    alert(" 인원 가득참! 더 이상 입장할 수 없습니다.");
+  }
+};
+
+// const 퇴장 = async (item) => { 
+//   try{
+//     const response = await axios.put(
+//       "http://localhost:8080/chat/count/mm",
+//       null,
+//     )
+//   }
+// }
 
 
-    // 스프링의 @PostMapping("/bcno") 으로 통신하자.성공시 해당 방으로 페이지 전환
-    // 만약에 bno가 12 이면 12번방의 인원을 증가하고 12번방으로 페이지 전환
-  };
 
   return (
     <>
@@ -109,7 +122,7 @@ export default function Bulkbuygroup() {
           </button>
         </div>
 
-        {/* ✅ 소분모임 카드 목록 */}
+        {/*  소분모임 카드 목록 */}
         <div className="bulk-list">
           {groups.length === 0 ? (
             <p style={{ textAlign: "center", marginTop: "30px" }}>

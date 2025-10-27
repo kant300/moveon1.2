@@ -15,4 +15,9 @@ public interface ChatMapper {
     List<ChattingDto> printChat(int bno);
 
     BulkbuygroupDto countChat(int bno);
+
+     int countpp(int bno);
+
+     int countmm(int bno);
+
 }

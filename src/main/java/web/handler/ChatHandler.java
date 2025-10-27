@@ -7,6 +7,7 @@ import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+import web.model.dto.community.BulkbuygroupDto;
 import web.model.dto.community.ChattingDto;
 import web.service.community.ChatService;
 
@@ -46,9 +47,34 @@ public class ChatHandler extends TextWebSocketHandler {
             list.remove(session);
             // 방 나기기 알림
             alarmMessage(bno, mname + "님이 방을 나가셨습니다. ");
+            // dto에서 bno가 여기선 문자열이기때문에 인트로 받기위해 사용하여 countChat 인원 조회 서비스에서 가져옴
+            //  conutinfo로 반환 후 메소드 내 방번호의 get ( bcount , btotal ) 를 가져와 사용
+            BulkbuygroupDto countInfo = chatService.countChat(Integer.parseInt(bno));
+            countchecking(bno , countInfo.getBcount() , countInfo.getBtotal() );
         }
-
     } // afterClosed end
+
+    // 인월 실시간 확인
+    public void countchecking(String bno , int bcount , int btotal ) throws Exception {
+        Map<String , Object > msg = new HashMap<>();
+        msg.put("type", "count"); // 타입 구분
+        msg.put("bcount", bcount); // 인원(현재)
+        msg.put("btotal", btotal); // 총 인원
+
+        String retime = objectMapper.writeValueAsString(msg); // 자바( obj )  , json 문자열 변환
+        // 목록에 있는 방번호 를 불러와서
+        List<WebSocketSession> sessions = player.get(bno);
+        // 불러온 방번호가 null이 아니면
+        if (sessions != null ){
+            // 반복문을사용하여 count , total 클라이언트 전송
+            for (WebSocketSession client : sessions){
+                client.sendMessage(new TextMessage(retime));
+            }
+
+        }
+        // writeValueAsString() → Java → JSON 문자열로 변환
+        // readValue() → JSON 문자열 → Java 객체로 변환
+    }
 
     // @handle 치면 뜸  클라이언트 실행 후 메세지 보내기
     @Override
@@ -76,6 +102,8 @@ public class ChatHandler extends TextWebSocketHandler {
                 player.put(bno, list); // 새로운 리스트 방 생성후  세션 목록에 추가
             }
             alarmMessage(bno, mname + "님이 방을 입장하셨습니다. ");
+            BulkbuygroupDto countinfo = chatService.countChat(Integer.parseInt(bno));
+            countchecking(bno, countinfo.getBcount() , countinfo.getBtotal());
 
         } else if (msg.get("type").equals("msg")) {
             // 채팅방에게 받은 모든 세션들에게 받은 메세지(내역) 보내기
