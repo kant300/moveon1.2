@@ -88,6 +88,7 @@ const 입장 = async (item) => {
         });
       } else {
         alert(" 인원 가득참 또는 실패");
+        navigate('/community/bulkBuy');
       }
     } catch (e) {
       console.error(" 입장 오류:", e);

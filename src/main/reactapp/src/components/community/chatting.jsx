@@ -89,6 +89,8 @@ export default function Chatting() {
           ...prev,
           { mname: smg.mname, mmessage: smg.mmessage },
         ]);
+      } else if (smg.type === "count") {
+        setcount( { bcount : smg.bcount , btotal : smg.btotal } );
       }
     };
 
@@ -133,6 +135,8 @@ export default function Chatting() {
       alert("전송 실패");
     }
   };
+
+
 
 
 const 퇴장 = async () => { 
