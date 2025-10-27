@@ -24,13 +24,10 @@ public class MemberService {
         // 1-3 : 회원가입 하기전에 비크립트 를 이용한 비밀번호 암호화
         memberDto.setMpwd( bcrypt.encode( memberDto.getMpwd() ) );
         System.out.println("[암호화 결과] = " + memberDto.getMpwd() );
+        // 필수 항목 및 길이검사
 
         int result = memberMapper.signup(memberDto); // mapper 이용한 SQL 처리
-        if( result > 0 && memberDto.getMno() > 0 ){   // 만약에 mno 생성되었다면 회원가입 SQL 처리 성공
-            return true;  // 성공
-        }else{
-             return false; // 실패
-        }
+        return result > 0;
     } // m end
 
     // 2 로그인 : 암호문을 해독하여 평문을 비교하는 방식이 아닌 비교할대상을 암호화해서 암호문 비교
@@ -61,7 +58,7 @@ public class MemberService {
         // 3-2 : 반복문 이용한 특정한 쿠키명 찾기
         if( cookies != null ){ // 만약에 쿠키들이 존재하면
             for( Cookie c : cookies ){ // 하나씩 쿠키들을 반복하여
-                if( c.getName().equals( "loginUser") ){ // "loginUser" 쿠키명과 같다면
+                if( c.getName().equals( "loginMember") ){ // "loginMember" 쿠키명과 같다면
                     // ******* 쿠키의 저장된 토큰 반환 하기 *********
                     String token = c.getValue();// 쿠키의 저장된 토큰 반환
                     boolean checked = jwtService.checkToken( token ); // 토큰 검증
@@ -91,7 +88,13 @@ public class MemberService {
 
     // 7. 회원정보수정
     public boolean updateInfo(MemberDto dto) {
+        dto.setMpwd(bcrypt.encode(dto.getMpwd()));  // 암호화
         return memberMapper.updateInfo(dto) > 0;
+    }
+
+    // 8. 회원탈퇴
+    public boolean signout(String mid){
+        return memberMapper.signout(mid) > 0;
     }
 
 

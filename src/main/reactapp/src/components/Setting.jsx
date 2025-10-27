@@ -27,7 +27,7 @@ export default function Setting() {
                             </div>
                             <div>
                                 <div>회원정보 관리</div>
-                                <div><img src={arrow_forward_ios} /></div>
+                                <div><Link to='/myinfo'><img src={arrow_forward_ios} /></Link></div>
                             </div>
                             <div>
                                 <div>자동 로그인</div>

@@ -82,7 +82,7 @@ export default function Signup() {
             const response = await axios.post("http://localhost:8080/api/member/signup", obj);
             const data = response.data;
 
-            if (data !== "") {
+            if (data === true ) {
                 alert("회원가입 성공");
                 navigate("/login");
             } else {
