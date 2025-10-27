@@ -94,7 +94,7 @@ export function Run(mapRef, pos) {
                         });
         
                         // 3. positions 배열에 삽입한 데이터를 꺼내옵니다
-                        let iwContent = `<div style="width:150px;text-align:center;padding:10px;font-family: 'NanumGothic';"><div>${obj.title}역</div><div>${obj.unit}호 ${obj.equipment}</div><div>${obj.status}</div>` // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                        let iwContent = `<div style="width:200px;text-align:center;padding:10px;font-family: 'NanumGothic';"><div>${obj.title}역</div><div>${obj.unit}호 ${obj.equipment}</div><div>${obj.status}</div>` // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
                         var iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
         
                         // 인포윈도우를 생성합니다
@@ -180,12 +180,24 @@ export function Run(mapRef, pos) {
                         });
         
                         // 3. positions 배열에 삽입한 데이터를 꺼내옵니다
-                        let iwContent = `<div style="width:400px;text-align:center;padding:10px;font-family: 'NanumGothic';"><div>${obj.title}역 배차 정보</div>
-                            ${obj.prevStation!=null?`<div>${obj.prevStation}역 방면: ${obj.time_first_1}분후 도착, ${obj.time_second_1}분후 도착</div>`:``}
-                            ${obj.nextStation!=null?`<div>${obj.nextStation}역 방면: ${obj.time_first_2}분후 도착, ${obj.time_second_2}분후 도착</div>`:``}`
+                        let iwContent = `
+                            <div style="width:400px;text-align:center;padding:10px;font-family:'NanumGothic';">
+                                <div><strong>${obj.title}역 배차 정보</strong></div>
+                                ${obj.prevStation == null 
+                                ? '' 
+                                : (obj.time_first_1 < 0 || obj.time_second_1 < 0
+                                    ? `<div>${obj.prevStation}역 방면: 배차 정보가 없습니다.</div>` 
+                                    : `<div>${obj.prevStation}역 방면: ${obj.time_first_1}분후 도착, ${obj.time_second_1}분후 도착</div>`)}
+                                ${obj.nextStation == null 
+                                ? '' 
+                                : (obj.time_first_2 < 0 || obj.time_second_2 < 0
+                                    ? `<div>${obj.nextStation}역 방면: 배차 정보가 없습니다.</div>` 
+                                    : `<div>${obj.nextStation}역 방면: ${obj.time_first_2}분후 도착, ${obj.time_second_2}분후 도착</div>`)}
+                            </div>
+                        `;
                             // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
                         var iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-        
+
                         // 인포윈도우를 생성합니다
                         let infowindow = new kakao.maps.InfoWindow({
                             content : iwContent,
