@@ -109,45 +109,45 @@ export default function Index() {
                             event==0?(
                                 <>
                                     <Link to='/community/article?id=0'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
                                 </>
                             ):
                             event==1?(
                                 <>
-                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
                                 </>
                             ):
                             event==2?(
                                 <>
-                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
                                 </>
                             ):
                             event==3?(
                                 <>
-                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community//article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
                                 </>
                             ):null
                         }
