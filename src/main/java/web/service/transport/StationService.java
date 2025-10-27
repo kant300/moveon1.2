@@ -6,6 +6,7 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -167,6 +168,11 @@ public class StationService {
                 }
             }
             csvReader.close();
+
+            // 최종 데이터 예시:
+            // [{역사명=송도달빛축제공원, 위도=37.407143, 경도=126.62597},
+            // {역사명=국제업무지구, 위도=37.399907, 경도=126.630347}]
+            // System.out.println(csvList);
             return csvList;
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -203,20 +209,26 @@ public class StationService {
                             List<LocalTime> times = new ArrayList<>();
                             for (int j=1; j<sheet.getLastRowNum(); j++) {
                                 row = sheet.getRow(j);
+
+                                // 이전 역이 없을 시 중단
+                                if (i < 1) continue;
+
                                 // 도착 시간을 구하기 위해 현재 역의 이전 역 시간을 가져오기
                                 cell = row.getCell(i-1);
 
                                 // 값이 없는 셀은 건너뛰기
-                                if (cell == null || cell.getStringCellValue().isEmpty()) continue;
-
-                                // 현재 시간 이후의 시간만 List 로 담기
-                                LocalTime time = LocalTime.parse(cell.getStringCellValue(), formatter);
-                                if (time.isAfter(LocalTime.from(now))) {
-                                    times.add(time);
+                                if (cell.getCellType() == CellType.STRING && !cell.getStringCellValue().isEmpty()) {
+                                    // 현재 시간 이후의 시간만 List 로 담기
+                                    LocalTime time = LocalTime.parse(cell.getStringCellValue(), formatter);
+                                    if (time.isAfter(LocalTime.from(now))) {
+                                        times.add(time);
+                                    }
                                 }
                             }
-                            time_first = times.get(0);
-                            time_second = times.get(1);
+                            if (times.size() >= 2) {
+                                time_first = times.get(0);
+                                time_second = times.get(1);
+                            }
                             break;
                         }
                     }
@@ -268,7 +280,8 @@ public class StationService {
             // System.out.println(data);
             return data;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println(e.toString());
         }
+        return null;
     }
 }
