@@ -16,21 +16,44 @@ import directions_bus from '../assets/images/icons/directions_bus_24dp_1F1F1F_FI
 import handshake from '../assets/images/icons/handshake_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import explore_nearby from '../assets/images/icons/explore_nearby_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import storefront from '../assets/images/icons/storefront_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
+import { Weather } from "../assets/script";
 
 // 메인 페이지
 export default function Index() {
     const [category, setCategory] = useState(0);
     const [event, setEvent] = useState(0);
 
+    useEffect(() => {
+        Weather();
+    }, [])
+
     return (<>
         <Header />
         <div id='wrap'>
             <div id="container">
                 <div id='loginBox'>로그인 후 이용해주세요</div>
-                <div id='weatherBox'>
-                    <div id='weatherDiv'>날씨</div>
+                <div id="weatherBox">
+                    <div id="weather">
+                        {/* 샘플 데이터 */}
+                        <div id="addr"><strong>인천 부평구 부평동</strong>의 날씨 (16시 기준)</div>
+                        <div id="t1h">☀️ 30° 맑음</div>
+                        <div id="weatherDetails">
+                            <div id="item">
+                                <span id="label">습도</span>
+                                <span>86%</span>
+                            </div>
+                            <div id="item">
+                                <span id="label">하늘</span>
+                                <span>맑음</span>
+                            </div>
+                            <div id="item">
+                                <span id="label">풍속</span>
+                                <span>5m/s</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <ul id='categoryBox'>
                     <li onClick={() => {setCategory(0)}}>생활</li>
