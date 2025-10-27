@@ -58,7 +58,7 @@ public class MemberService {
         // 3-2 : 반복문 이용한 특정한 쿠키명 찾기
         if( cookies != null ){ // 만약에 쿠키들이 존재하면
             for( Cookie c : cookies ){ // 하나씩 쿠키들을 반복하여
-                if( c.getName().equals( "loginUser") ){ // "loginUser" 쿠키명과 같다면
+                if( c.getName().equals( "loginMember") ){ // "loginMember" 쿠키명과 같다면
                     // ******* 쿠키의 저장된 토큰 반환 하기 *********
                     String token = c.getValue();// 쿠키의 저장된 토큰 반환
                     boolean checked = jwtService.checkToken( token ); // 토큰 검증
@@ -88,6 +88,7 @@ public class MemberService {
 
     // 7. 회원정보수정
     public boolean updateInfo(MemberDto dto) {
+        dto.setMpwd(bcrypt.encode(dto.getMpwd()));  // 암호화
         return memberMapper.updateInfo(dto) > 0;
     }
 
