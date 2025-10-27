@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import web.service.transport.StationService;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
@@ -18,16 +19,13 @@ public class StationController {
         return stationService.getLiftData();
     }
 
-    /* @GetMapping("/schedule")
-    public List<Map<String, String>> getScheduleData() {
-        return stationService.getScheduleData();
-    } */
-
+    @GetMapping("/location")
     public List<Map<String, String>> getStationLocationData() {
         return stationService.getStationLocationData();
     }
 
-    public List<Map<String, String>> getScheduleData() {
-        return stationService.getScheduleData();
+    @GetMapping("/schedule")
+    public List<List<LocalTime>> getScheduleData(@RequestParam String station_name) {
+        return stationService.getScheduleData(station_name);
     }
 }

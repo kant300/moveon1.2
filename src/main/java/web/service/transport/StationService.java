@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.time.DayOfWeek;
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -172,65 +174,101 @@ public class StationService {
     }
 
     // 지하철 배차 정보 데이터 가져오기 (xls)
-    public List<Map<String, String>> getScheduleData() {
+    public List<List<LocalTime>> getScheduleData(String station_name) {
+        List<List<LocalTime>> data = new ArrayList<>();
         try {
-            // 역 이름 (TEST)
-            String station_name = "인천터미널";
-
-            // 현재 시각 (시:분)
-            LocalTime now = LocalTime.now();
+            // 현재 시각 (시:분), 요일 구하기
+            LocalDateTime now = LocalDateTime.now();
+            DayOfWeek week = now.getDayOfWeek();
+            int weekNum = week.getValue();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-            String format = now.format(formatter);
-            System.out.println(format);
 
+            LocalTime time_first = null;
+            LocalTime time_second = null;
 
             File file = new File("src/main/resources/static/data/열차운행_시간표.xls");
             FileInputStream fis = new FileInputStream(file);
             HSSFWorkbook workbook = new HSSFWorkbook(fis);
-            HSSFSheet sheet = workbook.getSheet("평일_상선");
 
-            HSSFRow row = sheet.getRow(0);
-            for (int i=0; i<row.getLastCellNum(); i++) {
-                HSSFCell cell = row.getCell(i);
-                // 역 이름이 일치하는 셀 찾기
-                if (cell.getStringCellValue().equals(station_name)) { // 인천터미널
-                    for (int j=0; j<sheet.getLastRowNum(); j++) {
-                        row = sheet.getRow(j);
-                        cell = row.getCell(i);
+            // 요일에 따라 loop 구분하기
+            if (weekNum >= 1 && weekNum <= 5) {
+                // 평일
+                for (int index=0; index<=1; index++) {
+                    HSSFSheet sheet = workbook.getSheetAt(index);
+                    HSSFRow row = sheet.getRow(0);
+                    for (int i=0; i<row.getLastCellNum(); i++) {
+                        HSSFCell cell = row.getCell(i);
+                        // 역 이름이 일치하는 셀 찾기
+                        if (cell.getStringCellValue().equals(station_name)) {
+                            List<LocalTime> times = new ArrayList<>();
+                            for (int j=1; j<sheet.getLastRowNum(); j++) {
+                                row = sheet.getRow(j);
+                                // 도착 시간을 구하기 위해 현재 역의 이전 역 시간을 가져오기
+                                cell = row.getCell(i-1);
 
-                        // 값이 없는 셀은 건너뛰기
-                        if (cell.getStringCellValue().isEmpty()) continue;
-                        System.out.println(cell.getStringCellValue());
+                                // 값이 없는 셀은 건너뛰기
+                                if (cell == null || cell.getStringCellValue().isEmpty()) continue;
+
+                                // 현재 시간 이후의 시간만 List 로 담기
+                                LocalTime time = LocalTime.parse(cell.getStringCellValue(), formatter);
+                                if (time.isAfter(LocalTime.from(now))) {
+                                    times.add(time);
+                                }
+                            }
+                            time_first = times.get(0);
+                            time_second = times.get(1);
+                            break;
+                        }
                     }
+                    List<LocalTime> item = new ArrayList<>();
+                    item.add(time_first);
+                    item.add(time_second);
+                    data.add(item);
+                }
+            } else if (weekNum >= 6 && weekNum <= 7) {
+                // 주말
+                for (int index=2; index<=3; index++) {
+                    HSSFSheet sheet = workbook.getSheetAt(index);
+                    HSSFRow row = sheet.getRow(0);
+                    for (int i=0; i<row.getLastCellNum(); i++) {
+                        HSSFCell cell = row.getCell(i);
+                        // 역 이름이 일치하는 셀 찾기
+                        if (cell.getStringCellValue().equals(station_name)) {
+                            List<LocalTime> times = new ArrayList<>();
+                            for (int j=1; j<sheet.getLastRowNum(); j++) {
+                                row = sheet.getRow(j);
+                                // 도착 시간을 구하기 위해 현재 역의 이전 역 시간을 가져오기
+                                cell = row.getCell(i-1);
+
+                                // 값이 없는 셀은 건너뛰기
+                                if (cell == null || cell.getStringCellValue().isEmpty()) continue;
+
+                                // 현재 시간 이후의 시간만 List 로 담기
+                                LocalTime time = LocalTime.parse(cell.getStringCellValue(), formatter);
+                                if (time.isAfter(LocalTime.from(now))) {
+                                    times.add(time);
+                                }
+                            }
+                            time_first = times.get(0);
+                            time_second = times.get(1);
+                            break;
+                        }
+                    }
+                    List<LocalTime> item = new ArrayList<>();
+                    item.add(time_first);
+                    item.add(time_second);
+                    data.add(item);
                 }
             }
-
             workbook.close();
             fis.close();
-            return null;
 
+            // 최종 데이터 예시:
+            // [10:47, 10:56]
+            // System.out.println(data);
+            return data;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 }
-
-/*
-switch (cell.getCellType()) { // 셀 타입에 따라 처리!
-                            case STRING:
-                                System.out.print(cell.getStringCellValue() + "\t"); // 문자열 타입!
-                                break;
-                            case NUMERIC:
-                                System.out.print(cell.getNumericCellValue() + "\t"); // 숫자 타입!
-                                break;
-                            case BOOLEAN:
-                                System.out.print(cell.getBooleanCellValue() + "\t"); // boolean 타입!
-                                break;
-                            case FORMULA:
-                                System.out.print(cell.getCellFormula() + "\t"); // 수식 타입!
-                                break;
-                            default:
-                                System.out.print(" \t"); // 다른 타입!
-                                break;
-                        }
- */
