@@ -89,5 +89,10 @@ public class MemberService {
         return memberMapper.findPwd(dto) > 0;
     }
 
+    // 7. 회원정보수정
+    public boolean updateInfo(MemberDto dto) {
+        return memberMapper.updateInfo(dto) > 0;
+    }
+
 
 }// class e

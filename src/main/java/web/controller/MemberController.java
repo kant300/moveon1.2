@@ -105,7 +105,10 @@ public class MemberController {
 
     // 7. 회원정보수정
     @PutMapping("/update")
-    public ResponseEntity<?> updateInfo
+    public ResponseEntity<?> updateInfo(@RequestBody MemberDto dto){
+        boolean result = memberService.updateInfo(dto);
+        return ResponseEntity.ok(result);
+    }
 
 
 
