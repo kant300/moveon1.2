@@ -1,6 +1,7 @@
 import axios from "axios"
 import markerIcon from "../../images/icons/marker.png"
 import markerIcon_red from "../../images/icons/marker_red.png"
+import markerIcon_station from "../../images/icons/marker_station.png"
 
 export function Run(mapRef, pos) {
     const script = document.createElement('script');
@@ -172,11 +173,21 @@ export function Run(mapRef, pos) {
                     // 지하철 역사 마커 찍기
                     for (let i = 0; i < positions.length; i++) {
                         const obj = positions[i];
+
+                        // 마커 이미지의 이미지 주소입니다
+                        var imageSrc = markerIcon_station;
+                        // 마커 이미지의 이미지 크기 입니다
+                        var imageSize = new kakao.maps.Size(37, 51);
+                        // var imageOption = {offset: new kakao.maps.Point(32, 9)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+                        
+                        // 마커 이미지를 생성합니다    
+                        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
                         
                         // 마커를 생성합니다
                         let marker = new kakao.maps.Marker({
                             position: obj.latlng, // 마커를 표시할 위치
                             title : obj.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                            image : markerImage // 마커 이미지 
                         });
         
                         // 3. positions 배열에 삽입한 데이터를 꺼내옵니다
