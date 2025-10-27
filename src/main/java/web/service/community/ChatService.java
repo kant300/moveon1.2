@@ -2,6 +2,7 @@ package web.service.community;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import web.model.dto.community.BulkbuygroupDto;
 import web.model.mapper.community.ChatMapper;
 import web.model.dto.community.ChattingDto;
 
@@ -26,9 +27,9 @@ public class ChatService {
         List<ChattingDto> dtos = chatMapper.printChat(bno);
         return dtos;
     }
-    public int countChat(int bno){
+    public BulkbuygroupDto countChat(int bno){
         System.out.println("ChatService.countChat");
-        int result = chatMapper.countChat(bno);
+        BulkbuygroupDto result = chatMapper.countChat(bno);
         return result;
     }
         }

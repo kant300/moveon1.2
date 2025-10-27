@@ -22,7 +22,7 @@
     </select>
 
     <!-- 인원 확인 -->
-    <select id="countCheck" parameterType="int" resultType="web.model.dto.community.BulkbuygroupDto">
+    <select id="countChat" parameterType="int" resultType="web.model.dto.community.BulkbuygroupDto">
         SELECT bcount , btotal
         FROM bulkbuygroup
         WHERE bno = #{bno};

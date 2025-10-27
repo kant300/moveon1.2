@@ -12,4 +12,6 @@ public class ChattingDto {
     private String mname; // 회원명
     private String mmessage; // 메세지(내용)
     private String cdate; // 채팅방 기록(날짜)
+    private int btotal;
+    private int bcount;
 }

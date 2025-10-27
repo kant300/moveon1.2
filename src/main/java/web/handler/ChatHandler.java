@@ -55,13 +55,15 @@ public class ChatHandler extends TextWebSocketHandler {
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         System.out.println("Message");
         System.out.println("session = " + session + ", message = " + message);
-        Map<String, String> msg = objectMapper.readValue(message.getPayload(), Map.class); // type 별로 분리 시켜줘  ex) 챗 1 , 내용 : 안녕 , 이름 : 길동
-        if (msg.get("type").equals("join")) { // msg 정보를 type 별로 받아 합체(join) 해서 보내기/받기
-            String mmessage = msg.get("mmessage"); // 메세지 내역
-            String mno = msg.get("mno"); // 회원번호
-            String mname = msg.get("mname"); // 회원 이름
+        Map<String, Object> msg = objectMapper.readValue(message.getPayload(), Map.class); // type 별로 분리 시켜줘  ex) 챗 1 , 내용 : 안녕 , 이름 : 길동
+        String type = (String) msg.get("type"); // 전송 타입(join, msg 등)
 
-            String bno = msg.get("bno"); // 채팅방 정보 호출(꺼내기)
+        if ("join".equals(type)) {
+            // ✅ 방 입장 처리
+            String mmessage = (String) msg.get("mmessage"); // (입장 시 메시지는 없을 수 있음)
+            String mname = (String) msg.get("mname");       // 회원 이름
+            String mno = String.valueOf(msg.get("mno"));    // 회원 번호(숫자 → 문자열 변환)
+            String bno = String.valueOf(msg.get("bno"));    // 방 번호(숫자 → 문자열 변환)
             session.getAttributes().put("bno", bno);
             session.getAttributes().put("mno", mno);
             session.getAttributes().put("mname", mname);
@@ -79,7 +81,7 @@ public class ChatHandler extends TextWebSocketHandler {
             // 채팅방에게 받은 모든 세션들에게 받은 메세지(내역) 보내기
             String bno = (String) session.getAttributes().get("bno");
             String mno = (String) session.getAttributes().get("mno");
-            String mmessage = msg.get("mmessage");
+            String mmessage = String.valueOf(msg.get("mmessage"));
 
             // DB 내용 기록
             ChattingDto dto = new ChattingDto();

@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import web.model.dto.MemberDto;
+import web.model.dto.community.BulkbuygroupDto;
 import web.model.dto.community.ChattingDto;
 import web.service.MemberService;
 import web.service.community.ChatService;
@@ -44,7 +45,7 @@ public class ChatController {
     @GetMapping("/cocheck")
     public ResponseEntity< ? > countChat(@RequestParam int bno){
         System.out.println("bno = " + bno);
-        int result = chatService.countChat(bno);
+        BulkbuygroupDto result = chatService.countChat(bno);
         return ResponseEntity.ok(result);
     }
 
