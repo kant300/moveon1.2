@@ -19,7 +19,7 @@ export default function Station() {
         <div id="wrap">
             <div id="container">
                 <div id="map">
-                    <div id="mapText">지하철 엘리베이터/에스컬레이터 위치 정보</div>
+                    <div id="mapText">지하철 승강기 위치 및 배차 정보</div>
                     <button id="mapLocation" type="button" onClick={() => moveToInitialPosition(mapRef, pos)}><img src={my_location}/></button>
                 </div>
             </div>
