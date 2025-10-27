@@ -25,7 +25,7 @@ public interface MemberMapper {
     MemberDto myInfo(String mid);
 
     // 4. 이메일+휴대폰으로 아이디 찾기
-    @Select("select mid from members where memail = #{memail} and mphone = #{mphone)")
+    @Select("select mid from members where memail = #{memail} and mphone = #{mphone}")
     String findId(MemberDto dto);
 
     // 5. 비밀번호찾기 (이메일인증후 비밀번호 재설정)
@@ -34,7 +34,8 @@ public interface MemberMapper {
 
     // 6. 회원정보 수정
     @Update("update members set mname = #{mname}, memail = #{memail}, mphone=#{mphone}, " +
-            "maddress1 = #{maddress1}, maddress2 = #{maddress2}, maddress3 = #{maddress3}, mpwd = #{mpwd} ")
+            "maddress1 = #{maddress1}, maddress2 = #{maddress2}, maddress3 = #{maddress3}, mpwd = #{mpwd} " +
+            "where mid = #{mid}")
     int updateInfo(MemberDto dto);
 
     // 7. 회원탈퇴

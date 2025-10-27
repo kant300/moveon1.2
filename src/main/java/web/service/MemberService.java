@@ -24,13 +24,10 @@ public class MemberService {
         // 1-3 : 회원가입 하기전에 비크립트 를 이용한 비밀번호 암호화
         memberDto.setMpwd( bcrypt.encode( memberDto.getMpwd() ) );
         System.out.println("[암호화 결과] = " + memberDto.getMpwd() );
+        // 필수 항목 및 길이검사
 
         int result = memberMapper.signup(memberDto); // mapper 이용한 SQL 처리
-        if( result > 0 && memberDto.getMno() > 0 ){   // 만약에 mno 생성되었다면 회원가입 SQL 처리 성공
-            return true;  // 성공
-        }else{
-             return false; // 실패
-        }
+        return result > 0;
     } // m end
 
     // 2 로그인 : 암호문을 해독하여 평문을 비교하는 방식이 아닌 비교할대상을 암호화해서 암호문 비교
@@ -92,6 +89,11 @@ public class MemberService {
     // 7. 회원정보수정
     public boolean updateInfo(MemberDto dto) {
         return memberMapper.updateInfo(dto) > 0;
+    }
+
+    // 8. 회원탈퇴
+    public boolean signout(String mid){
+        return memberMapper.signout(mid) > 0;
     }
 
 

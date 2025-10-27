@@ -4,6 +4,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import web.model.dto.MemberDto;
@@ -32,7 +33,7 @@ public class MemberController {
 
         if( result != null ){
             // ******* 쿠키에 저장하는 회원정보를 토큰으로 저장하기 *********
-            Cookie cookie = new Cookie( "loginUser", jwtService.createToken( result.getMid() ) );
+            Cookie cookie = new Cookie( "loginMember", jwtService.createToken( result.getMid() ) );
 
             // 클라이언트 에서 해당 쿠키를 노출(탈취) 방지 = 주로 민감한정보는 httpOnly 설정한다.
             cookie.setHttpOnly( true ); // .setHttpOnly( true ) : 무조건 http 에서만 사용. 즉] JS로 접근 불가능
@@ -54,7 +55,7 @@ public class MemberController {
         // 3-2 : 반복문 이용한 특정한 쿠키명 찾기
         if( cookies != null ){ // 만약에 쿠키들이 존재하면
             for( Cookie c : cookies ){ // 하나씩 쿠키들을 반복하여
-                if( c.getName().equals( "loginUser") ){ // "loginUser" 쿠키명과 같다면
+                if( c.getName().equals( "loginMember") ){ // "loginMember" 쿠키명과 같다면
                     // ******* 쿠키의 저장된 토큰 반환 하기 *********
                     String token = c.getValue();// 쿠키의 저장된 토큰 반환
                     boolean checked = jwtService.checkToken( token ); // 토큰 검증
@@ -76,7 +77,7 @@ public class MemberController {
     @GetMapping("/logout")
     public ResponseEntity<?> logout( HttpServletResponse response ){
         // 4-1 : 삭제할 쿠키명을 null 값으로 변경한다.
-        Cookie cookie = new Cookie( "loginUser" , null );
+        Cookie cookie = new Cookie( "loginMember" , null );
         cookie.setHttpOnly( true );
         cookie.setSecure( false );
         cookie.setPath("/");
@@ -87,7 +88,7 @@ public class MemberController {
     }
 
     // 5. 아이디찾기
-    @GetMapping("/findid")
+    @GetMapping("/findid") // http://localhost:8080/api/member/findid?memail=ygun123@test.com&mphone="ygun123@test.com
     public ResponseEntity<?> findId(@RequestParam String memail, @RequestParam String mphone){
         MemberDto dto = new MemberDto();
         dto.setMemail(memail);
@@ -97,7 +98,7 @@ public class MemberController {
     }
 
     // 6. 비밀번호찾기/재설정
-    @PutMapping("/findpwd")
+    @PutMapping("/findpwd") // http://localhost:8080/api/member/findpwd  //
     public ResponseEntity<?> findPwd(@RequestBody MemberDto dto){
         boolean result = memberService.findPwd(dto);
         return ResponseEntity.ok(result);
@@ -110,7 +111,13 @@ public class MemberController {
         return ResponseEntity.ok(result);
     }
 
+    // 8. 회원탈퇴
+    @DeleteMapping("/delete")
+    public ResponseEntity<?> signout(HttpServletRequest request){
+        MemberDto loginMember = memberService.myInfo(request);
+        if(loginMember == null) return ResponseEntity.ok(false);
 
-
-
+        boolean result = memberService.signout(loginMember.getMid());
+        return ResponseEntity.ok(result);
+    }
 }// class e
