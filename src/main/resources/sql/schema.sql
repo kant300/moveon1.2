@@ -1,6 +1,7 @@
 -- ===============================
 --  MEMBERS TABLE (회원)
 -- ===============================
+DROP TABLE IF EXISTS group_member;
 DROP TABLE IF EXISTS chatting;
 DROP TABLE IF EXISTS bulkbuygroup;
 DROP TABLE IF EXISTS members;
@@ -62,4 +63,13 @@ CREATE TABLE chatting (
     CONSTRAINT fk_chat_group FOREIGN KEY (bno)
         REFERENCES bulkbuygroup(bno)
         ON DELETE CASCADE
+);
+-- 참여중인 방 조회용
+CREATE TABLE group_member (
+    gno INT AUTO_INCREMENT PRIMARY KEY,
+    mno INT NOT NULL,
+    bno INT NOT NULL,
+    joined_at DATETIME DEFAULT NOW(),
+    FOREIGN KEY (mno) REFERENCES members(mno),
+    FOREIGN KEY (bno) REFERENCES bulkbuygroup(bno)
 );

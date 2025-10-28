@@ -17,6 +17,8 @@ public interface ChatMapper {
 
     BulkbuygroupDto countChat(int bno);
 
+
+
      int countpp(int bno);
 
     int countCheck( int bno );

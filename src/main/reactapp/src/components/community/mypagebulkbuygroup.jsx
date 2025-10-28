@@ -13,7 +13,7 @@ export default function Bulkbuygroup() {
   //  글 목록 불러오기
   const fetchGroups = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/group/list");
+      const response = await axios.get("http://localhost:8080/group/join/list");
       setGroups(response.data);
       console.log(response.data);
     } catch (error) {
@@ -36,20 +36,26 @@ export default function Bulkbuygroup() {
     } catch (e) { console.log(e) }
 
   }
+  useEffect(() => {
+    checkcookie();
+  }, [])
 
   // 최촛 ㅣㄹ행 렌더링1번
   useEffect(() => {
-    checkcookie();
-    fetchGroups();
-
-  }, []);
+    if(auth.mno){
+    fetchGroups(auth?.mno);
+    }
+  }, [auth]);
 
   const navigate = useNavigate();
   // 로그인 정보 가져오기
   const checkcookie = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/member/info",
-        { withCredentials: true });
+      const res = await axios.get("http://localhost:8080/api/member/info", {
+        params : { mno : auth.mno } , 
+         withCredentials: true, 
+        }
+    );
       setAuth(res.data);
       console.log(res.data)
       if (res.data === null) {

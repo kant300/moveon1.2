@@ -9,6 +9,7 @@ import contact_support from '../assets/images/icons/contact_support_24dp_1F1F1F_
 import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 // 마이페이지
@@ -20,19 +21,21 @@ export default function MyPage() {
         try {
             const res = await axios.get("http://localhost:8080/api/member/info",
                 { withCredentials: true });
+                console.log(res.data);
             setAuth(res.data);
-            console.log(res.data)
+            
             if (res.data === null) {
                 alert('로그인후 이용해주세요');
                 navigate('/login');
             }
         } catch (e) { setAuth({ check: false }) };
-
     }
 
-    useEffect(() => {
+            useEffect(() => {
         checkcookie();
     }, [] )
+
+
 
     return (<>
         <Header />
@@ -48,13 +51,13 @@ export default function MyPage() {
                     <div id="mainMenu">
                         <div id="profileBox">
                             <div><img src={account_circle} /></div>
-                            <div id="profileName">{auth.mname}2홍길동</div>
+                            <div id="profileName">{auth.mname}</div>
                         </div>
                         <div className="mypageTitle"><span>●</span>활동내역</div>
                         <div id="activityBox">
                             <ul>
                                 <Link to='/bill?id=0'><li><img src={paid} /> 공과금 정산내역</li></Link>
-                                <Link to='/bulkBuy?id=0'><li><img src={handshake} /> 나의 소분모임</li></Link>
+                                <Link to='/community/MypageBulk'><li><img src={handshake} /> 나의 소분모임</li></Link>
                                 <Link to='/localEvent?id=0'><li><img src={explore_nearby} /> 찜한 지역행사</li></Link>
                                 <Link to='/inquiry?id=0'><li><img src={contact_support} /> 문의내역</li></Link>
                             </ul>

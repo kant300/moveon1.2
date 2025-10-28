@@ -58,6 +58,22 @@ public class BulkbuygroupController {
         return ResponseEntity.ok(dto);
     }
 
+    // 본인 모임 기록 조회
+    @GetMapping("/join/list")
+    public ResponseEntity< ? > joinlist(@RequestParam Map<String , Object> maps ){
+        System.out.println("BulkbuygroupController.joinlist");
+        List<BulkbuygroupDto> dto = bulkbuygroupService.joinlist(maps);
+        return ResponseEntity.ok(dto);
+    }
+
+//    // 내정보 글 목록 출력
+//    @PostMapping("join/write")
+//    public ResponseEntity< ? > joinwrite(@RequestParam int mno , int bno){
+//        System.out.println("ChatController.joinwrite");
+//        List<BulkbuygroupDto> list = bulkbuygroupService.joinwrite(mno , bno);
+//        return ResponseEntity.ok(list);
+//    }
+
     // 글 삭제
     @DeleteMapping("/delete")
     public ResponseEntity< ? > deleteGroup(@RequestParam int bno){

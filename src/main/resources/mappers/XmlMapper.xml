@@ -21,6 +21,17 @@
         ORDER BY b.bdate DESC;
     </select>
 
+    <!-- 본인 참여 방내역 -->
+    <select id="joinlist" parameterType="map" resultType="web.model.dto.community.BulkbuygroupDto">
+        SELECT
+        b.bno, b.mno, b.btitle, b.bcontent, b.bcount, b.btotal, b.bdate, m.maddress1 , m.maddress2 , m.maddress3
+        FROM bulkbuygroup b
+        JOIN group_member gm on b.bno = gm.bno
+        JOIN members m ON b.mno = m.mno
+        WHERE gm.mno = #{mno}
+        ORDER BY b.bdate DESC;
+    </select>
+
 
     <!-- 시 구 동 주소 검색 -->
     <select id="addressGroup" parameterType="map" resultType="web.model.dto.community.BulkbuygroupDto">
@@ -55,9 +66,18 @@
         UPDATE bulkbuygroup set btitle = #{btitle} , bcontent = #{bcontent} where bno = #{bno}
     </update>
 
+    <!-- 인원 확인 후  -->
     <update id="countCheck" parameterType="int">
         UPDATE bulkbuygroup set bcount = bcount+1 where bno = #{bno} and bcount &lt; btotal
     </update>
+
+<!--    <insert id="joinwrite" parameterType="int">-->
+<!--        INSERT INTO group_member (mno , bno)-->
+<!--        values-->
+<!--        ( #{mno} , #{bno} )-->
+<!--    </insert>-->
+
+
 
 
 </mapper>

@@ -60,15 +60,25 @@ export default function Bulkbuygroup() {
 
   }
 
+
   //  글쓰기 버튼 클릭
   const handleWriteClick = () => {
-    alert("글쓰기 페이지로 이동");
-    navigate("/group/create")
+    if(!auth.mno){
+      alert('로그인 후 이용해주세요.')
+    }
+    else{
+    navigate("/group/create");
+    }
   };
 
 
   // 방 입장 시 인원 +1
 const 입장 = async (item) => {
+  if(!auth.mno){
+    alert('로그인 후 이용해주세요. ');
+    navigate('/login');
+    return;
+  }
   if (item.bcount < item.btotal) { // 인원 제한 조건 수정
     try {
       const response = await axios.put(
@@ -82,7 +92,6 @@ const 입장 = async (item) => {
 
       if (response.status === 200) {
         await fetchGroups();
-        alert(`방 입장 성공 (${item.bno})`);
         navigate(`/community/chatting/${item.bno}`, {
           state: { btotal: item.btotal, bcount: item.bcount + 1 },
         });
