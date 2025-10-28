@@ -20,11 +20,11 @@ export default function FindPwd() {
                         <Link to='/findPwd'><div id="selected">비밀번호 찾기</div></Link>
                     </div>
                     <div id="mainMenu">
-                        <div>아이디 <input type="text" id="idInput" placeholder="ID를 입력해주세요"/></div>
-                        <div>이메일 <input type="text" id="emailInput" placeholder="이메일 주소를 입력해주세요"/></div>
-                        <div className='buttonDiv'><button type="button" className="button_small">재요청</button></div>
-                        <div>인증번호 <input type="text" id="verifyInput" placeholder="인증 번호를 입력해주세요"/></div>
-                        <div className='buttonDiv'><button type="button" className="button_small">확인</button></div>
+                        <div className="inputDiv">아이디 <input type="text" id="idInput" placeholder="ID를 입력해주세요"/></div>
+                        <div className="inputDiv">이메일 <input type="text" id="emailInput" placeholder="이메일 주소를 입력해주세요"/></div>
+                        <div className='inputDiv buttonDiv'><button type="button" className="button_small">재요청</button></div>
+                        <div className="inputDiv">인증번호 <input type="text" id="verifyInput" placeholder="인증 번호를 입력해주세요"/></div>
+                        <div className='inputDiv buttonDiv'><button type="button" className="button_small">확인</button></div>
                     </div>
                     <button type="button" className="button">확인</button>
                 </div>
