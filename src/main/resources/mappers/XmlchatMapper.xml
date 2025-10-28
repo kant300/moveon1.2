@@ -34,6 +34,10 @@
         WHERE bno = #{bno}
     </update>
 
+    <!-- 인원 가득참 방지 -->
+    <select id="countCheck" parameterType="int">
+        SELECT * FROM bulkbuygroup where btotal > bcount and bno = #{bno};
+    </select>
 
     <!-- -1 -->
     <update id="countmm" parameterType="int">

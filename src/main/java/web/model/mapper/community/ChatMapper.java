@@ -19,7 +19,7 @@ public interface ChatMapper {
 
      int countpp(int bno);
 
-    @Select("select * from bulkbuygroup where btotal > bcount and bno = #{bno}")
+
     int countCheck( int bno );
 
      int countmm(int bno);
