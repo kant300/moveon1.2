@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Header from "../Header";
 import Footer from "../Footer";
-import "../../assets/css/community/bulkbuygroup.css";
+import "../../assets/css/community/mypagebulkbuygroup.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Bulkbuygroup() {
@@ -13,7 +13,7 @@ export default function Bulkbuygroup() {
   //  글 목록 불러오기
   const fetchGroups = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/group/list");
+      const response = await axios.get("http://localhost:8080/group/join/list");
       setGroups(response.data);
       console.log(response.data);
     } catch (error) {
@@ -36,20 +36,26 @@ export default function Bulkbuygroup() {
     } catch (e) { console.log(e) }
 
   }
+  useEffect(() => {
+    checkcookie();
+  }, [])
 
   // 최촛 ㅣㄹ행 렌더링1번
   useEffect(() => {
-    checkcookie();
-    fetchGroups();
-
-  }, []);
+    if(auth.mno){
+    fetchGroups(auth?.mno);
+    }
+  }, [auth]);
 
   const navigate = useNavigate();
   // 로그인 정보 가져오기
   const checkcookie = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/member/info",
-        { withCredentials: true });
+      const res = await axios.get("http://localhost:8080/api/member/info", {
+        params : { mno : auth.mno } , 
+         withCredentials: true, 
+        }
+    );
       setAuth(res.data);
       console.log(res.data)
       if (res.data === null) {
@@ -60,25 +66,15 @@ export default function Bulkbuygroup() {
 
   }
 
-
   //  글쓰기 버튼 클릭
   const handleWriteClick = () => {
-    if(!auth.mno){
-      alert('로그인 후 이용해주세요.')
-    }
-    else{
-    navigate("/group/create");
-    }
+    alert("글쓰기 페이지로 이동");
+    navigate("/group/create")
   };
 
 
   // 방 입장 시 인원 +1
 const 입장 = async (item) => {
-  if(!auth.mno){
-    alert('로그인 후 이용해주세요. ');
-    navigate('/login');
-    return;
-  }
   if (item.bcount < item.btotal) { // 인원 제한 조건 수정
     try {
       const response = await axios.put(
@@ -92,6 +88,7 @@ const 입장 = async (item) => {
 
       if (response.status === 200) {
         await fetchGroups();
+        alert(`방 입장 성공 (${item.bno})`);
         navigate(`/community/chatting/${item.bno}`, {
           state: { btotal: item.btotal, bcount: item.bcount + 1 },
         });

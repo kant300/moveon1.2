@@ -17,6 +17,8 @@ import SexOffender from './components/safety/SexOffender.jsx';
 import FindId from './components/member/FindId.jsx';
 import FindPwd from './components/member/FindPwd.jsx';
 import MyInfo from './components/member/MyInfo.jsx';
+import MyBulkbuygroup from './components/community/mypagebulkbuygroup.jsx';
+
 
 // 현재 홈, 마이페이지, 전체메뉴, 설정까지 프로토타입 제작 완료
 export default function App() {
@@ -52,6 +54,8 @@ export default function App() {
           <Route path='/community/bulkBuy' element={<Bulkbuygroup />} />
           <Route path="/community/chatting/:bno" element={<Chatting />} />
           <Route path='/group/create' element={<Newcreate/>} />
+          <Route path='/community/MypageBulk' element={< MyBulkbuygroup/>} />
+
 
         </Routes>
       </BrowserRouter>

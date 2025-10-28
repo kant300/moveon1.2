@@ -1,7 +1,7 @@
 import axios from "axios";
 import Footer from "../Footer";
 import Header from "../Header";
-import "../../assets/css/chatting.css";
+import "../../assets/css/community/chatting.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 

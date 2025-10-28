@@ -27,6 +27,17 @@ public class BulkbuygroupService {
         return dto;
     }
 
+    public List<BulkbuygroupDto> joinlist(Map<String , Object> maps){
+        List<BulkbuygroupDto> dto = bulkbuygroupMapper.joinlist(maps);
+        return dto;
+
+    }
+//
+//    public List<BulkbuygroupDto> joinwrite(int mno , int bno){
+//        List<BulkbuygroupDto> dto = bulkbuygroupMapper.joinwrite(mno , bno);
+//        return dto;
+//    }
+
     // 소분모임 주소 체크
     public List<BulkbuygroupDto> addressGroup(Map<String , Object> maps){
         return bulkbuygroupMapper.addressGroup(maps);
@@ -38,6 +49,7 @@ public class BulkbuygroupService {
         List<BulkbuygroupDto> dto = bulkbuygroupMapper.listprint(maps);
         return dto;
     }
+
 
     // 글삭제
     public boolean deleteGroup(int bno){
