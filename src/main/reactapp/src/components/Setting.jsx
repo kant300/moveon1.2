@@ -5,9 +5,35 @@ import arrow_forward_ios from '../assets/images/icons/arrow_forward_ios_24dp_1F1
 import toggle_on from '../assets/images/icons/toggle_on_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import Footer from "./Footer";
 import Header from './Header';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 // 설정 페이지
 export default function Setting() {
+
+        // 1. 로그인된 유저 정보 저장
+    const [ member , setMember ] = useState( null );
+    // 2. 최초로 컴포넌트 실행시 유저 정보 요청하기
+    const getMyInfo = async()=>{
+        try{
+            const url = "http://localhost:8080/api/member/info"
+            const res = await axios.get( url , { withCredentials : true } );
+            setMember( res.data ); // 반환된 유저 정보를 저장
+        }catch( err ){ setMember(null); } // 오류시 null
+    }
+    useEffect( () => { getMyInfo(); } , [] );
+
+        // 3. 로그아웃 요청하기 
+    const getLogout = async()=>{
+        try{
+            const url = 'http://localhost:8080/api/member/logout'
+            const res = await axios.get( url , { withCredentials : true } );
+            alert('로그아웃 되었습니다.');
+            // navigate("/login"); // 라우터( 클라이언트 사이드 렌더링 )
+            location.href="/login" // ( 서버 사이드 렌더링 )
+        }catch( err ){ }
+    }
+
     return (<>
         <Header />
         <div id="wrap">
@@ -22,8 +48,8 @@ export default function Setting() {
                         <div className='settingBox'>
                             <h3>개인정보</h3>
                             <div>
-                                <div>홍길동</div>
-                                <div>로그아웃</div>
+                                <div> { member == null ? null : member.mname } 님</div>
+                                <div> <a href="#" onClick={ getLogout } >로그아웃</a></div>
                             </div>
                             <div>
                                 <div>회원정보 관리</div>
