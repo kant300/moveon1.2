@@ -18,16 +18,33 @@ import explore_nearby from '../assets/images/icons/explore_nearby_24dp_1F1F1F_FI
 import storefront from '../assets/images/icons/storefront_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import { Link } from 'react-router-dom';
 import Header from './Header';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 // 전체메뉴 페이지
 export default function Menu() {
+
+    // 1. 로그인된 유저 정보 저장
+    const [ member , setMember ] = useState( null );
+    // 2. 최초로 컴포넌트 실행시 유저 정보 요청하기
+    const getMyInfo = async()=>{
+        try{
+            const url = "http://localhost:8080/api/member/info"
+            const res = await axios.get( url , { withCredentials : true } );
+            if (res.data != '') {
+                setMember( res.data ); // 반환된 유저 정보를 저장
+            }
+        }catch( err ){ setMember(null); } // 오류시 null
+    }
+    useEffect( () => { getMyInfo(); } , [] );
+
     return (<>
         <Header />
         <div id="wrap">
             <div id='container'>
                 <div id="content_gray">
                     <div id="menuTop">
-                        <div>moveon1234</div>
+                        <div>{ member == null ? <> 로그인해주세요 </> : <>  {member.mname}</>}</div>
                         <div>
                             <Link to='/notification'><img src={notification_sound} /></Link>
                             <Link to='/setting'><img src={settings} /></Link>

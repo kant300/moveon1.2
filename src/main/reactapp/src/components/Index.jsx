@@ -5,8 +5,7 @@ import calendar_clock from '../assets/images/icons/calendar_clock_24dp_1F1F1F_FI
 import paid from '../assets/images/icons/paid_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import movein from '../assets/images/icons/move_location_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import ecoelectric from '../assets/images/icons/eco_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import things from '../assets/images/icons/icons/things_to_do_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import things from '../assets/images/icons/icons/things_to_do_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
+import things from '../assets/images/icons/things_to_do_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import recycling from '../assets/images/icons/recycling_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import apparel from '../assets/images/icons/apparel_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import ev_station from '../assets/images/icons/ev_station_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
@@ -42,7 +41,9 @@ export default function Index() {
         try{
             const url = "http://localhost:8080/api/member/info"
             const res = await axios.get( url , { withCredentials : true } );
-            setMember( res.data ); // 반환된 유저 정보를 저장
+            if (res.data != '') {
+                setMember( res.data ); // 반환된 유저 정보를 저장
+            }
         }catch( err ){ setMember(null); } // 오류시 null
     }
 
