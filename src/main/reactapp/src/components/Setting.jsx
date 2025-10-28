@@ -18,7 +18,9 @@ export default function Setting() {
         try{
             const url = "http://localhost:8080/api/member/info"
             const res = await axios.get( url , { withCredentials : true } );
-            setMember( res.data ); // 반환된 유저 정보를 저장
+            if (res.data != '') {
+                setMember( res.data ); // 반환된 유저 정보를 저장
+            }
         }catch( err ){ setMember(null); } // 오류시 null
     }
     useEffect( () => { getMyInfo(); } , [] );
@@ -48,8 +50,17 @@ export default function Setting() {
                         <div className='settingBox'>
                             <h3>개인정보</h3>
                             <div>
-                                <div> { member == null ? null : member.mname } 님</div>
-                                <div> <a href="#" onClick={ getLogout } >로그아웃</a></div>
+                                {
+                                    member == null ?
+                                    <>
+                                        <div>로그인해주세요</div>
+                                        <div><Link to='/login'>로그인</Link></div>
+                                    </>:
+                                    <>
+                                        <div> { member == null ?<> null </>:<> {member.mname}님 </>}</div>
+                                        <div> <a href="#" onClick={ getLogout } >로그아웃</a></div>
+                                    </>
+                                }
                             </div>
                             <div>
                                 <div>회원정보 관리</div>

@@ -1,7 +1,7 @@
 
 #linkBtn {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 #linkBtn div {
@@ -28,4 +28,8 @@
     padding: 15px 30px;
     margin-left: 30px;
     font-size: 18px;
+}
+
+.inputDiv {
+    margin-bottom: 15px;
 }

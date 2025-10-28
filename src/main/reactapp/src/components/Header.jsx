@@ -19,7 +19,9 @@ export default function Header() {
         try{
             const url = "http://localhost:8080/api/member/info"
             const res = await axios.get( url , { withCredentials : true } );
-            setMember( res.data ); // 반환된 유저 정보를 저장
+            if (res.data != '') {
+                setMember( res.data ); // 반환된 유저 정보를 저장
+            }
         }catch( err ){ setMember(null); } // 오류시 null
     }
     useEffect( () => { getMyInfo(); } , [] );

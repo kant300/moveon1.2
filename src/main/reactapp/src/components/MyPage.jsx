@@ -11,7 +11,6 @@ import Header from "./Header";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-
 // 마이페이지
 export default function MyPage() {
 
@@ -23,7 +22,7 @@ export default function MyPage() {
                 { withCredentials: true });
                 console.log(res.data);
             setAuth(res.data);
-            
+
             if (res.data === null) {
                 alert('로그인후 이용해주세요');
                 navigate('/login');

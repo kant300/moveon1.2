@@ -13,7 +13,7 @@
     border-radius: 15px;
     padding: 20px;
     width: 380px;
-    height: 15vh;
+    height: 18vh;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin: 10px auto;
     font-family: 'NanumGothic', sans-serif;
@@ -31,7 +31,7 @@
 
 #weather #addr {
     font-size: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 #weather #infoBox {
     display: flex;
@@ -42,6 +42,7 @@
     font-size: 20px;
     font-weight: bold;
     color: #333;
+    padding-bottom: 15px;
 }
 
 #weather #pty {
@@ -49,33 +50,6 @@
     color: #666;
     margin-bottom: 16px;
     margin-right: 15px;
-}
-
-#weatherDetails {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    width: 100%;
-    margin-top: 20px;
-}
-
-#weatherDetails #item {
-    background: white;
-    border-radius: 10px;
-    padding: 12px 10px;
-    width: 100%;
-    max-width: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 18px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    text-align: center;
-}
-
-#weatherDetails .item span.label {
-    font-weight: bold;
-    margin-bottom: 4px;
 }
 
 #categoryBox {
@@ -92,10 +66,6 @@
     font-size: 18px;
 }
 
-#categoryBox > li:active {
-    border-bottom: 2px solid black;
-}
-
 #btnBox {
     padding: 2px;
     display: flex;
@@ -103,25 +73,12 @@
     align-items: center;
 }
 
-#btnBox li {
-    width: 105px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 14px;
-}
-
-#btnBox li > img {
-    width: 70px;
-    height: 70px;
-}
-
 #eventBox {
     background-color: #f1f0f07e;
 }
 
 #eventCategory {
-    padding: 20px;
+    padding: 15px;
     background-color: #2e2e2e;
     color: white;
     display: flex;
@@ -200,7 +157,6 @@
   justify-content: center;
   font-size: 14px;
   font-weight: 500;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   transition: all 0.2s ease;
 }
 
