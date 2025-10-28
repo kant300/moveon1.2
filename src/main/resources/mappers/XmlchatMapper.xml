@@ -34,6 +34,7 @@
         WHERE bno = #{bno}
     </update>
 
+
     <!-- -1 -->
     <update id="countmm" parameterType="int">
         UPDATE bulkbuygroup

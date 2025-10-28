@@ -35,8 +35,21 @@ public class ChatService {
 
     public int countpp(int bno){
         System.out.println("ChatService.countChat");
-        int result = chatMapper.countpp(bno);
-        return result;
+        try {
+            int result = chatMapper.countpp(bno);
+            return result;
+        }catch (Exception e){
+            return 0;
+        }
+    }
+    public int countCheck(int bno){
+        System.out.println("ChatService.countChat");
+        try {
+            int result = chatMapper.countCheck(bno);
+            return result;
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
     public int countmm(int bno){

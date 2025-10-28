@@ -1,6 +1,7 @@
 package web.model.mapper.community;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import web.model.dto.community.BulkbuygroupDto;
 import web.model.dto.community.ChattingDto;
 
@@ -17,6 +18,9 @@ public interface ChatMapper {
     BulkbuygroupDto countChat(int bno);
 
      int countpp(int bno);
+
+    @Select("select * from bulkbuygroup where btotal > bcount and bno = #{bno}")
+    int countCheck( int bno );
 
      int countmm(int bno);
 

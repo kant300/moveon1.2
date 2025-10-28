@@ -86,7 +86,7 @@ const 입장 = async (item) => {
         navigate(`/community/chatting/${item.bno}`, {
           state: { btotal: item.btotal, bcount: item.bcount + 1 },
         });
-      } else {
+      } else if(response.status === 500){
         alert(" 인원 가득참 또는 실패");
         navigate('/community/bulkBuy');
       }
