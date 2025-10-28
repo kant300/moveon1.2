@@ -45,7 +45,6 @@ export function Weather() {
                                 let t1h, reh, pty, sky, wsd;
                                 for (let i = 0; i < data.response.body.items.item.length; i++) {
                                     let obj = data.response.body.items.item[i];
-                                    console.log(obj);
                                     if (hour == obj.fcstTime) {
                                         if (obj.category == "T1H") {
                                             t1h = obj.fcstValue; // 기온
