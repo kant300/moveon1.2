@@ -19,6 +19,13 @@ public class GroupbulkbuyService {
         Map<String , Object> map = new HashMap<>();
         map.put("mno", mno);
         map.put("bno", bno);
+
+        Integer joincount = groupbulkbuyMapper.joincount(map);
+        if (joincount != null && joincount == 1) {
+            return; // 만약 참여중인 방이 있고 active=1이면 중단
+        }
+
+        // 저장
         groupbulkbuyMapper.joinGroup(map);
     }
 

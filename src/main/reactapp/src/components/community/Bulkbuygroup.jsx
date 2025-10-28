@@ -80,6 +80,24 @@ const 입장 = async (item) => {
     return;
   }
 
+  // ✅ 이미 참여한 방인지 확인
+  try {
+    const check = await axios.get("http://localhost:8080/groupchat/my/Group", {
+      params: { mno: auth.mno },
+      withCredentials: true,
+    });
+
+    // 이미 참여중인 방(bno)인지 검사
+    const joined = check.data.some((g) => g.bno === item.bno);
+    if (joined) {
+      alert("이미 참여중인 모임입니다!");
+      navigate(`/community/chatting/${item.bno}`);
+      return; // ✅ 중복 입장 방지
+    }
+  } catch (err) {
+    console.error("참여 여부 확인 오류:", err);
+  }
+
   if (item.bcount < item.btotal) { // 인원 제한 조건 수정
     try {
       // 방입장시 마이페이지 저장 

@@ -139,26 +139,34 @@ export default function Chatting() {
     }
   };
 
-  // ✅ 퇴장
-  const 퇴장 = async () => {
-    try {
-      const response = await axios.put(
-        "http://localhost:8080/chat/count/mm",
-        null,
-        {
-          params: { bno: num },
-          withCredentials: true,
-        }
-      );
+ //  퇴장
+const 퇴장 = async () => {
+  try {
+    // 1️ group_member 테이블에서 active=0 처리
+    await axios.put("http://localhost:8080/groupchat/leave/Group", null, {
+      params: { mno: auth.mno, bno: num },
+      withCredentials: true,
+    });
 
-      if (response.status === 200) {
-        alert(`방 퇴장 성공 (${num})`);
-        nav(`/community/bulkBuy`);
+    // 2️ bulkbuygroup 테이블의 bcount -1
+    const response = await axios.put(
+      "http://localhost:8080/chat/count/mm",
+      null,
+      {
+        params: { bno: num },
+        withCredentials: true,
       }
-    } catch (e) {
-      console.error("퇴장 실패:", e);
+    );
+
+    if (response.status === 200) {
+      alert(`방 퇴장 성공 (${num})`);
+      nav(`/community/bulkBuy`);
     }
-  };
+  } catch (e) {
+    console.error("퇴장 실패:", e);
+  }
+};
+
 
   return (
     <>
