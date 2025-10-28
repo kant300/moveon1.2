@@ -33,7 +33,6 @@ public class BulkbuygroupService {
 
     }
 
-
     // 소분모임 주소 체크
     public List<BulkbuygroupDto> addressGroup(Map<String , Object> maps){
         return bulkbuygroupMapper.addressGroup(maps);

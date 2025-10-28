@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Mypage 채팅  -->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="web.model.mapper.community.GroupbulkbuyMapper">
+
+    <select id="joinwrite" parameterType="int" resultType="web.model.dto.community.GroupbulkbuyDto">
+    SELECT b.bno, b.btitle, b.bcontent, gm.joindate
+    FROM group_member gm
+    JOIN bulkbuygroup b ON gm.bno = b.bno
+    WHERE gm.mno = #{mno}
+    AND gm.active = 1;
+    </select>
+    
+</mapper>

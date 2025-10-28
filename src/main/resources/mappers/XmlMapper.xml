@@ -71,11 +71,7 @@
         UPDATE bulkbuygroup set bcount = bcount+1 where bno = #{bno} and bcount &lt; btotal
     </update>
 
-<!--    <insert id="joinwrite" parameterType="int">-->
-<!--        INSERT INTO group_member (mno , bno)-->
-<!--        values-->
-<!--        ( #{mno} , #{bno} )-->
-<!--    </insert>-->
+
 
 
 

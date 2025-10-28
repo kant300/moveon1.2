@@ -17,8 +17,6 @@ public interface BulkbuygroupMapper {
 
     List<BulkbuygroupDto> joinlist(Map<String , Object> maps);
 
-//    List<BulkbuygroupDto> joinwrite(int mno , int bno);
-
     // 소분모임 주소 체크
     List<BulkbuygroupDto> addressGroup(Map<String , Object> maps);
 
