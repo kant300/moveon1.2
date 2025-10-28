@@ -66,13 +66,6 @@ public class BulkbuygroupController {
         return ResponseEntity.ok(dto);
     }
 
-//    // 내정보 글 목록 출력
-//    @PostMapping("join/write")
-//    public ResponseEntity< ? > joinwrite(@RequestParam int mno , int bno){
-//        System.out.println("ChatController.joinwrite");
-//        List<BulkbuygroupDto> list = bulkbuygroupService.joinwrite(mno , bno);
-//        return ResponseEntity.ok(list);
-//    }
 
     // 글 삭제
     @DeleteMapping("/delete")

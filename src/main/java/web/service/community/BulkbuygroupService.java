@@ -32,11 +32,7 @@ public class BulkbuygroupService {
         return dto;
 
     }
-//
-//    public List<BulkbuygroupDto> joinwrite(int mno , int bno){
-//        List<BulkbuygroupDto> dto = bulkbuygroupMapper.joinwrite(mno , bno);
-//        return dto;
-//    }
+
 
     // 소분모임 주소 체크
     public List<BulkbuygroupDto> addressGroup(Map<String , Object> maps){
