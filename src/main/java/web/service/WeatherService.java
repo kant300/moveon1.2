@@ -23,8 +23,8 @@ public class WeatherService {
             DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern(now.getHour()>=10?"HH00":"0H00");
 
             // 기상청 API 주소
-            StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst"); /*URL*/
-            urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=NM5zfvdFgH9DFan%2B%2BUniPqtncI36YA5jxHqzi02c4UIZja3JTiGq4iherjyUWk6%2BD7YuNbf%2B23UBd5J%2B2OLkIA%3D%3D"); /*Service Key*/
+            StringBuilder urlBuilder = new StringBuilder("https://apihub.kma.go.kr/api/typ02/openApi/VilageFcstInfoService_2.0/getUltraSrtFcst"); /*URL*/
+            urlBuilder.append("?" + URLEncoder.encode("authKey","UTF-8") + "=yYgQKKE3SxeIECihN0sXRQ"); /*Service Key*/
             urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
             urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수*/
             urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/

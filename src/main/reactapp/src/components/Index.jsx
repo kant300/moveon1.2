@@ -21,7 +21,7 @@ import explore_nearby from '../assets/images/icons/explore_nearby_24dp_1F1F1F_FI
 import storefront from '../assets/images/icons/storefront_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
-import { Weather } from "../assets/script";
+import { Weather } from '../assets/script/index';
 import axios from "axios";
 
 // 메인 페이지
@@ -46,7 +46,6 @@ export default function Index() {
             }
         }catch( err ){ setMember(null); } // 오류시 null
     }
-
 
     return (<>
         <Header />

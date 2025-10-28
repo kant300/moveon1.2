@@ -1,10 +1,12 @@
+import axios from "axios";
 
 export function Weather() {
     const script = document.createElement('script');
     script.src = '//dapi.kakao.com/v2/maps/sdk.js?appkey=9eb4f86b6155c2fa2f5dac204d2cdb35&autoload=false&libraries=services,clusterer';
     script.async = true;
     script.onload = () => {
-        const displayWeather = async () => {
+        kakao.maps.load(() => {
+            const kakao = window.kakao;
             // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
             if (navigator.geolocation) {
                 // GeoLocation을 이용해서 접속 위치를 얻어옵니다
@@ -18,8 +20,8 @@ export function Weather() {
 
                     try {
                         // 날씨 데이터 가져오기
-                        const response = await fetch(`/weather?lat=${parseInt(lat)}&lon=${parseInt(lon)}`);
-                        const data = await response.json();
+                        const response = await axios.get(`http://localhost:8080/weather?lat=${parseInt(lat)}&lon=${parseInt(lon)}`);
+                        const data = response.data;
 
                         // 데이터가 없으면 콘솔과 HTML에 코드 출력 후 리턴
                         if (data.response.header.resultCode != "00") {
@@ -43,6 +45,7 @@ export function Weather() {
                                 let t1h, reh, pty, sky, wsd;
                                 for (let i = 0; i < data.response.body.items.item.length; i++) {
                                     let obj = data.response.body.items.item[i];
+                                    console.log(obj);
                                     if (hour == obj.fcstTime) {
                                         if (obj.category == "T1H") {
                                             t1h = obj.fcstValue; // 기온
@@ -83,7 +86,7 @@ export function Weather() {
                                 const weather = document.querySelector("#weather");
                                 let html = `<div id="addr"><strong>${addr}</strong>의 날씨 (${hour}시 기준)</div>
                                     <div id="t1h">${icon} ${t1h}° ${pty}</div>
-                                    <div id="weatherDetails">
+                                    <div id="infoBox">
                                         <div id="item">
                                             <span id="label">습도</span>
                                             <span>${reh}%</span>
@@ -109,7 +112,7 @@ export function Weather() {
             } else { // HTML5의 GeoLocation을 사용할 수 없을때 내용을 설정합니다
                 console.log("Geolocation을 사용할 수 없습니다.");
             }
-        }
-        displayWeather();
+        })
     }
+    document.head.appendChild(script);
 }
