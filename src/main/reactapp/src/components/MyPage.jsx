@@ -6,11 +6,34 @@ import paid from '../assets/images/icons/paid_24dp_1F1F1F_FILL0_wght400_GRAD0_op
 import handshake from '../assets/images/icons/handshake_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import explore_nearby from '../assets/images/icons/explore_nearby_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import contact_support from '../assets/images/icons/contact_support_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "./Header";
+import { useEffect, useState } from "react";
+
 
 // 마이페이지
 export default function MyPage() {
+
+    const navigate = useNavigate()
+    const [auth, setAuth] = useState({ check: null })
+    const checkcookie = async () => {
+        try {
+            const res = await axios.get("http://localhost:8080/api/member/info",
+                { withCredentials: true });
+            setAuth(res.data);
+            console.log(res.data)
+            if (res.data === null) {
+                alert('로그인후 이용해주세요');
+                navigate('/login');
+            }
+        } catch (e) { setAuth({ check: false }) };
+
+    }
+
+    useEffect(() => {
+        checkcookie();
+    }, [] )
+
     return (<>
         <Header />
         <div id="wrap">
@@ -25,7 +48,7 @@ export default function MyPage() {
                     <div id="mainMenu">
                         <div id="profileBox">
                             <div><img src={account_circle} /></div>
-                            <div id="profileName">홍길동</div>
+                            <div id="profileName">{auth.mname}2홍길동</div>
                         </div>
                         <div className="mypageTitle"><span>●</span>활동내역</div>
                         <div id="activityBox">

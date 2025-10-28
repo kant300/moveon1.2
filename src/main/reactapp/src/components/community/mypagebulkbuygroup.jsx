@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Header from "../Header";
 import Footer from "../Footer";
-import "../../assets/css/community/bulkbuygroup.css";
+import "../../assets/css/community/mypagebulkbuygroup.css";
 import { useNavigate } from "react-router-dom";
 
 export default function Bulkbuygroup() {

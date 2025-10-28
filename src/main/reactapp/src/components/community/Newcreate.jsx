@@ -1,6 +1,6 @@
 import Footer from "../Footer"
 import Header from "../Header"
-import "../../assets/css/newcreate.css";
+import "../../assets/css/community/newcreate.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState , useEffect } from "react";

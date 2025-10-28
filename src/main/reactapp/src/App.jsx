@@ -50,6 +50,7 @@ export default function App() {
           <Route path='/community/bulkBuy' element={<Bulkbuygroup />} />
           <Route path="/community/chatting/:bno" element={<Chatting />} />
           <Route path='/group/create' element={<Newcreate/>} />
+          
 
         </Routes>
       </BrowserRouter>
