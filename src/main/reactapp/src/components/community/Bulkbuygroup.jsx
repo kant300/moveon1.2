@@ -86,26 +86,19 @@ const 입장 = async (item) => {
         navigate(`/community/chatting/${item.bno}`, {
           state: { btotal: item.btotal, bcount: item.bcount + 1 },
         });
-      } else if(response.status === 500){
-        alert(" 인원 가득참 또는 실패");
-        navigate('/community/bulkBuy');
-      }
+      } 
     } catch (e) {
       console.error(" 입장 오류:", e);
+        alert(" 인원 가득참 또는 실패");
+        window.location.reload(); // 화면 자동 새로고침 
+      
     }
   } else {
     alert(" 인원 가득참! 더 이상 입장할 수 없습니다.");
   }
 };
 
-// const 퇴장 = async (item) => { 
-//   try{
-//     const response = await axios.put(
-//       "http://localhost:8080/chat/count/mm",
-//       null,
-//     )
-//   }
-// }
+
 
 
 

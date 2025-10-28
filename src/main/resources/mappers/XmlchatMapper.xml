@@ -41,10 +41,14 @@
 
     <!-- -1 -->
     <update id="countmm" parameterType="int">
-        UPDATE bulkbuygroup
-        SET bcount = bcount - 1
-        WHERE bno = #{bno} AND bcount > 0
+        UPDATE bulkbuygroup SET bcount = bcount - 1
+        WHERE bno = #{bno}
     </update>
+
+    <!-- 인원 퇴장 -->
+    <select id="countCheckmm" parameterType="int">
+        SELECT * FROM bulkbuygroup WHERE btotal >= bcount and bno = #{bno}
+    </select>
 
 
 </mapper>

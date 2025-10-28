@@ -19,8 +19,9 @@ public interface ChatMapper {
 
      int countpp(int bno);
 
-
     int countCheck( int bno );
+
+    int countCheckmm( int bno );
 
      int countmm(int bno);
 
