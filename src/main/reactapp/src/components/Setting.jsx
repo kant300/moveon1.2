@@ -8,6 +8,7 @@ import Header from './Header';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+
 // 설정 페이지
 export default function Setting() {
 

@@ -49,7 +49,7 @@ public class MemberController {
     // 3. 현재 로그인된 정보 호출 ( + 마이페이지 )
     @GetMapping("/info")
     public ResponseEntity<?> myInfo( HttpServletRequest request ){ // 쿠키 활용한 로그인상태를 확인
-        System.out.println("UserController.myInfo");
+        System.out.println("MemberController.myInfo");
         // 3-1 : 현재 클라이언트(브라우저) 저장된 모든 쿠키 가져오기
         Cookie[] cookies = request.getCookies();
         // 3-2 : 반복문 이용한 특정한 쿠키명 찾기
