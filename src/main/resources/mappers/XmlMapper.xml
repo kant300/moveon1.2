@@ -32,7 +32,6 @@
         ORDER BY b.bdate DESC;
     </select>
 
-
     <!-- 시 구 동 주소 검색 -->
     <select id="addressGroup" parameterType="map" resultType="web.model.dto.community.BulkbuygroupDto">
         SELECT b.* , m.maddress1 , m.maddress2 , m.maddress3
@@ -70,10 +69,6 @@
     <update id="countCheck" parameterType="int">
         UPDATE bulkbuygroup set bcount = bcount+1 where bno = #{bno} and bcount &lt; btotal
     </update>
-
-
-
-
 
 
 </mapper>

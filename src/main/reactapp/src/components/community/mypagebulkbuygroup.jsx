@@ -10,10 +10,13 @@ export default function Bulkbuygroup() {
   const [keyword, setkeyword] = useState("");
   const [auth, setAuth] = useState({ check: null })
 
-  //  글 목록 불러오기
-  const fetchGroups = async () => {
+  //  글 목록 불러오기 // 참여중인 mno 기준으로 
+  const fetchGroups = async ( mno ) => {
     try {
-      const response = await axios.get("http://localhost:8080/group/join/list");
+      const response = await axios.get("http://localhost:8080/groupchat/my/Group" , {
+        params : { mno },
+        withCredentials : true ,
+      });
       setGroups(response.data);
       console.log(response.data);
     } catch (error) {

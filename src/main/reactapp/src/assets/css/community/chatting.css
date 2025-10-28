@@ -133,3 +133,31 @@
   background-color: #2c82e0;
 }
 
+/* 💬 말풍선 + 시간 묶음 (카톡형 구조) */
+.chat-bubble-wrapper {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  margin-bottom: 4px;
+}
+
+/* 카톡형: 내 메시지는 오른쪽 정렬 */
+.chat-my .chat-bubble-wrapper {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+/* 🕒 시간 표시 스타일 */
+.chat-time {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+
+/* 💬 말풍선 내부 줄바꿈 처리 */
+.chat-bubble {
+  max-width: 240px;
+  word-break: break-word;
+  white-space: pre-wrap;
+}

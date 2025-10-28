@@ -79,8 +79,14 @@ const 입장 = async (item) => {
     navigate('/login');
     return;
   }
+
   if (item.bcount < item.btotal) { // 인원 제한 조건 수정
     try {
+      // 방입장시 마이페이지 저장 
+      await axios.post("http://localhost:8080/groupchat/join/Group" , null, {
+        params: { mno: auth.mno, bno: item.bno },
+        withCredentials: true,
+      })
       const response = await axios.put(
         "http://localhost:8080/chat/count/pp",
         null,

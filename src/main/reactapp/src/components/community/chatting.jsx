@@ -14,7 +14,7 @@ export default function Chatting() {
   const [auth, setAuth] = useState(null);
   const [socket, setwebsocket] = useState(null);
   const [count, setcount] = useState({ btotal: 0, bcount: 0 });
-  const [ run , setrun ]  = useState( { } )
+  const [run, setrun] = useState({});
 
   // ✅ 로그인 정보 가져오기
   const checkcookie = async () => {
@@ -64,7 +64,7 @@ export default function Chatting() {
     setwebsocket(sc);
 
     sc.onopen = () => {
-      console.log(" WebSocket 연결됨");
+      console.log("✅ WebSocket 연결됨");
       sc.send(
         JSON.stringify({
           type: "join",
@@ -77,7 +77,7 @@ export default function Chatting() {
 
     sc.onmessage = (event) => {
       const smg = JSON.parse(event.data);
-      console.log(" 메세지 수신:", smg);
+      console.log("📩 메세지 수신:", smg);
 
       if (smg.type === "alarm") {
         setchatprint((prev) => [
@@ -87,10 +87,14 @@ export default function Chatting() {
       } else if (smg.type === "msg") {
         setchatprint((prev) => [
           ...prev,
-          { mname: smg.mname, mmessage: smg.mmessage },
+          {
+            mname: smg.mname,
+            mmessage: smg.mmessage,
+            cdate: new Date().toISOString(), // ✅ 메시지 전송 시 현재시간 임시 추가
+          },
         ]);
       } else if (smg.type === "count") {
-        setcount( { bcount : smg.bcount , btotal : smg.btotal } );
+        setcount({ bcount: smg.bcount, btotal: smg.btotal });
       }
     };
 
@@ -99,7 +103,6 @@ export default function Chatting() {
     chattingprint();
     playcount();
 
-    // ✅ 컴포넌트 종료 시 WebSocket 닫기
     return () => sc.close();
   }, [auth, num]);
 
@@ -136,14 +139,12 @@ export default function Chatting() {
     }
   };
 
-
-
-
-const 퇴장 = async () => { 
-  try{
-    const response = await axios.put(
-      "http://localhost:8080/chat/count/mm",
-          null,
+  // ✅ 퇴장
+  const 퇴장 = async () => {
+    try {
+      const response = await axios.put(
+        "http://localhost:8080/chat/count/mm",
+        null,
         {
           params: { bno: num },
           withCredentials: true,
@@ -152,17 +153,20 @@ const 퇴장 = async () => {
 
       if (response.status === 200) {
         alert(`방 퇴장 성공 (${num})`);
-        nav(`/community/bulkBuy`); 
-      } 
+        nav(`/community/bulkBuy`);
+      }
     } catch (e) {
-      console.error(" 퇴장 실패:", e);
+      console.error("퇴장 실패:", e);
     }
-  } 
+  };
+
   return (
     <>
       <Header />
       <div className="chat-header">
-        <button type="button" onClick={퇴장}> 나가기 </button>
+        <button type="button" onClick={퇴장}>
+          나가기
+        </button>
         <span className="chat-title">같이 구매할 분 구해요</span>
         <span className="countcheck">
           {count.bcount} / {count.btotal}
@@ -173,21 +177,33 @@ const 퇴장 = async () => {
         {chatprint.map((c, index) => (
           <div
             key={index}
-            className={`chat-item ${
-              c.mname === auth?.mname ? "chat-my" : ""
-            } ${c.mname === "alarm" ? "chat-system" : ""}`}
+            className={`chat-item ${c.mname === auth?.mname ? "chat-my" : ""
+              } ${c.mname === "alarm" ? "chat-system" : ""}`}
           >
             {c.mname === "alarm" ? (
               <div className="chat-system-message">{c.mmessage}</div>
             ) : (
               <>
                 <div className="chat-name">{c.mname}</div>
-                <div className="chat-bubble">{c.mmessage}</div>
+
+                {/* ✅ 말풍선 + 시간 같이 묶기 */}
+                <div className="chat-bubble-wrapper">
+                  <div className="chat-bubble">{c.mmessage}</div>
+                  {c.cdate && (
+                    <div className="chat-time">
+                      {new Date(c.cdate).toLocaleTimeString("ko-KR", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </div>
+                  )}
+                </div>
               </>
             )}
           </div>
         ))}
       </div>
+
 
       <div className="chat-input-area">
         <input
