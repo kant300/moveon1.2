@@ -18,7 +18,7 @@ import FindId from './components/member/FindId.jsx';
 import FindPwd from './components/member/FindPwd.jsx';
 import MyInfo from './components/member/MyInfo.jsx';
 import MyBulkbuygroup from './components/community/mypagebulkbuygroup.jsx';
-
+import Signout from './components/member/Signout.jsx';
 
 // 현재 홈, 마이페이지, 전체메뉴, 설정까지 프로토타입 제작 완료
 export default function App() {
@@ -39,6 +39,7 @@ export default function App() {
           <Route path='/menu' element={<Menu />} />
           <Route path='/setting' element={<Setting />} />
           <Route path='/myinfo' element={<MyInfo />} />
+          <Route path='/signout' element={<Signout />} />
 
           {/* living */}
           <Route path='/living/trashInfo' element={<Trash />} />
