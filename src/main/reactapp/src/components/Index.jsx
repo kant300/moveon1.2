@@ -4,6 +4,9 @@ import Header from "./Header";
 import calendar_clock from '../assets/images/icons/calendar_clock_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import paid from '../assets/images/icons/paid_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import movein from '../assets/images/icons/move_location_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
+import ecoelectric from '../assets/images/icons/eco_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
+import things from '../assets/images/icons/icons/things_to_do_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
+import things from '../assets/images/icons/icons/things_to_do_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import recycling from '../assets/images/icons/recycling_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import apparel from '../assets/images/icons/apparel_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import ev_station from '../assets/images/icons/ev_station_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
@@ -70,6 +73,10 @@ export default function Index() {
                                     <Link to='/living/movein'><li><img src={movein} />전입신고</li></Link>
                                     <Link to='/living/clothingBin'><li><img src={apparel} />의류수거함</li></Link>
                                     <Link to='/living/trashInfo'><li><img src={recycling} />쓰레기 배출정보</li></Link>
+                                    <Link to='/living/ecoelectric'><li><img src={ecoelectric} />폐가전수거</li></Link>
+                                    <Link to='/living/things'><li><img src={things} />관공서</li></Link>
+                                    <Link to='/living/hospital'><li><img src={hospital} />심야약국/병원</li></Link>
+
 
                                 </>
                             ):
