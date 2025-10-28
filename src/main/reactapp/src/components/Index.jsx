@@ -57,18 +57,18 @@ export default function Index() {
                     <div id="weather">
                         {/* 샘플 데이터 */}
                         <div id="addr"><strong>인천 부평구 부평동</strong>의 날씨 (16시 기준)</div>
+                        <div id="t1h" >☀️ 30° 맑음</div>
                         <div id="infoBox">
-                            <div id="t1h" >☀️ 30° 맑음</div>
                             <div id="item">
-                                <span id="label">습도</span>
+                                <span id="label">습도 </span>
                                 <span>86%</span>
                             </div>
                             <div id="item">
-                                <span id="label">하늘</span>
+                                <span id="label">하늘 </span>
                                 <span>맑음</span>
                             </div>
                             <div id="item">
-                                <span id="label">풍속</span>
+                                <span id="label">풍속 </span>
                                 <span>5m/s</span>
                             </div>
                         </div>

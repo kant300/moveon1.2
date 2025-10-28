@@ -8,9 +8,26 @@ import explore_nearby from '../assets/images/icons/explore_nearby_24dp_1F1F1F_FI
 import contact_support from '../assets/images/icons/contact_support_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import { Link } from "react-router-dom";
 import Header from "./Header";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 // 마이페이지
 export default function MyPage() {
+
+        // 1. 로그인된 유저 정보 저장
+    const [ member , setMember ] = useState( null );
+    // 2. 최초로 컴포넌트 실행시 유저 정보 요청하기
+    const getMyInfo = async()=>{
+        try{
+            const url = "http://localhost:8080/api/member/info"
+            const res = await axios.get( url , { withCredentials : true } );
+            if (res.data != '') {
+                setMember( res.data ); // 반환된 유저 정보를 저장
+            }
+        }catch( err ){ setMember(null); } // 오류시 null
+    }
+    useEffect( () => { getMyInfo(); } , [] );
+
     return (<>
         <Header />
         <div id="wrap">
@@ -25,7 +42,7 @@ export default function MyPage() {
                     <div id="mainMenu">
                         <div id="profileBox">
                             <div><img src={account_circle} /></div>
-                            <div id="profileName">홍길동</div>
+                            <div id="profileName">{ member == null ? <> 로그인해주세요 </> : <>  {member.mname} </>}</div>
                         </div>
                         <div className="mypageTitle"><span>●</span>활동내역</div>
                         <div id="activityBox">
