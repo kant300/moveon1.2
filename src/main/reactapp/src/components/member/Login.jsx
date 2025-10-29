@@ -32,7 +32,7 @@ export default function Login() {
             <div id="container">
                 <div id='login'>
                     <div id="contentTop">
-                        <Link to='/menu'><img src={arrow_back_ios_new} /></Link>
+                        <img src={arrow_back_ios_new} onClick={() => navigate(-1)} style={{cursor: "pointer"}} />
                         <div id='title'>로그인</div>
                         <div>　</div>
                     </div>

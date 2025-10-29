@@ -280,8 +280,7 @@ public class StationService {
             // System.out.println(data);
             return data;
         } catch (Exception e) {
-            System.out.println(e.toString());
+            throw new RuntimeException(e);
         }
-        return null;
     }
 }

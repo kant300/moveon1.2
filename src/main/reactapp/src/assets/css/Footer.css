@@ -10,6 +10,10 @@
     align-items: center;
 }
 
+#footer span {
+    color: black;
+}
+
 .icon {
     width: 30px; height: 30px;
     display: flex;

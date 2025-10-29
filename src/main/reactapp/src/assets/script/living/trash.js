@@ -1,3 +1,10 @@
+import axios from 'axios'
+import waste_normal from "../../images/icons/free-icon-garbage-8134426.png"
+import waste_food from "../../images/icons/free-icon-waste-8134488.png"
+import waste_large from "../../images/icons/free-icon-waste-8134528.png"
+import waste_recycle from "../../images/icons/free-icon-waste-8134678.png"
+
+
 // [1] 카카오맵 API을 이용하여 현재 위치좌표 => 현재 위치 지역 시,구 정보얻기 
 export function Run() {
     const script = document.createElement("script")
@@ -11,39 +18,27 @@ export function Run() {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     var lat = position.coords.latitude, // 위도
                         lon = position.coords.longitude; // 경도
-                    console.log(lat, lon);
                     geocoder.coord2RegionCode(lon, lat, callback);
-                    // geocoder.coord2RegionCode( 126.723325411  , 37.489572382, callback); // 부평역 테스트
                 });
             }
+
             // [2] 좌표를 주소로 변환, 화면에 출력
             var geocoder = new kakao.maps.services.Geocoder();
             var callback = function (result, status) {
                 if (status === kakao.maps.services.Status.OK) {
-
-                    console.log(`지역 명칭 : ${result[0].region_1depth_name} ${result[0].region_2depth_name}`);
                     // region_1depth_name : 시도 단위 , region_2depth_name : 구 단위
                     // https://developers.kakao.com/docs/latest/ko/local/dev-guide#coord-to-district // 추후 커스텀시 지역정보코드모음
 
                     // textBox(jsp)에 현재 접속한 (시도단위, 구단위)위치 출력 
                     const textBox = document.querySelector('#textBox');
-                    textBox.innerHTML = `현재 접속 위치는 <strong>${result[0].region_1depth_name} ${result[0].region_2depth_name}</strong> 입니다.`;
+                    textBox.innerHTML = `<strong>${result[0].region_1depth_name} ${result[0].region_2depth_name}</strong>의 쓰레기 배출 정보`;
+                    document.querySelector('#infoBox').innerHTML = "불러오는 중...";
 
-                    const 지역_시도 = result[0].region_1depth_name;
-                    console.log("지역시도 입니다. " + 지역_시도);   // 경기도 // 인천광역시
+                    const tCity = result[0].region_1depth_name;
+                    const tGu = result[0].region_2depth_name;
 
-                    const 지역_구 = result[0].region_2depth_name;
-                    console.log("지역구 입니다. " + 지역_구); // 부천시 원미구 //
-
-                    // if 로 광역시 와 도(8) 구분해서
-
-
-                    trashFind(지역_시도, 지역_구);
-                    trashMove(지역_시도, 지역_구);
-                    // trashFind( 지역_시도+" "+지역_구.split(" ")[0]  , 지역_구.split(" ")[1] ); // : 쓰레기 개별 배출정보 호출 // 등록시 지역명들을  select 고민!!
-                    // trashMove( 지역_시도+" "+지역_구.split(" ")[0]  , 지역_구.split(" ")[1] );
+                    trashFind(tCity, tGu);
                 }
-
             };
         })
     }
@@ -52,26 +47,71 @@ export function Run() {
 
 // [3] 쓰레기 개별 배출정보 출력
 async function trashFind(tCity, tGu) {
-    try { // 1. 어디에 // fetch로 부터 출력할 쓰레기 정보 조회 요청 
-        const response = await fetch(`/living/trash/find?tCity=${tCity}&tGu=${tGu}`); // GET => 옵션생략
-        const data = await response.json();
-        // 2 무엇을 // 응답받은 자료를 특정한 html에 출력한다.
-        document.querySelector('#infoBox').innerHTML = data.tinfo;
+    try {
+        const response = await axios.get(`http://localhost:8080/living/trash?tCity=${tCity}&tGu=${tGu}`);
+        const data = await response.data;
+        
+        const html = `
+                        <div class='trashText'>
+                            <div>
+                                <div>미수거일: ${data.미수거일}</div>
+                                <div>배출장소: ${data.배출장소}</div>
+                            </div>
+                        </div>
+                        <div class='trashInfoDiv'>
+                            <div>
+                                <img src=${waste_normal} />
+                            </div>
+                            <div>
+                                <div class='trashTitle'>생활쓰레기</div>
+                                <div>배출방법: ${data.생활쓰레기배출방법}</div>
+                                <div>배출시각: ${data.생활쓰레기배출시작시각} ~ ${data.생활쓰레기배출종료시각}</div>
+                                <div>배출요일: ${data.생활쓰레기배출요일}</div>
+                            </div>
+                        </div>
+                        <div class='trashInfoDiv'>
+                            <div>
+                                <img src=${waste_food} />
+                            </div>
+                            <div>
+                                <div class='trashTitle'>음식물쓰레기</div>
+                                <div>배출방법: ${data.음식물쓰레기배출방법}</div>
+                                <div>배출시각: ${data.음식물쓰레기배출시작시각} ~ ${data.음식물쓰레기배출종료시각}</div>
+                                <div>배출요일: ${data.음식물쓰레기배출요일}</div>
+                            </div>
+                        </div>
+                        <div class='trashInfoDiv'>
+                            <div>
+                                <img src=${waste_large} />
+                            </div>
+                            <div>
+                                <div class='trashTitle'>일시적다량폐기물</div>
+                                <div>배출방법: ${data.일시적다량폐기물배출방법}</div>
+                                <div>배출시각: ${data.일시적다량폐기물배출시작시각} ~ ${data.일시적다량폐기물배출종료시각}</div>
+                                <div>배출장소: ${data.일시적다량폐기물배출장소}</div>
+                            </div>
+                        </div>
+                        <div class='trashInfoDiv'>
+                            <div>
+                                <img src=${waste_recycle} />
+                            </div>
+                            <div>
+                                <div class='trashTitle'>재활용품</div>
+                                <div>배출방법: ${data.재활용품배출방법}</div>
+                                <div>배출시각: ${data.재활용품배출시작시각} ~ ${data.재활용품배출종료시각}</div>
+                                <div>배출요일: ${data.재활용품배출요일}</div>
+                            </div>
+                        </div>
+                        <div class='trashText'>
+                            <div>
+                                <div>관리부서명: ${data.관리부서명}</div>
+                                <div>관리부서전화번호: ${data.관리부서전화번호}</div>
+                            </div>
+                        </div>
+        `
+
+        document.querySelector('#infoBox').innerHTML = html;
     } catch (e) {
         document.querySelector('#infoBox').innerHTML = `해당 지역은 준비중 입니다.`
     };
 }
-
-// [4] 이동함수 : living/trash.jsp 사용자가 접속한 위치의 쿼리스트링이 추가된 living/trash/find?tCity=&tGu= 로 이동
-function trashMove(tCity, tGu) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const currenttCity = urlParams.get('tCity');
-    const currenttGu = urlParams.get('tGu');
-
-    // 쿼리스트링이 없는 주소면 이동
-    if (currenttCity != tCity || currenttGu != tGu) {
-        location.href = `/living/trashInfo?tCity=${tCity}&tGu=${tGu}`;
-    } else { // 아니면 이동 x
-        console.log('스트링이 존재하여 URL, 이동하지 않습니다.');
-    }
-};

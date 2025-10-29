@@ -12,18 +12,13 @@ export default function Trash() {
 
     return (<>
         <Header />
-            <div id="wrap">
-                <div id="container">
-                        <div>
-                            <div>쓰레기 배출정보</div><br />
-                            <div id="textBox"> 위치 엑세스가 거부되었습니다. 엑세스를 허용해주세요. </div> <br /><br />
-
-                            <div id="infoBox"> 쓰레기 정보 </div>
-                            <div>
-                                
-                            </div>
-                        </div>
+        <div id="wrap">
+            <div id="container">
+                <div id="textBox">위치 액세스가 거부되었습니다. 액세스를 허용해주세요.</div>
+                <div id="infoBox">
+                    {/* 쓰레기 정보 */}
                 </div>
+            </div>
         </div>
         <Footer />
     </>)

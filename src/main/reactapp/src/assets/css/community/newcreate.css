@@ -85,10 +85,6 @@ button {
   transition: background 0.3s;
 }
 
-button:hover {
-  background-color: #0092da;
-}
-
 /* 안내 문구 */
 .notice {
   font-size: 13px;

@@ -59,7 +59,7 @@ export default function Menu() {
                         </div>
                     </div>
                     <div id='mainMenu'>
-                        <div className='menuTitle'><span>●</span>제목</div>
+                        <div className='menuTitle'><span>●</span>생활</div>
                         <ul id='livingMenu'>
                             <Link to='/living/bill'><li><img src={paid} />공과금정산</li></Link>
                             <Link to='/living/movein'><li><img src={movein} />전입신고</li></Link>
