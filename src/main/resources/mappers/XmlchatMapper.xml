@@ -13,7 +13,7 @@
 
     <!-- 채팅방 메세지 내용 출력 -->
     <select id="printChat" parameterType="web.model.dto.community.ChattingDto" resultType="web.model.dto.community.ChattingDto">
-        SELECT m.mname , c.mmessage , c.cdate
+        SELECT m.mname , c.mmessage , c.cdate , c.mno
         <!-- 검색 join 사용하여 member -> [ 이름 , 메세지 ]을 가져옴
         채팅방 번호와 회원번호가 일치할시 가져옴 -->
         FROM chatting c JOIN members m on c.mno = m.mno
@@ -23,7 +23,10 @@
 
     <!-- 인원 확인 -->
     <select id="countChat" parameterType="int" resultType="web.model.dto.community.BulkbuygroupDto">
-        SELECT bcount , btotal
+        SELECT
+            bcount ,
+            btotal ,
+            mno AS host_mno
         FROM bulkbuygroup
         WHERE bno = #{bno};
     </select>

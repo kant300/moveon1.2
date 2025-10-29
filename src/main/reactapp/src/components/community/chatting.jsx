@@ -13,7 +13,7 @@ export default function Chatting() {
   const [chatprint, setchatprint] = useState([]);
   const [auth, setAuth] = useState(null);
   const [socket, setwebsocket] = useState(null);
-  const [count, setcount] = useState({ btotal: 0, bcount: 0 });
+  const [count, setcount] = useState({ btotal: 0, bcount: 0 , host_mno : 0 });
   const [run, setrun] = useState({});
 
   // ✅ 로그인 정보 가져오기
@@ -40,6 +40,7 @@ export default function Chatting() {
       params: { bno: num },
     });
     setcount(res.data);
+    console.log("🔥 count data:", res.data);
   };
 
   // ✅ 채팅 출력
@@ -56,10 +57,12 @@ export default function Chatting() {
     checkcookie();
   }, []);
 
-  // ✅ WebSocket 연결 및 데이터 출력 (auth 준비 후 실행)
-  useEffect(() => {
-    if (!auth || !auth.mno) return;
+  
+ useEffect(() => {
+  if (!auth || !auth.mno) return;
 
+  // ✅ playcount() 실행 후 WebSocket 연결
+  playcount().then(() => {
     const sc = new WebSocket("ws://localhost:8080/chatting");
     setwebsocket(sc);
 
@@ -89,22 +92,28 @@ export default function Chatting() {
           ...prev,
           {
             mname: smg.mname,
+            mno: smg.mno, // ✅ 메시지에도 mno 전달
             mmessage: smg.mmessage,
-            cdate: new Date().toISOString(), // ✅ 메시지 전송 시 현재시간 임시 추가
+            cdate: new Date().toISOString(),
           },
         ]);
       } else if (smg.type === "count") {
-        setcount({ bcount: smg.bcount, btotal: smg.btotal });
+        setcount((prev) => ({
+          ...prev,
+          bcount: smg.bcount,
+          btotal: smg.btotal,
+        }));
       }
     };
 
     sc.onclose = () => console.log("❌ WebSocket 연결 종료");
 
     chattingprint();
-    playcount();
+  });
 
-    return () => sc.close();
-  }, [auth, num]);
+  return () => socket && socket.close();
+}, [auth, num]);
+
 
   // ✅ 스크롤 자동 이동
   useEffect(() => {
@@ -167,6 +176,9 @@ const 퇴장 = async () => {
   }
 };
 
+console.log("💬 chatprint:", chatprint);
+
+
 
   return (
     <>
@@ -192,9 +204,11 @@ const 퇴장 = async () => {
               <div className="chat-system-message">{c.mmessage}</div>
             ) : (
               <>
-                <div className="chat-name">{c.mname}</div>
+                <div className="chat-name">{c.mname}
+                  {c.mno === count.host_mno && <span className="host-badge">방장</span> }
+                </div>
 
-                {/* ✅ 말풍선 + 시간 같이 묶기 */}
+                {/*  말풍선 + 시간 같이 묶기 */}
                 <div className="chat-bubble-wrapper">
                   <div className="chat-bubble">{c.mmessage}</div>
                   {c.cdate && (

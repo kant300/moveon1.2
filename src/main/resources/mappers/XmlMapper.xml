@@ -9,7 +9,7 @@
         <!-- 방만들때 회원번호fk , 제목 내용 인원수 설정  -->
         INSERT INTO bulkbuygroup( mno , btitle , bcontent , btotal , bcount )
         values
-        ( #{mno} , #{btitle} , #{bcontent} , #{btotal} , 0 )
+        ( #{mno} , #{btitle} , #{bcontent} , #{btotal} , 1 )
     </insert>
 
 

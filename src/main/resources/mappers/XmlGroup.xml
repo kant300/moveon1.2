@@ -31,6 +31,7 @@
             b.btitle,
             b.bcount,
             b.btotal,
+            b.mno as host_mno ,
             b.bcontent,
             m.mname,
             gm.joindate

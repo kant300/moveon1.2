@@ -77,33 +77,14 @@ export default function Bulkbuygroup() {
 
 
   // 방 입장 시 인원 +1
-const 입장 = async (item) => {
-  if (item.bcount < item.btotal) { // 인원 제한 조건 수정
-    try {
-      const response = await axios.put(
-        "http://localhost:8080/chat/count/pp",
-        null,
-        {
-          params: { bno: item.bno },
-          withCredentials: true,
-        }
-      );
-
-      if (response.status === 200) {
-        await fetchGroups();
-        alert(`방 입장 성공 (${item.bno})`);
-        navigate(`/community/chatting/${item.bno}`, {
-          state: { btotal: item.btotal, bcount: item.bcount + 1 },
-        });
-      } 
-    } catch (e) {
-      console.error(" 입장 오류:", e);
-        alert(" 인원 가득참 또는 실패");
-        window.location.reload(); // 화면 자동 새로고침 
-      
-    }
-  } else {
-    alert(" 인원 가득참! 더 이상 입장할 수 없습니다.");
+  const 입장 = async (item) => {
+  try {
+    alert(`"${item.btitle}" 채팅방으로 이동합니다.`);
+    navigate(`/community/chatting/${item.bno}`, {
+      state: { btotal: item.btotal, bcount: item.bcount },
+    });
+  } catch (e) {
+    console.error("입장 오류:", e);
   }
 };
 

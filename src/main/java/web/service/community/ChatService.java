@@ -27,6 +27,7 @@ public class ChatService {
         List<ChattingDto> dtos = chatMapper.printChat(bno);
         return dtos;
     }
+
     public BulkbuygroupDto countChat(int bno){
         System.out.println("ChatService.countChat");
         BulkbuygroupDto result = chatMapper.countChat(bno);

@@ -13,6 +13,7 @@ public class GroupbulkbuyDto {
     private int gmno;        //  참여 고유번호 (group_member PK)
     private int mno;         // 회원 번호 (FK)
     private int bno;         // 모임 번호 (FK)
+    private int host_mno;    // 방장
 
     // JOIN용 (bulkbuygroup, members)
     private String mname;    // 회원 이름

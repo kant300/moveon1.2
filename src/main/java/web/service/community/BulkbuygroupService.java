@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import web.model.dto.community.BulkbuygroupDto;
 import web.model.mapper.community.BulkbuygroupMapper;
+import web.model.mapper.community.GroupbulkbuyMapper;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,11 +15,18 @@ import java.util.Map;
 public class BulkbuygroupService {
 
     private final BulkbuygroupMapper bulkbuygroupMapper;
+    private final GroupbulkbuyMapper groupbulkbuyMapper; // 방장 보여주기위함
 
     // 글쓰기
     public boolean createGroup(BulkbuygroupDto dto){
         System.out.println("BulkbuygroupService.createGroup");
         boolean result = bulkbuygroupMapper.createGroup(dto);
+        if (result) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("mno", dto.getMno()); // 회원번호
+            map.put("bno", dto.getBno()); // 방번호
+            groupbulkbuyMapper.joinGroup(map); // 재사용
+        }
         return result;
     }
 

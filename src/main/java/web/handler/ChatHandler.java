@@ -85,7 +85,7 @@ public class ChatHandler extends TextWebSocketHandler {
         String type = (String) msg.get("type"); // 전송 타입(join, msg 등)
 
         if ("join".equals(type)) {
-            // ✅ 방 입장 처리
+            //  방 입장 처리
             String mmessage = (String) msg.get("mmessage"); // (입장 시 메시지는 없을 수 있음)
             String mname = (String) msg.get("mname");       // 회원 이름
             String mno = String.valueOf(msg.get("mno"));    // 회원 번호(숫자 → 문자열 변환)
