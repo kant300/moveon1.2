@@ -2,8 +2,9 @@ import axios from "axios";
 import Footer from "../Footer";
 import Header from "../Header";
 import "../../assets/css/community/chatting.css";
+import playicon from '../../assets/images/icons/play_icon_profile.png';
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
 /* MUI : npm install @mui/joy @emotion/react @emotion/styled */
 import Box from '@mui/joy/Box';
@@ -13,16 +14,28 @@ import Button from '@mui/joy/Button';
 
 export default function Chatting() {
 
-    /* MUI 오른쪽 슬라이드바 */
-    const [open, setOpen] = useState(false);
+  /* MUI 오른쪽 슬라이드바 */
+  const [open, setOpen] = useState(false);
+  const [player, setplayer] = useState([]);
 
-    const toggleDrawer = (inOpen) => (event) => {
-        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-        return;
-        }
-        setOpen(inOpen);
-    };
-    /* ---------------------- */
+  const toggleDrawer = (inOpen) => async (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    if (inOpen == true) {
+      console.log('mui 슬라이드바 열림');
+      try {
+        const response = await axios.get("http://localhost:8080/chat/play/name", {
+          params: { bno: num },
+          withCredentials: true,
+        });
+        setplayer(response.data);
+      } catch (error) { console.log('슬라이드 아레 발생' + error); }
+    }
+    setOpen(inOpen);
+  };
+  /* ---------------------- */
 
 
 
@@ -33,7 +46,7 @@ export default function Chatting() {
   const [chatprint, setchatprint] = useState([]);
   const [auth, setAuth] = useState(null);
   const [socket, setwebsocket] = useState(null);
-  const [count, setcount] = useState({ btotal: 0, bcount: 0 , host_mno : 0 });
+  const [count, setcount] = useState({ btotal: 0, bcount: 0, host_mno: 0 });
   const [run, setrun] = useState({});
 
   // ✅ 로그인 정보 가져오기
@@ -77,62 +90,62 @@ export default function Chatting() {
     checkcookie();
   }, []);
 
-  
- useEffect(() => {
-  if (!auth || !auth.mno) return;
 
-  // ✅ playcount() 실행 후 WebSocket 연결
-  playcount().then(() => {
-    const sc = new WebSocket("ws://localhost:8080/chatting");
-    setwebsocket(sc);
+  useEffect(() => {
+    if (!auth || !auth.mno) return;
 
-    sc.onopen = () => {
-      console.log("✅ WebSocket 연결됨");
-      sc.send(
-        JSON.stringify({
-          type: "join",
-          bno: num,
-          mname: auth.mname,
-          mno: auth.mno,
-        })
-      );
-    };
+    // ✅ playcount() 실행 후 WebSocket 연결
+    playcount().then(() => {
+      const sc = new WebSocket("ws://localhost:8080/chatting");
+      setwebsocket(sc);
 
-    sc.onmessage = (event) => {
-      const smg = JSON.parse(event.data);
-      console.log("📩 메세지 수신:", smg);
+      sc.onopen = () => {
+        console.log("✅ WebSocket 연결됨");
+        sc.send(
+          JSON.stringify({
+            type: "join",
+            bno: num,
+            mname: auth.mname,
+            mno: auth.mno,
+          })
+        );
+      };
 
-      if (smg.type === "alarm") {
-        setchatprint((prev) => [
-          ...prev,
-          { mname: "alarm", mmessage: smg.message },
-        ]);
-      } else if (smg.type === "msg") {
-        setchatprint((prev) => [
-          ...prev,
-          {
-            mname: smg.mname,
-            mno: smg.mno, // ✅ 메시지에도 mno 전달
-            mmessage: smg.mmessage,
-            cdate: new Date().toISOString(),
-          },
-        ]);
-      } else if (smg.type === "count") {
-        setcount((prev) => ({
-          ...prev,
-          bcount: smg.bcount,
-          btotal: smg.btotal,
-        }));
-      }
-    };
+      sc.onmessage = (event) => {
+        const smg = JSON.parse(event.data);
+        console.log("📩 메세지 수신:", smg);
 
-    sc.onclose = () => console.log("❌ WebSocket 연결 종료");
+        if (smg.type === "alarm") {
+          setchatprint((prev) => [
+            ...prev,
+            { mname: "alarm", mmessage: smg.message },
+          ]);
+        } else if (smg.type === "msg") {
+          setchatprint((prev) => [
+            ...prev,
+            {
+              mname: smg.mname,
+              mno: smg.mno, // ✅ 메시지에도 mno 전달
+              mmessage: smg.mmessage,
+              cdate: new Date().toISOString(),
+            },
+          ]);
+        } else if (smg.type === "count") {
+          setcount((prev) => ({
+            ...prev,
+            bcount: smg.bcount,
+            btotal: smg.btotal,
+          }));
+        }
+      };
 
-    chattingprint();
-  });
+      sc.onclose = () => console.log("❌ WebSocket 연결 종료");
 
-  return () => socket && socket.close();
-}, [auth, num]);
+      chattingprint();
+    });
+
+    return () => socket && socket.close();
+  }, [auth, num]);
 
 
   // ✅ 스크롤 자동 이동
@@ -168,56 +181,56 @@ export default function Chatting() {
     }
   };
 
- //  퇴장
-const 퇴장 = async () => {
-  if(socket && socket.readyState === WebSocket.OPEN){
-    socket.send(
-      JSON.stringify({
-        type : "leave" ,
-        bno : num ,
-        mname : auth.mname,
-        mno : auth.mno,
-        message : `${auth.mname}님이 나갔습니다.`,
-      })      
-    );
+  //  퇴장
+  const 퇴장 = async () => {
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.send(
+        JSON.stringify({
+          type: "leave",
+          bno: num,
+          mname: auth.mname,
+          mno: auth.mno,
+          message: `${auth.mname}님이 나갔습니다.`,
+        })
+      );
 
-  }
-
-  try {
-    // 1️ group_member 테이블에서 active=0 처리
-    await axios.put("http://localhost:8080/groupchat/leave/Group", null, {
-      params: { mno: auth.mno, bno: num },
-      withCredentials: true,
-    });
-
-    // 2️ bulkbuygroup 테이블의 bcount -1
-    const response = await axios.put(
-      "http://localhost:8080/chat/count/mm",
-      null,
-      {
-        params: { bno: num },
-        withCredentials: true,
-      }
-    );
-
-    if (response.status === 200) {
-      alert(`방 퇴장 성공 (${num})`);
-      nav(`/community/bulkBuy`);
     }
-  } catch (e) {
-    console.error("퇴장 실패:", e);
-  }
-};
 
-console.log("💬 chatprint:", chatprint);
+    try {
+      // 1️ group_member 테이블에서 active=0 처리
+      await axios.put("http://localhost:8080/groupchat/leave/Group", null, {
+        params: { mno: auth.mno, bno: num },
+        withCredentials: true,
+      });
 
-// // 접속명단 이름 
-// const menubar = async() => {
-//   console.log('test memuber');
-//   const response = await axios.get("http://localhost:8080/chat/play/name" , null {
+      // 2️ bulkbuygroup 테이블의 bcount -1
+      const response = await axios.put(
+        "http://localhost:8080/chat/count/mm",
+        null,
+        {
+          params: { bno: num },
+          withCredentials: true,
+        }
+      );
 
-//   })
-// }
+      if (response.status === 200) {
+        alert(`방 퇴장 성공 (${num})`);
+        nav(`/community/bulkBuy`);
+      }
+    } catch (e) {
+      console.error("퇴장 실패:", e);
+    }
+  };
+
+  console.log("💬 chatprint:", chatprint);
+
+  // // 접속명단 이름 
+  // const menubar = async() => {
+  //   console.log('test memuber');
+  //   const response = await axios.get("http://localhost:8080/chat/play/name" , null {
+
+  //   })
+  // }
 
 
 
@@ -225,28 +238,51 @@ console.log("💬 chatprint:", chatprint);
     <>
       <Header />
       <div className="chat-header">
-        <button type="button" onClick={퇴장}>
-          나가기
-        </button>
-        <span className="chat-title">같이 구매할 분 구해요</span>
-        <span className="countcheck">
-          {count.bcount} / {count.btotal}
-        </span>
 
-        <Button variant="" style={{ fontSize : '30px'}} color="neutral" onClick={toggleDrawer(true)}>
-          ≡
-        </Button>
-        <Drawer anchor={'right'} open={open} onClose={toggleDrawer(false)}>
-            <Box
-              role="presentation"
-              onClick={toggleDrawer('right', false)}
-              onKeyDown={toggleDrawer('right', false)}
-            >
-                <h3> 현재 채팅방 접속 명단  </h3>
-                <span className="listplayname"> 채팅방 접속 인원 이름  </span>
-            </Box>
+        <div className="chat-title-box">
+          <span className="chat-title">{count?.btitle || "같이 구매할 분 구해요"}</span>
+          <span className="countcheck">{count.bcount} / {count.btotal}</span>
+        </div>
+
+        <Button variant="" className="menu-btn" onClick={toggleDrawer(true)}>≡</Button>
+
+        <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
+          <Box
+            className="drawer-box"
+            role="presentation"
+            onClick={toggleDrawer(false)}
+            onKeyDown={toggleDrawer(false)}
+          >
+            <h3>현재 채팅방 접속 명단</h3>
+            <div className="member-list">
+              {/* <img src={p.membersimg || playicon } alt="프로필" className="profile"
+        onError={ (e) => {e.target.src = playicon; } }  // 기본적으로 프로필 가져오는데 프로필이 없을 경우 playicon 기본 프로필 사용
+        //  back 이미지 없어서 사용xx
+        /> */}
+              {player.length > 0 ? (
+                player.map((p, i) => (
+
+                  <div className="member-item" key={i}>
+                    <img
+                      src={playicon}       // 백엔드에 이미지 없어 임시 프로필만 표시
+                      alt="프로필"
+                      className="member-img"
+                    />
+                    {p.mname}</div>
+                ))
+              ) : (
+                <span className="offline">접속자가 없습니다.</span>
+              )}
+              <div className="drawer-footer">
+                <button className="drawer-exit-btn" onClick={퇴장}>
+                  방 나가기
+                </button>
+              </div>
+            </div>
+          </Box>
         </Drawer>
       </div>
+
 
       <div className="chat-messages">
         {chatprint.map((c, index) => (
@@ -260,7 +296,7 @@ console.log("💬 chatprint:", chatprint);
             ) : (
               <>
                 <div className="chat-name">{c.mname}
-                  {c.mno === count.host_mno && <span className="host-badge">방장</span> }
+                  {c.mno === count.host_mno && <span className="host-badge">방장</span>}
                 </div>
 
                 {/*  말풍선 + 시간 같이 묶기 */}

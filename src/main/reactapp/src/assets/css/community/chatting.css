@@ -2,25 +2,24 @@
 /* 채팅 메시지 전체 영역 */
 .chat-messages {
   width: 420px;
-  height: calc(100vh - 220px); /* 🔹 헤더(60) + 입력창(70) + 푸터(90) 기준 정확 */
-  padding: 15px;
-  padding-bottom: 85px; /* ✅ 입력창 바로 위까지 메시지가 닿게 */
+  margin-top: 55px; /* ✅ 전체 상단바(파란 + 흰색) 둘 다 피하도록 조정 */
+  height: calc(100vh - 215px); /* ✅ 아래 입력창 포함한 남은 높이 자동 계산 */
+  padding: 13px 15px 30px 15px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* ✅ 수정: flex-end → flex-start (스크롤 가능) */
+  justify-content: flex-start;
   gap: 12px;
   background-color: #f7f9fc;
-  overflow-y: auto; /* ✅ 휠 스크롤 가능 */
+  overflow-y: auto;
   overflow-x: hidden;
   box-sizing: border-box;
-  margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 10px;
-  scroll-behavior: smooth; /* ✅ 부드러운 스크롤 */
-
-  /* ✅ 휠 스크롤 감속 효과 */
-  overscroll-behavior: contain; /* 페이지 전체 스크롤 방지 */
-  -webkit-overflow-scrolling: touch; /* 모바일 부드러운 스크롤 */
-  scroll-snap-type: y proximity; /* 스크롤 감속 및 부드럽게 붙는 효과 */
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: y proximity;
   user-select: none;
   scrollbar-gutter: stable;
 }
@@ -50,7 +49,8 @@
   max-width: 80%;
   word-break: break-word;
   white-space: pre-wrap;
-  scroll-snap-align: start; /* ✅ 스크롤 감속 후 메시지 정렬 */
+  scroll-snap-align: start;
+  
 }
 
 /* 내 메시지 (오른쪽 정렬) */
@@ -139,7 +139,7 @@
 /* 입력창 (푸터 위 고정) */
 .chat-input-area {
   position: fixed;
-  bottom: 90px; /* ✅ Footer 기준 (100% 배율 맞춤) */
+  bottom: 70px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -149,7 +149,7 @@
   width: 420px;
   padding: 8px 10px;
   border-top: 1px solid #dbe2eb;
-  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 6px 6px;
   box-sizing: border-box;
   z-index: 20;
 }
@@ -192,3 +192,226 @@
 .chat-btn:hover {
   background-color: #2c82e0;
 }
+
+/* ========================= */
+/* 🔹 채팅 상단 헤더 */
+.chat-header {
+  position: fixed;
+  top: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 420px;
+  height: 55px;
+  background-color: #e7f6ff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  border-radius: 10px 10px 0 0;
+  z-index: 50;
+}
+
+/* 🔹 나가기 버튼 */
+.exit-btn {
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+.exit-btn:hover {
+  color: #007bff;
+}
+
+/* 🔹 제목 + 인원 수 */
+.chat-title-box {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+.chat-title {
+  font-weight: 700;
+}
+.countcheck {
+  font-size: 14px;
+  color: #007bff;
+}
+
+/* 🔹 메뉴 버튼 (삼지창) */
+.menu-btn {
+  background: none !important;
+  color: #222 !important;
+  font-size: 26px !important;
+  padding: 2px 8px !important;
+  border-radius: 8px !important;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.menu-btn:hover {
+  background-color: #cfeaff !important;
+}
+
+/* ========================= */
+/* 🔹 Drawer (사이드바) */
+.MuiDrawer-root > .MuiBackdrop-root {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.drawer-box {
+  width: 260px;
+  height: 100%;
+  background-color: #f9fbff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: -2px 0 8px rgba(0,0,0,0.1);
+  animation: slideIn 0.3s ease-out;
+}
+
+.drawer-box h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #0056b3;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 5px;
+}
+
+/* 명단 리스트 */
+.member-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.member-item {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+  background-color: #ffffff;
+  border: 1px solid #dbe5f0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  transition: all 0.2s ease-in-out;
+}
+.member-item:hover {
+  background-color: #e8f2ff;
+  border-color: #4da3ff;
+}
+
+/* 접속자 없음 */
+.offline {
+  font-size: 14px;
+  color: #777;
+  margin-top: 10px;
+}
+
+/* Drawer 하단 나가기 버튼 영역 */
+.drawer-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  border-top: 1px solid #d9e4f2;
+}
+
+/* Drawer 나가기 버튼 */
+.drawer-exit-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ff4b2b);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  width: 80%;
+  text-align: center;
+}
+
+.drawer-exit-btn:hover {
+  background: linear-gradient(135deg, #ff4b2b, #e63946);
+  transform: scale(1.03);
+}
+
+/* Drawer 슬라이드 애니메이션 */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Drawer 경계선 제거 */
+.MuiDrawer-paper {
+  box-shadow: none !important;
+  border-left: none !important;
+}
+
+/* ========================= */
+/* 🔹 반응형 (모바일 대응) */
+@media (max-width: 480px) {
+  .chat-header {
+    width: 100%;
+    border-radius: 0;
+  }
+  .drawer-box {
+    width: 75%;
+  }
+}
+
+/* ========================= */
+/* Drawer 프로필 썸네일 */
+.member-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background-color: #ffffff;
+  border: 1px solid #dbe5f0;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+  cursor: default;
+}
+
+.member-item:hover {
+  background-color: #eaf4ff;
+  border-color: #4da3ff;
+  transform: scale(1.02);
+}
+
+/* 프로필 이미지 */
+.member-img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #f2f5fa;
+  border: 1px solid #cfd8e3;
+  flex-shrink: 0;
+}
+
+/* 이름 */
+.member-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #222;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 140px;
+}
+
