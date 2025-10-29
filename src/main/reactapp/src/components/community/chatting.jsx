@@ -150,6 +150,19 @@ export default function Chatting() {
 
  //  퇴장
 const 퇴장 = async () => {
+  if(socket && socket.readyState === WebSocket.OPEN){
+    socket.send(
+      JSON.stringify({
+        type : "leave" ,
+        bno : num ,
+        mname : auth.mname,
+        mno : auth.mno,
+        message : `${auth.mname}님이 나갔습니다.`,
+      })      
+    );
+
+  }
+
   try {
     // 1️ group_member 테이블에서 active=0 처리
     await axios.put("http://localhost:8080/groupchat/leave/Group", null, {
@@ -177,6 +190,9 @@ const 퇴장 = async () => {
 };
 
 console.log("💬 chatprint:", chatprint);
+const menubar = async() => {
+  console.log('test memuber')
+}
 
 
 
@@ -191,6 +207,7 @@ console.log("💬 chatprint:", chatprint);
         <span className="countcheck">
           {count.bcount} / {count.btotal}
         </span>
+        <button onClick={menubar} type="button" >≡</button>
       </div>
 
       <div className="chat-messages">

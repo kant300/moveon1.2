@@ -123,8 +123,19 @@ public class ChatHandler extends TextWebSocketHandler {
             }
             System.out.println("ChatHandler.handleTextMessage");
             System.out.println(player); // 확인용
+        } else if ("leave".equals(type)) {
+            String bno =  (String) msg.get("bno");
+            String mname = (String) msg.get("mname");
+            String mmessage = (String) msg.get("message");
+
+            alarmMessage(bno , mmessage);
+
+            List<WebSocketSession> list = player.get(bno);
+            if (list != null) list.remove(session);
+            
         }
     } // TextMessage end
+    
 
     public void alarmMessage(String bno, String mmessage) throws Exception {
         // String cno  몇번방 // String mmessage 무슨 메세지를?

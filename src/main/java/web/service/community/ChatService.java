@@ -2,6 +2,7 @@ package web.service.community;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import web.model.dto.MemberDto;
 import web.model.dto.community.BulkbuygroupDto;
 import web.model.mapper.community.ChatMapper;
 import web.model.dto.community.ChattingDto;
@@ -72,4 +73,11 @@ public class ChatService {
             return 0;
         }
     }
+
+    public List<MemberDto> playname(int bno){
+        System.out.println("ChatService.playname");
+        return chatMapper.playname(bno);
+    }
+
+
 }

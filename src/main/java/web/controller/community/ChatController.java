@@ -76,5 +76,13 @@ public class ChatController {
             return ResponseEntity.status(500).body(false);
         }
     }
+
+    // 채팅 참여 인원
+    @GetMapping("/play/name")
+    public ResponseEntity< ? > playname(@RequestParam int bno) {
+        System.out.println("ChatController.playname");
+        List<MemberDto> dto = chatService.playname(bno);
+        return ResponseEntity.ok(dto);
+    }
 }
 

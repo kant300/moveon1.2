@@ -71,8 +71,7 @@ export default function Bulkbuygroup() {
 
   //  글쓰기 버튼 클릭
   const handleWriteClick = () => {
-    alert("글쓰기 페이지로 이동");
-    navigate("/group/create")
+      navigate("/group/create")
   };
 
 
@@ -87,10 +86,6 @@ export default function Bulkbuygroup() {
     console.error("입장 오류:", e);
   }
 };
-
-
-
-
 
   return (
     <>

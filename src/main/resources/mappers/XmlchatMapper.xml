@@ -30,6 +30,18 @@
         FROM bulkbuygroup
         WHERE bno = #{bno};
     </select>
+    
+    <!-- 인원 목록 조회 -->
+    <select id="playname" parameterType="int" resultType="web.model.dto.MemberDto">
+        SELECT
+            m.mno , m.mname
+        FROM
+            group_member gm JOIN members m ON gm.mno = m.mno
+        WHERE
+            gm.bno = #{bno}
+        AND gm.active = 1
+        ORDER BY m.mname
+    </select>
 
     <!-- +1 -->
     <update id="countpp" parameterType="int" >

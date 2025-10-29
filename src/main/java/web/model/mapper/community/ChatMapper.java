@@ -2,6 +2,7 @@ package web.model.mapper.community;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import web.model.dto.MemberDto;
 import web.model.dto.community.BulkbuygroupDto;
 import web.model.dto.community.ChattingDto;
 
@@ -26,5 +27,7 @@ public interface ChatMapper {
     int countCheckmm( int bno );
 
      int countmm(int bno);
+
+    List<MemberDto> playname(int bno);
 
 }
