@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import web.model.mapper.MemberMapper;
 import web.model.dto.MemberDto;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 @RequiredArgsConstructor    // final 필드에 대한 자동 생성자 주입
 public class MemberService {
@@ -77,7 +80,11 @@ public class MemberService {
     }
     // 5.아이디찾기
     public String findId(MemberDto dto){
-        return memberMapper.findId(dto);
+        System.out.println("[Service] findId 요청 DTO (이메일): " + dto.getMemail());
+        System.out.println("[Service] findId 요청 DTO (휴대폰): " + dto.getMphone());
+        String foundId = memberMapper.findId(dto);
+        return foundId;
+
     }
 
     // 6. 비밀번호찾기/재설정
@@ -85,6 +92,42 @@ public class MemberService {
         dto.setMpwd(bcrypt.encode( dto.getMpwd() ) );
         return memberMapper.findPwd(dto) > 0;
     }
+//    // 이메일 인증 요청 (requestPwdAuth)
+//    public boolean sendPwdAuthEmail(MemberDto dto) {
+//        int exists = memberMapper.existsByMidAndEmail(dto);
+//        if (exists == 0) return false; // 회원 없음
+//
+//        // ① 인증번호 생성
+//        String code = String.valueOf((int)(Math.random() * 900000) + 100000);
+//
+//        // ② 메일 발송 로직
+//        try {
+//            SimpleMailMessage message = new SimpleMailMessage();
+//            message.setTo(dto.getMemail());
+//            message.setSubject("[무브온] 비밀번호 재설정 인증번호");
+//            message.setText("인증번호는 [" + code + "] 입니다. 3분 내 입력해주세요.");
+//            mailSender.send(message);
+//        } catch (Exception e) {
+//            return false;
+//        }
+//
+//        // ③ 인증번호를 임시 저장 (DB 대신 메모리 캐시 or Redis)
+//        pwdAuthCodes.put(dto.getMid(), code);
+//        return true;
+//    }
+//
+//    // 인증번호 검증 (verifyPwdCode)
+//    private final Map<String, String> pwdAuthCodes = new HashMap<>();
+//
+//    public boolean verifyPwdCode(String mid, String code) {
+//        if (!pwdAuthCodes.containsKey(mid)) return false;
+//        boolean result = pwdAuthCodes.get(mid).equals(code);
+//        if (result) pwdAuthCodes.remove(mid); // 성공 시 제거
+//        return result;
+//    }
+//}
+
+
 
     // 7. 회원정보수정
     public boolean updateInfo(MemberDto dto) {
