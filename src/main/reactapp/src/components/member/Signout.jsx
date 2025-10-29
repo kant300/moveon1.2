@@ -14,18 +14,18 @@ export default function Signout(){
         if(agree !== "동의함"){
             alert("'동의함'을 입력해야 탈퇴가 가능합니다.");
             return;
-    }
-    if( window.confirm("정말로 탈퇴하시겠습니까?" ) {
-        try{
-            const res = await axios.delete("/api/member/signout", {
-                withCredentials:true,
-            });
-            alert("탈퇴가 완료되었습니다.");
-            navigate("/main");
-        }catch(err){
-            alert("탈퇴 중 오류가 발생했습니다. 다시 시도해주세요.");
-            console.error(err);
-        } 
+        }
+        if (window.confirm("정말로 탈퇴하시겠습니까?" )) {
+            try{
+                const res = await axios.delete("/api/member/signout", {
+                    withCredentials:true,
+                });
+                alert("탈퇴가 완료되었습니다.");
+                navigate("/main");
+            }catch(err){
+                alert("탈퇴 중 오류가 발생했습니다. 다시 시도해주세요.");
+                console.error(err);
+            } 
     }
 }; 
    
