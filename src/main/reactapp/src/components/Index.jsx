@@ -113,8 +113,8 @@ export default function Index() {
                                 <Link to='/transport/subway'><li><img src={subway} />지하철</li></Link>
                                 <Link to='/transport/busStation'><li><img src={directions_bus} />버스정류장</li></Link>
                                 <Link to='/transport/wheelchairCharger'><li><img src={ev_station} />전동휠체어</li></Link>
-                            <Link to='/transport/local_parking'><li><img src={local_parking} />공영주차장</li></Link>
-                            <Link to='/transport/station'><li><img src={gas} />주유소</li></Link>
+                                <Link to='/transport/local_parking'><li><img src={local_parking} />공영주차장</li></Link>
+                                <Link to='/transport/station'><li><img src={gas} />주유소</li></Link>
                             </>
                         ):
                         category==3?(
@@ -122,8 +122,8 @@ export default function Index() {
                                 <Link to='/community/bulkBuy'><li><img src={handshake} />소분모임</li></Link>
                                 <Link to='/community/localEvent'><li><img src={explore_nearby} />지역행사</li></Link>
                                 <Link to='/community/localStore'><li><img src={storefront} />지역장터</li></Link>
-                            <Link to='/community/localActivity'><li><img src={review} />동네후기</li></Link>
-                            <Link to='/community/business'><li><img src={job} />구인/구직</li></Link>
+                                <Link to='/community/localActivity'><li><img src={review} />동네후기</li></Link>
+                                <Link to='/community/business'><li><img src={job} />구인/구직</li></Link>
                             </>
                         ):null
                     }
@@ -144,10 +144,14 @@ export default function Index() {
                                     <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
                                     <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
                                     <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
                                 </>
                             ):
                             event==1?(
                                 <>
+                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
                                     <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
                                     <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
                                     <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
@@ -162,6 +166,8 @@ export default function Index() {
                                     <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
                                     <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
                                     <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
                                 </>
                             ):
                             event==3?(
@@ -171,6 +177,8 @@ export default function Index() {
                                     <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
                                     <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
                                     <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
+                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
                                 </>
                             ):null
                         }
@@ -178,7 +186,7 @@ export default function Index() {
                 </div>
                 <div id='alertBox'>
                     <img src={calendar_clock} />
-                    오늘의 알림 : 재활용 배출일입니다.
+                    <div>오늘의 알림 : 재활용 배출일입니다.</div>
                 </div>
             </div>
         </div>
