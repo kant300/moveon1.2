@@ -1,17 +1,19 @@
 import '../../assets/css/member/findPwd.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Footer";
 import Header from "../Header";
 import arrow_back_ios_new from '../../assets/images/icons/arrow_back_ios_new_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 
 export default function FindPwd() {
+    const navigate = useNavigate();
+
     return (<>
         <Header />
         <div id="wrap">
             <div id="container">
                 <div id="content_gray">
                     <div id="contentTop">
-                        <Link to='/menu'><img src={arrow_back_ios_new} /></Link>
+                        <img src={arrow_back_ios_new} onClick={() => navigate(-1)} style={{cursor: "pointer"}} />
                         <div id='title'>아이디/비밀번호 찾기</div>
                         <div>　</div>
                     </div>

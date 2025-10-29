@@ -107,7 +107,7 @@ export default function Signup() {
                 <div id="container">
                     <div id="content_gray">
                         <div id="contentTop">
-                            <Link to='/menu'><img src={arrow_back_ios_new} alt="back" /></Link>
+                            <img src={arrow_back_ios_new} onClick={() => navigate(-1)} style={{cursor: "pointer"}} alt="back" />
                             <div id='title'>회원가입</div>
                             <div>　</div>
                         </div>

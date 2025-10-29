@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../assets/css/setting.css'
 import arrow_back_ios_new from '../assets/images/icons/arrow_back_ios_new_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import arrow_forward_ios from '../assets/images/icons/arrow_forward_ios_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
@@ -11,6 +11,7 @@ import axios from 'axios';
 
 // 설정 페이지
 export default function Setting() {
+    const navigate = useNavigate();
 
         // 1. 로그인된 유저 정보 저장
     const [ member , setMember ] = useState( null );
@@ -43,7 +44,7 @@ export default function Setting() {
             <div id="container">
                 <div id='content_gray'>
                     <div id="contentTop">
-                        <Link to='/menu'><img src={arrow_back_ios_new} /></Link>
+                        <img src={arrow_back_ios_new} onClick={() => navigate(-1)} style={{cursor: "pointer"}} />
                         <div id='title'>설정</div>
                         <div>　</div>
                     </div>
