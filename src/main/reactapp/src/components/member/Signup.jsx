@@ -113,38 +113,41 @@ export default function Signup() {
                         </div>
 
                         <div>
-                            <div>아이디 <input type="text" id="idInput" className="input" placeholder="아이디를 입력해주세요" /></div>
-                            <div>비밀번호 <input type="password" id="pwdInput" className="input" placeholder="비밀번호를 입력해주세요" /></div>
-                            <div>비밀번호 확인 <input type="password" id="pwdCheckInput" className="input" placeholder="비밀번호를 다시 입력해주세요" /></div>
-                            <div>닉네임 <input type="text" id="nameInput" className="input" placeholder="닉네임을 입력해주세요" /></div>
-                            <div>이메일 <input type="text" id="emailInput" className="input" placeholder="이메일 주소를 입력해주세요" /></div>
-                            <div>전화번호 <input type="text" id="phoneInput" className="input" placeholder="전화번호를 입력해주세요" /></div>
+                            <div id='signupDiv'>
+                                <div><div>아이디</div> <input type="text" id="idInput" className="input" placeholder="아이디를 입력해주세요" /></div>
+                                <div>비밀번호 <input type="password" id="pwdInput" className="input" placeholder="비밀번호를 입력해주세요" /></div>
+                                <div>비밀번호 확인 <input type="password" id="pwdCheckInput" className="input" placeholder="비밀번호를 다시 입력해주세요" /></div>
+                                <div>닉네임 <input type="text" id="nameInput" className="input" placeholder="닉네임을 입력해주세요" /></div>
+                                <div>이메일 <input type="text" id="emailInput" className="input" placeholder="이메일 주소를 입력해주세요" /></div>
+                                <div>전화번호 <input type="text" id="phoneInput" className="input" placeholder="전화번호를 입력해주세요" /></div>
 
-                            <div id='address'>주소
-                                <select id='addr1Input' value={selectedCity} onChange={handleCityChange}>
-                                    <option value="">시/도</option>
-                                    {cityData.map((city) => (
-                                        <option key={city} value={city}>{city}</option>
-                                    ))}
-                                </select>
+                                <div id='addressTitle'>주소</div>
+                                <div id='address'>
+                                    <select id='addr1Input' value={selectedCity} onChange={handleCityChange}>
+                                        <option value="">시/도</option>
+                                        {cityData.map((city) => (
+                                            <option key={city} value={city}>{city}</option>
+                                        ))}
+                                    </select>
 
-                                <select id='addr2Input' value={selectedDistrict} onChange={handleDistrictChange}>
-                                    <option value="">구/군</option>
-                                    {districtList.map((district) => (
-                                        <option key={district} value={district}>{district}</option>
-                                    ))}
-                                </select>
+                                    <select id='addr2Input' value={selectedDistrict} onChange={handleDistrictChange}>
+                                        <option value="">구/군</option>
+                                        {districtList.map((district) => (
+                                            <option key={district} value={district}>{district}</option>
+                                        ))}
+                                    </select>
 
-                                <select id='addr3Input'>
-                                    <option value="">동/읍/면</option>
-                                    {townList.map((town) => (
-                                        <option key={town} value={town}>{town}</option>
-                                    ))}
-                                </select>
+                                    <select id='addr3Input'>
+                                        <option value="">동/읍/면</option>
+                                        {townList.map((town) => (
+                                            <option key={town} value={town}>{town}</option>
+                                        ))}
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
-                        <div>
+                        <div id='btnDiv'>
                             <button type='button' className='button' onClick={signup}>회원가입</button>
                         </div>
                     </div>

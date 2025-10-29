@@ -26,7 +26,9 @@ export default function FindPwd() {
                         <div className="inputDiv">인증번호 <input type="text" id="verifyInput" placeholder="인증 번호를 입력해주세요"/></div>
                         <div className='inputDiv buttonDiv'><button type="button" className="button_small">확인</button></div>
                     </div>
-                    <button type="button" className="button">확인</button>
+                    <div id='btnDiv'>
+                        <button type="button" className="button">확인</button>
+                    </div>
                 </div>
             </div>
         </div>
