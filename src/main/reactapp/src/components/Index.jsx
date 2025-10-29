@@ -2,30 +2,28 @@ import "../assets/css/index.css"
 import Footer from "./Footer";
 import Header from "./Header";
 import calendar_clock from '../assets/images/icons/calendar_clock_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import paid from '../assets/images/icons/paid_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import movein from '../assets/images/icons/move_location_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import ecoelectric from '../assets/images/icons/eco_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import things from '../assets/images/icons/things_to_do_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import recycling from '../assets/images/icons/recycling_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import apparel from '../assets/images/icons/apparel_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import eco from '../assets/images/icons/eco_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import office from '../assets/images/icons/things_to_do_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import hopital from '../assets/images/icons/local_hospital_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import crisis_alert from '../assets/images/icons/crisis_alert_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import ambulance from '../assets/images/icons/ambulance_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import water_drop from '../assets/images/icons/water_drop_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import night_shelter from '../assets/images/icons/night_shelter_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import wc from '../assets/images/icons/wc_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import subway from '../assets/images/icons/subway_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import directions_bus from '../assets/images/icons/directions_bus_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import ev_station from '../assets/images/icons/ev_station_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import local_parking from '../assets/images/icons/local_parking_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import gas from '../assets/images/icons/local_gas_station_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import handshake from '../assets/images/icons/handshake_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import explore_nearby from '../assets/images/icons/explore_nearby_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import storefront from '../assets/images/icons/storefront_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import review from '../assets/images/icons/local_activity_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import job from '../assets/images/icons/business_center_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
+import paid from '../assets/images/icons/paid_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import movein from '../assets/images/icons/move_location_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import recycling from '../assets/images/icons/recycling_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import apparel from '../assets/images/icons/apparel_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import eco from '../assets/images/icons/eco_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import office from '../assets/images/icons/things_to_do_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import hospital from '../assets/images/icons/local_hospital_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import crisis_alert from '../assets/images/icons/crisis_alert_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import ambulance from '../assets/images/icons/ambulance_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import water_drop from '../assets/images/icons/water_drop_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import night_shelter from '../assets/images/icons/night_shelter_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import wc from '../assets/images/icons/wc_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import subway from '../assets/images/icons/subway_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import directions_bus from '../assets/images/icons/directions_bus_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import ev_station from '../assets/images/icons/ev_station_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import local_parking from '../assets/images/icons/local_parking_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import gas from '../assets/images/icons/local_gas_station_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import handshake from '../assets/images/icons/handshake_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import explore_nearby from '../assets/images/icons/explore_nearby_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import storefront from '../assets/images/icons/storefront_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import review from '../assets/images/icons/local_activity_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import job from '../assets/images/icons/business_center_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
 import { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import { Weather } from '../assets/script/index';
@@ -96,7 +94,7 @@ export default function Index() {
                                 <Link to='/living/trashInfo'><li><img src={recycling} />쓰레기배출</li></Link>
                                 <Link to='/living/electric'><li><img src={eco} />폐가전수거</li></Link>
                                 <Link to='/living/government'><li><img src={office} />관공서</li></Link>
-                                <Link to='/living/night'><li><img src={hopital} />심야약국/병원</li></Link>
+                                <Link to='/living/night'><li><img src={hospital} />심야약국/병원</li></Link>
                             </>
                         ):
                         category==1?(
