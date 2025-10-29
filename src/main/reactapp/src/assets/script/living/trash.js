@@ -32,6 +32,7 @@ export function Run() {
                     // textBox(jsp)에 현재 접속한 (시도단위, 구단위)위치 출력 
                     const textBox = document.querySelector('#textBox');
                     textBox.innerHTML = `<strong>${result[0].region_1depth_name} ${result[0].region_2depth_name}</strong>의 쓰레기 배출 정보`;
+                    document.querySelector('#infoBox').innerHTML = "불러오는 중...";
 
                     const tCity = result[0].region_1depth_name;
                     const tGu = result[0].region_2depth_name;
