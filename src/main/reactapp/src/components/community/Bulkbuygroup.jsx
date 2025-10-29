@@ -80,22 +80,22 @@ const 입장 = async (item) => {
     return;
   }
 
-  // ✅ 이미 참여한 방인지 확인
-  try {
-    const check = await axios.get("http://localhost:8080/groupchat/my/Group", {
-      params: { mno: auth.mno },
-      withCredentials: true,
+  // 이미 참여중인 방인지 확인
+  try{
+    const check = await axios.get("http://localhost:8080/groupchat/my/Group" , {
+      params : { mno : auth.mno },
+      withCredentials : true,
     });
 
-    // 이미 참여중인 방(bno)인지 검사
-    const joined = check.data.some((g) => g.bno === item.bno);
-    if (joined) {
-      alert("이미 참여중인 모임입니다!");
+    // bno 방 참여중인지 검사
+    const joincount =check.data.some((g) => g.bno === item.bno);
+    if(joincount) {
+      alert(" 이미 참여중인 방입니다. 채팅방으로 이동합니다. ");
       navigate(`/community/chatting/${item.bno}`);
-      return; // ✅ 중복 입장 방지
+      return; // 중복 방지
     }
-  } catch (err) {
-    console.error("참여 여부 확인 오류:", err);
+  }catch(error) {console.log("참여 여부 오류 발생"+error);
+
   }
 
   if (item.bcount < item.btotal) { // 인원 제한 조건 수정

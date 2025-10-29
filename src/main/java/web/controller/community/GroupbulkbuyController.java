@@ -3,7 +3,8 @@ package web.controller.community;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import web.model.dto.community.BulkbuygroupDto;
+
+import web.model.dto.community.GroupbulkbuyDto;
 import web.service.community.GroupbulkbuyService;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class GroupbulkbuyController {
     @GetMapping("/my/Group")
     public ResponseEntity< ? > myGroups(@RequestParam int mno){
         System.out.println("ChatController.joinwrite");
-        List<BulkbuygroupDto> list = groupbulkbuyService.myGroups(mno);
+        List<GroupbulkbuyDto> list = groupbulkbuyService.myGroups(mno);
         return ResponseEntity.ok(list);
     }
 

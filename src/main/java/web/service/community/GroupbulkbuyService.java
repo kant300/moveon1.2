@@ -3,6 +3,7 @@ package web.service.community;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import web.model.dto.community.BulkbuygroupDto;
+import web.model.dto.community.GroupbulkbuyDto;
 import web.model.mapper.community.GroupbulkbuyMapper;
 
 import java.util.HashMap;
@@ -29,8 +30,8 @@ public class GroupbulkbuyService {
         groupbulkbuyMapper.joinGroup(map);
     }
 
-    public List<BulkbuygroupDto> myGroups(int mno ){
-        List<BulkbuygroupDto> dto = groupbulkbuyMapper.myGroups(mno );
+    public List<GroupbulkbuyDto> myGroups(int mno ){
+        List<GroupbulkbuyDto> dto = groupbulkbuyMapper.myGroups(mno );
         return dto;
     }
 
