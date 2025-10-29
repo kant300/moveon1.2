@@ -8,7 +8,6 @@ import ecoelectric from '../assets/images/icons/eco_24dp_1F1F1F_FILL0_wght400_GR
 import things from '../assets/images/icons/things_to_do_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 
 import apparel from '../assets/images/icons/apparel_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import recycling from '../assets/images/icons/recycling_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import eco from '../assets/images/icons/eco_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import office from '../assets/images/icons/things_to_do_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import hopital from '../assets/images/icons/local_hospital_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
