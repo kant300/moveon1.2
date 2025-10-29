@@ -15,7 +15,7 @@ export default function Signout(){
             alert("'동의함'을 입력해야 탈퇴가 가능합니다.");
             return;
     }
-    if( window.confirm("정말로 탈퇴하시겠습니까?" ) {
+    if( window.confirm("정말로 탈퇴하시겠습니까?" ) ) {
         try{
             const res = await axios.delete("/api/member/signout", {
                 withCredentials:true,
