@@ -32,6 +32,10 @@ public interface MemberMapper {
     @Update("update members set mpwd = #{mpwd}, mdateup = now() where mid = #{mid}")
     int findPwd(MemberDto dto);
 
+    // 5-1. 비밀번호 찾기용 회원 존재 여부 확인
+    @Select("SELECT COUNT(*) FROM members WHERE mid = #{mid} AND memail = #{memail}")
+    int existsByMidAndEmail(MemberDto dto);
+
     // 6. 회원정보 수정
     @Update("update members set mname = #{mname}, memail = #{memail}, mphone=#{mphone}, " +
             "maddress1 = #{maddress1}, maddress2 = #{maddress2}, maddress3 = #{maddress3}, mpwd = #{mpwd} " +

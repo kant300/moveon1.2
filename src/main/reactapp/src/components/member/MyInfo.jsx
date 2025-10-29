@@ -5,6 +5,7 @@ import arrow_back_ios_new from '../../assets/images/icons/arrow_back_ios_new_24d
 import arrow_forward_ios from '../../assets/images/icons/arrow_forward_ios_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import home from '../../assets/images/icons/home_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
 import Header from "../Header";
+import Footer from "../Footer";
 
 export default function MyInfo() {
     const [ member, setMember ] = useState(null); // 로그인된  멤버 정보저장
@@ -23,15 +24,14 @@ export default function MyInfo() {
         {/* 헤더 */ }
         <Header /> 
             <div id="wrap">
-                <div id="myinfo_container">
+                <div id="container">
                     <div id='myinfo'>
                         <Link to='/setting'><img src={arrow_back_ios_new} /></Link>
                     <div id='myinfo_title'>회원정보관리
                         <Link to='/main'><img src={home} /></Link>
                     </div>
                     </div>
-                </div>
-            </div>
+                
 
         {/* 회원 기본 정보 */}
         <div id="myinfo_basic">
@@ -71,5 +71,8 @@ export default function MyInfo() {
             </div>
             
         </div>
+        </div>
+            </div>
+            <Footer />
         </>)
 }

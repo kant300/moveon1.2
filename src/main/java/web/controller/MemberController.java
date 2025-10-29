@@ -4,12 +4,19 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.apache.hc.core5.http.HttpStatus;
 import org.apache.ibatis.annotations.Delete;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import web.model.dto.MemberDto;
 import web.service.JwtService;
 import web.service.MemberService;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+import static com.fasterxml.jackson.databind.type.LogicalType.Map;
 
 @RestController
 @RequestMapping("/api/member")  // 공통URL 정의
@@ -92,8 +99,19 @@ public class MemberController {
         MemberDto dto = new MemberDto();
         dto.setMemail(memail);
         dto.setMphone(mphone);
+        System.out.println("MemberController.findId");
         String result = memberService.findId(dto);
-        return ResponseEntity.ok(result);
+
+        if(result !=null && !result.isEmpty()){
+            // 성공시 ID반환
+            Map<String, String> response = new HashMap<>();
+            response.put("mid", result);
+            return ResponseEntity.ok(response);
+        }else {
+            Map<String, String> error = new HashMap<>();
+            error.put("message" , "일치하는 회원정보가 없습니다.");
+            return ResponseEntity.status(404).body(error);
+        }
     }
 
     // 6. 비밀번호찾기/재설정
@@ -102,6 +120,42 @@ public class MemberController {
         boolean result = memberService.findPwd(dto);
         return ResponseEntity.ok(result);
     }
+//    // 6-1. 비밀번호 찾기용 인증 요청 (이메일 인증 전송)
+//    @PostMapping("/requestPwdAuth")
+//    public ResponseEntity<?> requestPwdAuth(@RequestBody MemberDto dto) {
+//        boolean result = memberService.sendPwdAuthEmail(dto);
+//        Map<String, Object> response = new HashMap<>();
+//
+//        if (result) {
+//            response.put("success", true);
+//            response.put("message", "인증번호가 이메일로 전송되었습니다.");
+//            return ResponseEntity.ok(response);
+//        } else {
+//            response.put("success", false);
+//            response.put("message", "회원 정보를 찾을 수 없습니다.");
+//            return ResponseEntity.status(400).body(response);
+//        }
+//    }
+//
+//    // 6-2. 인증번호 확인
+//    @PostMapping("/verifyPwdCode")
+//    public ResponseEntity<?> verifyPwdCode(@RequestBody Map<String, String> payload) {
+//        String mid = payload.get("mid");
+//        String code = payload.get("verifyCode");
+//
+//        boolean verified = memberService.verifyPwdCode(mid, code);
+//        Map<String, Object> response = new HashMap<>();
+//
+//        if (verified) {
+//            response.put("success", true);
+//            response.put("message", "인증 완료");
+//            return ResponseEntity.ok(response);
+//        } else {
+//            response.put("success", false);
+//            response.put("message", "인증번호가 일치하지 않습니다.");
+//            return ResponseEntity.status(400).body(response);
+//        }
+//    }
 
     // 7. 회원정보수정
     @PutMapping("/update")
