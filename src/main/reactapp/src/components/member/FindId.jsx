@@ -7,7 +7,7 @@ import React, {useState} from "react";
 import axios from "axios";
 
 export default function FindId() {
-    const navigate = useNavigate();
+    
 
     const [ email, setEmail ] = useState( "" );
     const [ phone, setPhone ] = useState( "" );
