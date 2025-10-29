@@ -5,7 +5,27 @@ import "../../assets/css/community/chatting.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+/* MUI : npm install @mui/joy @emotion/react @emotion/styled */
+import Box from '@mui/joy/Box';
+import Drawer from '@mui/joy/Drawer';
+import Button from '@mui/joy/Button';
+
+
 export default function Chatting() {
+
+    /* MUI 오른쪽 슬라이드바 */
+    const [open, setOpen] = useState(false);
+
+    const toggleDrawer = (inOpen) => (event) => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+        return;
+        }
+        setOpen(inOpen);
+    };
+    /* ---------------------- */
+
+
+
   const { bno } = useParams();
   const num = bno;
   const nav = useNavigate();
@@ -190,9 +210,14 @@ const 퇴장 = async () => {
 };
 
 console.log("💬 chatprint:", chatprint);
-const menubar = async() => {
-  console.log('test memuber')
-}
+
+// // 접속명단 이름 
+// const menubar = async() => {
+//   console.log('test memuber');
+//   const response = await axios.get("http://localhost:8080/chat/play/name" , null {
+
+//   })
+// }
 
 
 
@@ -207,7 +232,20 @@ const menubar = async() => {
         <span className="countcheck">
           {count.bcount} / {count.btotal}
         </span>
-        <button onClick={menubar} type="button" >≡</button>
+
+        <Button variant="" style={{ fontSize : '30px'}} color="neutral" onClick={toggleDrawer(true)}>
+          ≡
+        </Button>
+        <Drawer anchor={'right'} open={open} onClose={toggleDrawer(false)}>
+            <Box
+              role="presentation"
+              onClick={toggleDrawer('right', false)}
+              onKeyDown={toggleDrawer('right', false)}
+            >
+                <h3> 현재 채팅방 접속 명단  </h3>
+                <span className="listplayname"> 채팅방 접속 인원 이름  </span>
+            </Box>
+        </Drawer>
       </div>
 
       <div className="chat-messages">
