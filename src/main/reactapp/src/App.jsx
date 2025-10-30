@@ -20,6 +20,8 @@ import MyInfo from './components/member/MyInfo.jsx';
 import MyBulkbuygroup from './components/community/mypagebulkbuygroup.jsx';
 import Signout from './components/member/Signout.jsx';
 import ResetPwd from './components/member/ResetPwd.jsx';
+import WheelchairCharger from './components/transport/WheelchairCharger.jsx';
+
 
 // 현재 홈, 마이페이지, 전체메뉴, 설정까지 프로토타입 제작 완료
 export default function App() {
@@ -54,6 +56,7 @@ export default function App() {
 
           {/* transport */}
           <Route path='/transport/subway' element={<Station />} />
+          <Route path='/transport/wheelchairCharger' element={<WheelchairCharger />} />
 
           {/* community */}
           <Route path='/community/bulkBuy' element={<Bulkbuygroup />} />
