@@ -35,8 +35,8 @@ public class ShelterService {
             fis.close();
 
             // 최종 데이터 예시:
-            // [{facilities_nm=연안부두 해양광장, xcoord=126.60191163614341, ycoord=37.45680729832232}, ...]
-             System.out.println(data);
+            // [{시설명=용현엑슬루타워 지하주차장(1층~3층), 위도=37.45794676983926, 경도=126.63756377041193}, ...]
+            // System.out.println(data);
             return data;
         } catch (Exception e) {
             throw new RuntimeException(e);

@@ -23,6 +23,7 @@ import ResetPwd from './components/member/ResetPwd.jsx';
 import Shelter from './components/safety/Shelter.jsx';
 import Parking from './components/transport/Parking.jsx';
 import Gas from './components/transport/Gas.jsx';
+import Toilet from './components/safety/Toilet.jsx';
 
 // 현재 홈, 마이페이지, 전체메뉴, 설정까지 프로토타입 제작 완료
 export default function App() {
@@ -52,6 +53,7 @@ export default function App() {
           {/* safety */}
           <Route path='/safety/sexOffender' element={<SexOffender />} />
           <Route path='/safety/shelter' element={<Shelter />} />
+          <Route path='/safety/restroom' element={<Toilet />} />
 
           {/* transport */}
           <Route path='/transport/subway' element={<Station />} />

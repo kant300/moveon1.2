@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import Header from "../Header";
 import my_location from "../../assets/images/icons/my_location_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
 
-// 지하철 페이지
+// 공영주차장 페이지
 export default function Parking() {
     const mapRef = useRef(null);
     const pos = useRef(null);

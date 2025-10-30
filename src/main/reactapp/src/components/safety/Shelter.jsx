@@ -4,6 +4,7 @@ import Header from "../Header";
 import Footer from "../Footer";
 import my_location from "../../assets/images/icons/my_location_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"
 
+// 대피소 페이지
 export default function Shelter() {
     const mapRef = useRef(null);
     const pos = useRef(null);
