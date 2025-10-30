@@ -17,7 +17,7 @@
         <!-- 검색 join 사용하여 member -> [ 이름 , 메세지 ]을 가져옴
         채팅방 번호와 회원번호가 일치할시 가져옴 -->
         FROM chatting c JOIN members m on c.mno = m.mno
-        WHERE c.bno = #{bno}  <!-- 소분모임 목록 번호와 채팅방에서 입력하려는 그 방과 같을때 -->
+        WHERE c.bno = #{bno} and c.cdate >= #{joindate}  <!-- 소분모임 목록 번호와 채팅방에서 입력하려는 그 방과 같을때 -->
         ORDER BY c.cdate ASC <!-- 최신순 -->
     </select>
 

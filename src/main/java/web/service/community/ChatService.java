@@ -23,9 +23,9 @@ public class ChatService {
     }
 
     // 메세지 내용 출력
-    public List<ChattingDto> printChat(int bno){
+    public List<ChattingDto> printChat(int bno , String joindate ){
         System.out.println("ChatService.printChat");
-        List<ChattingDto> dtos = chatMapper.printChat(bno);
+        List<ChattingDto> dtos = chatMapper.printChat(bno , joindate );
         return dtos;
     }
 
@@ -78,8 +78,5 @@ public class ChatService {
         System.out.println("ChatService.playname");
         return chatMapper.playname(bno);
     }
-
-
-
 
 }

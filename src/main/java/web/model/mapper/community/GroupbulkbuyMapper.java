@@ -25,4 +25,7 @@ public interface GroupbulkbuyMapper {
 
     boolean roomlock(int bno);
 
+    String getJoinDate(int bno , int mno);
+
+
 }

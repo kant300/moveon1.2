@@ -59,5 +59,9 @@ public class GroupbulkbuyService {
         return groupbulkbuyMapper.roomlock(bno);
 
     }
+    // 회원의 접속날짜/시간 구하기
+    public String getJoinDate( int bno , int mno ){
+        return groupbulkbuyMapper.getJoinDate( bno , mno );
+    }
 
 }

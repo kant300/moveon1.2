@@ -9,6 +9,7 @@ import web.model.dto.community.BulkbuygroupDto;
 import web.model.dto.community.ChattingDto;
 import web.service.MemberService;
 import web.service.community.ChatService;
+import web.service.community.GroupbulkbuyService;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import java.util.List;
 public class ChatController {
     private final ChatService chatService;
     private final MemberService memberService;
+    private final GroupbulkbuyService groupbulkbuyService;
 
     // 메세지 내용 저장 (DB 저장)
     @PostMapping("/write")
@@ -34,12 +36,22 @@ public class ChatController {
 
     // 메세지 내용 출력 어디에? 메세지 입력한 방(cno)에
     @GetMapping("/print")
-    public ResponseEntity<?> printChat(@RequestParam int bno) {
+    public ResponseEntity<?> printChat(@RequestParam int bno , HttpServletRequest request ) {
         System.out.println("ChatController.printChat");
-        List<ChattingDto> list = chatService.printChat(bno);
+
+        // 현재 접속한 회원의 접속날짜/시간 가져오기
+        MemberDto memberDto = memberService.myInfo( request );
+        int mno = memberDto.getMno();
+
+        // ----> 해당 회원이 그룹방에 접속한 날짜/ 시간 구하기
+        String joinDate = groupbulkbuyService.getJoinDate( bno , mno );
+        System.out.println("joinDate = " + joinDate);
+
+        List<ChattingDto> list = chatService.printChat(bno , joinDate );
         return ResponseEntity.ok(list);
 
     }
+
 
 
     // 인원 조회
