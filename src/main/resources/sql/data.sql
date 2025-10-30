@@ -33,7 +33,7 @@ VALUES ('hong123', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.
 INSERT INTO bulkbuygroup (mno, btitle, bcontent, bdate, btotal, bcount, read_only)
 VALUES (1, '과자 공동 구매', '맛있는 과자 같이 사요', NOW(), 5, 3, 0),
        (2, '텀블러 공동 구매', '텀블러 싸게 같이 사요', NOW(), 3, 2, 0),
-       (3, '선물세트 나눔', '남는 선물세트 나눔합니다', NOW(), 6, 4, 1), -- ✅ 방장이 나가서 읽기 전용
+       (3, '선물세트 나눔', '남는 선물세트 나눔합니다', NOW(), 6, 4, 1), --
        (4, '식재료 나눔', '식재료 같이 구매할 분', NOW(), 4, 3, 0),
        (5, '책 교환', '읽은 책 교환해요', NOW(), 8, 6, 0),
        (6, '물품 공동구매', '생활용품 함께 사요', NOW(), 10, 8, 0),
