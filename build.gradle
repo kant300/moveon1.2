@@ -15,9 +15,6 @@ java {
 }
 
 repositories {
-    maven {
-        url = uri("https://repo.osgeo.org/repository/release/")
-    }
     mavenCentral()
 }
 
@@ -47,9 +44,6 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
     // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
     implementation("org.apache.poi:poi-ooxml:5.4.1")
-    implementation 'org.geotools:gt-main:26.0'           // geotools 핵심 기능
-    implementation 'org.geotools:gt-referencing:26.0'    // geotools 좌표계 변환
-    implementation 'org.geotools:gt-epsg-hsql:26.0'      // geotools EPSG 코드 지원
 }
 
 tasks.named('test') {

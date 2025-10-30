@@ -3,11 +3,6 @@ package web.service.safety;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.geotools.geometry.jts.JTS;
-import org.geotools.referencing.CRS;
-import org.locationtech.jts.geom.Coordinate;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.operation.MathTransform;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -19,7 +14,7 @@ public class ShelterService {
     public List<Map<String, Object>> getShelterData() {
         List<Map<String, Object>> data = new ArrayList<>();
         try {
-            File file = new File("src/main/resources/static/data/오픈데이터_지진대피소_정보.xlsx");
+            File file = new File("src/main/resources/static/data/12_04_12_E_민방위대피시설정보.xlsx");
             FileInputStream fis = new FileInputStream(file);
             XSSFWorkbook workbook = new XSSFWorkbook(fis);
             Sheet sheet = workbook.getSheetAt(0);
@@ -28,20 +23,13 @@ public class ShelterService {
                 Row row = sheet.getRow(i);
                 Map<String, Object> item = new LinkedHashMap<>();
 
-                // 좌표계 변환 (EPSG:5186 -> WGS84)
-                CoordinateReferenceSystem source = CRS.decode("EPSG:5186", true);
-                CoordinateReferenceSystem target = CRS.decode("EPSG:4326", true);
-                MathTransform transform = CRS.findMathTransform(source, target, true);
-
-                double x = row.getCell(9).getNumericCellValue();
-                double y = row.getCell(10).getNumericCellValue();
-                Coordinate sourceCoord = new Coordinate(x, y);
-                Coordinate targetCoord = JTS.transform(sourceCoord, null, transform);
-
-                item.put("facilities_nm", row.getCell(3).getStringCellValue());
-                item.put("xcoord", targetCoord.x);
-                item.put("ycoord", targetCoord.y);
-                data.add(item);
+                // 상태가 사용 중지가 아닌 데이터만 확인
+                if (!row.getCell(4).getStringCellValue().equals("사용중지")) {
+                    item.put("시설명", row.getCell(5).getStringCellValue());
+                    item.put("위도", row.getCell(22).getStringCellValue());
+                    item.put("경도", row.getCell(23).getStringCellValue());
+                    data.add(item);
+                }
             }
             workbook.close();
             fis.close();
