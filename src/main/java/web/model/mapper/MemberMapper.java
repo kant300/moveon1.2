@@ -42,6 +42,12 @@ public interface MemberMapper {
             "where mid = #{mid}")
     int updateInfo(MemberDto dto);
 
+    @Update("UPDATE member SET mpwd = #{newPwd}, mdateup = now() WHERE mid = #{mid}")
+    int updatePassword(@Param("mid") String mid, @Param("newPwd") String newPwd);
+
+    @Select("SELECT * FROM member WHERE mid = #{mid}")
+    MemberDto getMemberById(String mid);
+
     // 7. 회원탈퇴
     @Delete("delete from members where mid = #{mid}")
     int signout(String mid);

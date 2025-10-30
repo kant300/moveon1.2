@@ -15,4 +15,7 @@ public class MemberDto {
     private String maddress3;      // 주소(동)
     private String mdate;          // 날짜(생성)
     private String mdateup;        // 날짜(수정)
+    private String newPwd;         // 새 비밀번호
+    private String newPwdConfirm;   // 새 비밀번호 확인
+
 }
