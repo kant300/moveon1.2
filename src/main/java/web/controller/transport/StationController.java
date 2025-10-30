@@ -4,12 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import web.service.transport.StationService;
 
+import java.io.IOException;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/station")
+@RequestMapping("/transport")
 @RequiredArgsConstructor
 public class StationController {
     private final StationService stationService;
@@ -27,5 +28,10 @@ public class StationController {
     @GetMapping("/schedule")
     public List<List<LocalTime>> getScheduleData(@RequestParam String station_name) {
         return stationService.getScheduleData(station_name);
+    }
+
+    @GetMapping("/gas")
+    public List<Map<String, Object>> getGasStationData() {
+        return stationService.getGasStationData();
     }
 }

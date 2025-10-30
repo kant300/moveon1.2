@@ -20,6 +20,11 @@ import MyInfo from './components/member/MyInfo.jsx';
 import MyBulkbuygroup from './components/community/mypagebulkbuygroup.jsx';
 import Signout from './components/member/Signout.jsx';
 import ResetPwd from './components/member/ResetPwd.jsx';
+import Shelter from './components/safety/Shelter.jsx';
+import Parking from './components/transport/Parking.jsx';
+import Gas from './components/transport/Gas.jsx';
+import Toilet from './components/safety/Toilet.jsx';
+import Gov from './components/living/Gov.jsx';
 
 // 현재 홈, 마이페이지, 전체메뉴, 설정까지 프로토타입 제작 완료
 export default function App() {
@@ -29,8 +34,6 @@ export default function App() {
           <Route path='*' element={<NotFound />} />
 
           {/* main */}
-          
-          
           <Route path='/' element={<Index />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
@@ -44,24 +47,26 @@ export default function App() {
           <Route path="/findPwd" element={<FindPwd />} />
           <Route path="/resetPwd" element={<ResetPwd />} /> 
          
-
           {/* living */}
           <Route path='/living/trashInfo' element={<Trash />} />
           <Route path='/living/clothingBin' element={<ClothingBin />} />
+          <Route path='/living/government' element={<Gov />} />
 
           {/* safety */}
           <Route path='/safety/sexOffender' element={<SexOffender />} />
+          <Route path='/safety/shelter' element={<Shelter />} />
+          <Route path='/safety/restroom' element={<Toilet />} />
 
           {/* transport */}
           <Route path='/transport/subway' element={<Station />} />
+          <Route path='/transport/local_parking' element={<Parking />} />
+          <Route path='/transport/station' element={<Gas />} />
 
           {/* community */}
           <Route path='/community/bulkBuy' element={<Bulkbuygroup />} />
           <Route path="/community/chatting/:bno" element={<Chatting />} />
           <Route path='/group/create' element={<Newcreate/>} />
           <Route path='/community/MypageBulk' element={< MyBulkbuygroup/>} />
-
-
         </Routes>
       </BrowserRouter>
     </>

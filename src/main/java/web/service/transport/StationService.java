@@ -1,6 +1,7 @@
 package web.service.transport;
 
 import au.com.bytecode.opencsv.CSVReader;
+import au.com.bytecode.opencsv.CSVWriter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -16,10 +17,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.nio.charset.Charset;
-import java.time.DayOfWeek;
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.nio.charset.StandardCharsets;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
@@ -65,50 +64,95 @@ public class StationService {
         }
     }
 
-    // 승강기 고장현황 사이트 스크래핑 (web)
-    // !! 요청을 너무 많이, 자주 보내지 않도록 주의할 것 !!
+    // 승강기 고장현황 사이트 스크래핑 (web), 또는 당일 저장된 자료 활용 (csv)
     public List<Map<String, String>> getWebLiftData() {
-        // 웹사이트 크롤링 시 새 창을 띄우지 않도록 설정
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless=new", "--disable-gpu");
-        WebDriver driver = new ChromeDriver(options);
-
-        // 고장현황 URL 주소
-        driver.get("https://www.ictr.or.kr/main/railway/guidance/elevator.jsp");
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
-
-        // <td> 태그의 값들을 가져옴
-        List<WebElement> webData = driver.findElements(By.tagName("td"));
-        List<String> line = new ArrayList<>();
-
-        // 가져온 값들을 리스트에 정리하여 추가
-        for (WebElement element : webData) {
-            line.add(element.getText().trim());
-        }
-
         List<Map<String, String>> webList = new ArrayList<>();
-        for (int i=0; i<line.size(); i+=6) {
-            Map<String, String> item = new LinkedHashMap<>();
-            item.put("역사", line.get(i+1));
-            item.put("장비", line.get(i+2));
-            item.put("호기", line.get(i+3));
-            webList.add(item);
+
+        try {
+            // 비교를 위한 현재 시간과 파일 위치
+            LocalDate date = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyMMdd");
+            String today = date.format(formatter);
+
+            String path = "src/main/resources/static/data/승강설비_운영고장현황_" + today + ".csv";
+            File file = new File(path);
+
+            if (file.exists()) {
+                // CSV 파일 읽기
+                FileReader fileReader = new FileReader(path, StandardCharsets.UTF_8);
+                CSVReader csvReader = new CSVReader(fileReader);
+                List<String[]> csvData = csvReader.readAll();
+
+                for (int i=1; i<csvData.size(); i++) {
+                    String[] row = csvData.get(i);
+                    Map<String, String> item = new LinkedHashMap<>();
+
+                    // 확인용 코드
+                    // System.out.printf("역사 : %s, 장비 : %s, 호기 : %s\n",
+                    //         row[0], row[1], row[2]);
+
+                    // 얻은 데이터로 리스트 만들기
+                    item.put("역사", row[0]);
+                    item.put("장비", row[1]);
+                    item.put("호기", row[2]);
+                    webList.add(item);
+                }
+                csvReader.close();
+            } else {
+                // 웹사이트 크롤링 시 새 창을 띄우지 않도록 설정
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--headless=new", "--disable-gpu");
+                WebDriver driver = new ChromeDriver(options);
+
+                // 고장현황 URL 주소
+                driver.get("https://www.ictr.or.kr/main/railway/guidance/elevator.jsp");
+                driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
+
+                // <td> 태그의 값들을 가져옴
+                List<WebElement> webData = driver.findElements(By.tagName("td"));
+                List<String> line = new ArrayList<>();
+
+                // 가져온 값들을 리스트에 정리하여 추가
+                for (WebElement element : webData) {
+                    line.add(element.getText().trim());
+                }
+
+                for (int i=0; i<line.size(); i+=6) {
+                    Map<String, String> item = new LinkedHashMap<>();
+                    item.put("역사", line.get(i+1));
+                    item.put("장비", line.get(i+2));
+                    item.put("호기", line.get(i+3));
+                    webList.add(item);
+                }
+
+                // 디버깅용 코드 (문학경기장, 엘리베이터, 3호기를 고장현황 리스트에 추가)
+                Map<String, String> item = new LinkedHashMap<>();
+                item.put("역사", "문학경기장");
+                item.put("장비", "엘리베이터");
+                item.put("호기", "3");
+                webList.add(item);
+
+                // csv 파일 작성
+                CSVWriter csvWriter = new CSVWriter(new FileWriter(path));
+                String[] header = {"역사", "장비", "호기"};
+                csvWriter.writeNext(header);
+
+                for (Map<String, String> result : webList) {
+                    String[] data = {result.get("역사"), result.get("장비"), result.get("호기")};
+                    csvWriter.writeNext(data);
+                }
+                csvWriter.close();
+                driver.quit();
+
+                // for (Map<String, String> resultData : webList) {
+                //     System.out.println(resultData);
+                // }
+            }
+            return webList;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-
-        // 디버깅용 코드 (문학경기장, 엘리베이터, 3호기를 고장현황 리스트에 추가)
-        Map<String, String> item = new LinkedHashMap<>();
-        item.put("역사", "문학경기장");
-        item.put("장비", "엘리베이터");
-        item.put("호기", "3");
-        webList.add(item);
-
-        // for (Map<String, String> result : webList) {
-        //     System.out.println(result);
-        // }
-
-        driver.quit();
-        return webList;
     }
 
     // 승강기 상태 체크 (운행중, 수리중) 후 최종 데이터 반환
@@ -278,6 +322,39 @@ public class StationService {
             // 최종 데이터 예시:
             // [10:47, 10:56]
             // System.out.println(data);
+            return data;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // 주유소 위치 데이터 가져오기 (csv)
+    public List<Map<String, Object>> getGasStationData() {
+        List<Map<String, Object>> data = new ArrayList<>();
+        try {
+            // 데이터 파일 경로
+            String path = "src/main/resources/static/data/인천광역시 연수구_주유소 현황_20250428.csv";
+            FileReader fileReader = new FileReader(path, Charset.forName("EUC-KR"));
+            CSVReader csvReader = new CSVReader(fileReader);
+            List<String[]> csvData = csvReader.readAll();
+
+            for (int i=1; i<csvData.size(); i++) {
+                String[] row = csvData.get(i);
+                Map<String, Object> item = new LinkedHashMap<>();
+
+                // 확인용 코드
+                // System.out.printf("업소명 : %s, 소재지 : %s, 위도 : %s, 경도 : %s, 전화번호 : %s\n",
+                //         row[0], row[1], row[2], row[3], row[4]);
+
+                // 얻은 데이터로 리스트 만들기
+                item.put("업소명", row[0]);
+                item.put("소재지", row[1]);
+                item.put("위도", row[2]);
+                item.put("경도", row[3]);
+                item.put("전화번호", row[4]);
+                data.add(item);
+            }
+            csvReader.close();
             return data;
         } catch (Exception e) {
             throw new RuntimeException(e);

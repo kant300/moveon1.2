@@ -7,8 +7,6 @@ import React, {useState} from "react";
 import axios from "axios";
 
 export default function FindId() {
-    
-
     const [ email, setEmail ] = useState( "" );
     const [ phone, setPhone ] = useState( "" );
     const [ foundId, setFoundId ] = useState( "" ); // 검색된 아이디 저장용

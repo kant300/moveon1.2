@@ -89,10 +89,10 @@ export default function Index() {
                         category==0?(
                             <>
                                 <Link to='/living/bill'><li><img src={paid} />공과금정산</li></Link>
-                                <Link to='/living/movein'><li><img src={movein} />전입신고</li></Link>
+                                <a href="https://www.gov.kr/mw/AA020InfoCappView.do?CappBizCD=13100000016"><li><img src={movein} />전입신고</li></a>
                                 <Link to='/living/clothingBin'><li><img src={apparel} />의류수거함</li></Link>
                                 <Link to='/living/trashInfo'><li><img src={recycling} />쓰레기배출</li></Link>
-                                <Link to='/living/electric'><li><img src={eco} />폐가전수거</li></Link>
+                                <a href="https://15990903.or.kr/portal/main/main.do"><li><img src={eco} />폐가전수거</li></a>
                                 <Link to='/living/government'><li><img src={office} />관공서</li></Link>
                                 <Link to='/living/night'><li><img src={hospital} />심야약국/병원</li></Link>
                             </>
