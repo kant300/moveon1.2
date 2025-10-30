@@ -25,6 +25,7 @@ import Parking from './components/transport/Parking.jsx';
 import Gas from './components/transport/Gas.jsx';
 import Toilet from './components/safety/Toilet.jsx';
 import Gov from './components/living/Gov.jsx';
+import WheelchairCharger from './components/transport/WheelchairCharger.jsx';
 
 
 // 현재 홈, 마이페이지, 전체메뉴, 설정까지 프로토타입 제작 완료
@@ -49,8 +50,6 @@ export default function App() {
           <Route path="/resetPwd" element={<ResetPwd />} />
 
 
-          
-         
           {/* living */}
           <Route path='/living/trashInfo' element={<Trash />} />
           <Route path='/living/clothingBin' element={<ClothingBin />} />
@@ -65,6 +64,7 @@ export default function App() {
           <Route path='/transport/subway' element={<Station />} />
           <Route path='/transport/local_parking' element={<Parking />} />
           <Route path='/transport/station' element={<Gas />} />
+          <Route path='/transport/wheelchairCharger' element={<WheelchairCharger />} />
 
           {/* community */}
           <Route path='/community/bulkBuy' element={<Bulkbuygroup />} />
