@@ -3,11 +3,12 @@
     position: fixed;
     display: flex;
     bottom: 0px;
-    width: 420px;
-    justify-content: space-evenly;
-    padding: 10px;
-    font-size: 12px;
+    justify-content: space-around;
+    padding: 5px 0px;
+    font-size: 10px;
     align-items: center;
+    width : 420px;
+    font-weight: bold;
 }
 
 #footer span {
@@ -29,4 +30,12 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+/* 반응형 CSS */
+/* ✅ 반응형 설정: 720px 이하일 때 가로 420px 고정 */
+@media screen and (max-width: 720px) {
+  #footer {
+    width: 100%;
+  }
 }
