@@ -327,4 +327,37 @@ public class StationService {
             throw new RuntimeException(e);
         }
     }
+
+    // 주유소 위치 데이터 가져오기 (csv)
+    public List<Map<String, Object>> getGasStationData() {
+        List<Map<String, Object>> data = new ArrayList<>();
+        try {
+            // 데이터 파일 경로
+            String path = "src/main/resources/static/data/인천광역시 연수구_주유소 현황_20250428.csv";
+            FileReader fileReader = new FileReader(path, Charset.forName("EUC-KR"));
+            CSVReader csvReader = new CSVReader(fileReader);
+            List<String[]> csvData = csvReader.readAll();
+
+            for (int i=1; i<csvData.size(); i++) {
+                String[] row = csvData.get(i);
+                Map<String, Object> item = new LinkedHashMap<>();
+
+                // 확인용 코드
+                // System.out.printf("업소명 : %s, 소재지 : %s, 위도 : %s, 경도 : %s, 전화번호 : %s\n",
+                //         row[0], row[1], row[2], row[3], row[4]);
+
+                // 얻은 데이터로 리스트 만들기
+                item.put("업소명", row[0]);
+                item.put("소재지", row[1]);
+                item.put("위도", row[2]);
+                item.put("경도", row[3]);
+                item.put("전화번호", row[4]);
+                data.add(item);
+            }
+            csvReader.close();
+            return data;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -29,4 +29,9 @@ public class StationController {
     public List<List<LocalTime>> getScheduleData(@RequestParam String station_name) {
         return stationService.getScheduleData(station_name);
     }
+
+    @GetMapping("/gas")
+    public List<Map<String, Object>> getGasStationData() {
+        return stationService.getGasStationData();
+    }
 }
