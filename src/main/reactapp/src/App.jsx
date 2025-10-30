@@ -20,6 +20,7 @@ import MyInfo from './components/member/MyInfo.jsx';
 import MyBulkbuygroup from './components/community/mypagebulkbuygroup.jsx';
 import Signout from './components/member/Signout.jsx';
 import ResetPwd from './components/member/ResetPwd.jsx';
+import Shelter from './components/safety/Shelter.jsx';
 
 // 현재 홈, 마이페이지, 전체메뉴, 설정까지 프로토타입 제작 완료
 export default function App() {
@@ -29,8 +30,6 @@ export default function App() {
           <Route path='*' element={<NotFound />} />
 
           {/* main */}
-          
-          
           <Route path='/' element={<Index />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
@@ -44,13 +43,13 @@ export default function App() {
           <Route path="/findPwd" element={<FindPwd />} />
           <Route path="/resetPwd" element={<ResetPwd />} /> 
          
-
           {/* living */}
           <Route path='/living/trashInfo' element={<Trash />} />
           <Route path='/living/clothingBin' element={<ClothingBin />} />
 
           {/* safety */}
           <Route path='/safety/sexOffender' element={<SexOffender />} />
+          <Route path='/safety/shelter' element={<Shelter />} />
 
           {/* transport */}
           <Route path='/transport/subway' element={<Station />} />
@@ -60,8 +59,6 @@ export default function App() {
           <Route path="/community/chatting/:bno" element={<Chatting />} />
           <Route path='/group/create' element={<Newcreate/>} />
           <Route path='/community/MypageBulk' element={< MyBulkbuygroup/>} />
-
-
         </Routes>
       </BrowserRouter>
     </>
