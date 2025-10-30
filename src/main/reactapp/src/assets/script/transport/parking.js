@@ -46,17 +46,17 @@ export function Run(mapRef, pos) {
                     displayMarker(locPosition, message);
                 }
 
-                const getShelterData = async () => {
+                const getParkingData = async () => {
                     // 승강기 데이터를 가져와 필요한 데이터를 삽입합니다
                     // 1. 매핑된 데이터를 가져옵니다
-                    const response = await axios.get("http://localhost:8080/safety/shelter");
+                    const response = await axios.get("http://localhost:8080/transport/parking");
                     const data = await response.data;
                     var positions = [];
                     for (let i = 0; i < data.length; i++) {
                         const obj = data[i];
                         positions.push({
-                            name: obj.시설명,
-                            latlng: new kakao.maps.LatLng(obj.위도, obj.경도)
+                            name: obj.name,
+                            latlng: new kakao.maps.LatLng(obj.lat, obj.long)
                         });
                     }
 
@@ -132,7 +132,7 @@ export function Run(mapRef, pos) {
                     mapRef.current.setCenter(locPosition);
                 }
                 // 필요한 데이터를 가져옵니다
-                getShelterData();
+                getParkingData();
             }
             createMap();
         });

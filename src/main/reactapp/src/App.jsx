@@ -21,6 +21,7 @@ import MyBulkbuygroup from './components/community/mypagebulkbuygroup.jsx';
 import Signout from './components/member/Signout.jsx';
 import ResetPwd from './components/member/ResetPwd.jsx';
 import Shelter from './components/safety/Shelter.jsx';
+import Parking from './components/transport/Parking.jsx';
 
 // 현재 홈, 마이페이지, 전체메뉴, 설정까지 프로토타입 제작 완료
 export default function App() {
@@ -53,6 +54,7 @@ export default function App() {
 
           {/* transport */}
           <Route path='/transport/subway' element={<Station />} />
+          <Route path='/transport/local_parking' element={<Parking />} />
 
           {/* community */}
           <Route path='/community/bulkBuy' element={<Bulkbuygroup />} />

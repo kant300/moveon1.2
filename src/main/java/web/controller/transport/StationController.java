@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/station")
+@RequestMapping("/transport")
 @RequiredArgsConstructor
 public class StationController {
     private final StationService stationService;
