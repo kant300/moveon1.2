@@ -121,6 +121,10 @@ public class MemberController {
         boolean result = memberService.findPwd(dto);
         return ResponseEntity.ok(result);
     }
+
+    public int verification
+
+
 //    // 6-1. 비밀번호 찾기용 인증 요청 (이메일 인증 전송)
 //    @PostMapping("/requestPwdAuth")
 //    public ResponseEntity<?> requestPwdAuth(@RequestBody MemberDto dto) {
