@@ -134,13 +134,13 @@ public class MemberService {
         dto.setMpwd(bcrypt.encode(dto.getMpwd()));  // 암호화
         return memberMapper.updateInfo(dto) > 0;
     }
-    //
+    // 7-1. 비밀번호 변경
     public MemberDto getMemberById(String mid) {
         return memberMapper.getMemberById(mid);
     }
 
-    public boolean updatePassword(String mid, String newPwd){
-        return memberMapper.updatePassword(mid, newPwd) > 0;
+    public boolean updatePassword(String mid, String endcodedPwd){
+        return memberMapper.updatePassword(mid, endcodedPwd) == 1;
     }
 
     // 8. 회원탈퇴

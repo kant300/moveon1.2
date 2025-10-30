@@ -15,7 +15,7 @@ import web.service.MemberService;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import static com.fasterxml.jackson.databind.type.LogicalType.Map;
 
@@ -26,6 +26,7 @@ public class MemberController {
 
     private final MemberService memberService;
     private final JwtService jwtService;
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     // 1. 회원가입
     @PostMapping("/signup")
@@ -169,15 +170,24 @@ public class MemberController {
     public boolean updatePwd(@RequestBody MemberDto dto, HttpSession session ){
         MemberDto loginMember = (MemberDto) session.getAttribute("loginMember");
         if( loginMember == null ) return false; // 로그인 안된 경우
-        // DB에 저장된 기존 비밀번호 비교
-        MemberDto dbMember = memberService.getMemberById(loginMember.getMid());
-        if(!dbMember.getMpwd().equals(dto.getMpwd())) return false;
 
-        // 새 비밀번호 업데이트
-        boolean result = memberService.updatePassword(loginMember.getMid(), dto.getNewPwd());
+        // DB의 회원정보 가져오기
+        MemberDto dbMember = memberService.getMemberById(loginMember.getMid());
+        if( dbMember == null ) return false;
+
+        // 기존 비밀번호 일치여부확인(암호화 비교)
+        if(!passwordEncoder.matches(dto.getMpwd(), dbMember.getMpwd())){
+            return false;
+        }
+
+        // 새 비밀번호 암호화 후 DB 업데이트
+        String encodedNewPwd = passwordEncoder.encode(dto.getNewPwd());
+        boolean result = memberService.updatePassword(loginMember.getMid(), encodedNewPwd);
+
+        // 세션 갱신
         if (result){
             dbMember.setMpwd(dto.getNewPwd());
-            session.setAttribute("loginMember" , dbMember); // 세션 갱신
+            session.setAttribute("loginMember" , dbMember);
         }
         return result;
     }
