@@ -57,7 +57,7 @@ export default function Signout(){
                 <button className="cancel-btn" onClick={() => navigate(-1)}>
                 취소
                 </button>
-                <button className="confirm-btn" onClick={handleWithdraw}>
+                <button className="confirm-btn" onClick={handlesignout}>
                 확인
                 </button>
           </div>
