@@ -165,7 +165,7 @@ public class MemberController {
     }
 
     // 8. 회원탈퇴
-    @DeleteMapping("/delete")
+    @DeleteMapping("/signout")
     public ResponseEntity<?> signout(HttpServletRequest request){
         MemberDto loginMember = memberService.myInfo(request);
         if(loginMember == null) return ResponseEntity.ok(false);

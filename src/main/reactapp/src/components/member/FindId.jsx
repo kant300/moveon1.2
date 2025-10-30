@@ -7,15 +7,13 @@ import React, {useState} from "react";
 import axios from "axios";
 
 export default function FindId() {
-    const navigate = useNavigate();
-
+    
     const [ email, setEmail ] = useState( "" );
     const [ phone, setPhone ] = useState( "" );
     const [ foundId, setFoundId ] = useState( "" ); // 검색된 아이디 저장용
     const [ error, setError ] = useState( "" ); // 에러메시지 저장용
     const [ loading, setLoading ] = useState( false ); // 로딩 상태 저장용
     const navigate = useNavigate();
-
 
     const handleFindId = async () => {
         setFoundId( "" );

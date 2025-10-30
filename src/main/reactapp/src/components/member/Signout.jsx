@@ -17,11 +17,12 @@ export default function Signout(){
         }
         if (window.confirm("정말로 탈퇴하시겠습니까?" )) {
             try{
-                const res = await axios.delete("/api/member/signout", {
+                const res = await axios.delete("http://localhost:8080/api/member/signout", {
                     withCredentials:true,
                 });
                 alert("탈퇴가 완료되었습니다.");
-                navigate("/main");
+                //navigate("/");
+                location.href="/"
             }catch(err){
                 alert("탈퇴 중 오류가 발생했습니다. 다시 시도해주세요.");
                 console.error(err);
@@ -36,11 +37,9 @@ export default function Signout(){
                 <div id='signout'>
                     <Link to='/myinfo'><img src={arrow_back_ios_new} /></Link>
                 <div id='signout_title'>회원탈퇴
-                    <Link to='/main'><img src={home} /></Link>
+                    <Link to='/main'><img src={home} onClick={() => navigate('/')}/></Link>
                 </div>
                 </div>
-            </div>
-        </div>
         <div className="signout_content">
             <h3> 회원 탈퇴 안내</h3>
             <ul>
@@ -57,10 +56,13 @@ export default function Signout(){
                 <button className="cancel-btn" onClick={() => navigate(-1)}>
                 취소
                 </button>
-                <button className="confirm-btn" onClick={handlesignout}>
+                <button className="confirm-btn" onClick={handleSignout}>
                 확인
                 </button>
           </div>
+        </div>
+        
+            </div>
         </div>
     </> );
 }
