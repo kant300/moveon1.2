@@ -78,7 +78,7 @@ export default function FindPwd() {
             setStatusMessage("인증번호를 확인중입니다...");
             try{
                 // [API 2] Spring Boot 인증번호 확인 API 호출
-                const response = await axios.post("http://localhost:8080/api/auth/verifyPwdCode",
+                const response = await axios.post("http://localhost:8080/api/member/verifyPwdCode",
                 { mid,  verifyCode });
                 if(response.data.success){ // 인증 성공
                     setAuthComplete( true );

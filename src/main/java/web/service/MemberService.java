@@ -4,6 +4,8 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +23,7 @@ public class MemberService {
     private final MemberMapper memberMapper;
     private final JwtService jwtService;
     private final MessageService messageService;
+    private final JavaMailSender mailSender;
 
     // 1-2 : 비크립트 라이브러리 객체 주입
     private final BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
@@ -90,67 +93,45 @@ public class MemberService {
 
     }
 
-    // 인증번호(랜덤)
-    public int verification() {
-        Random random = new Random();
-        int code = random.nextInt(900000) + 100000; // 100000 ~ 999999 사이 랜덤 정수
-        return code;
-    }
-
-
     // 6. 비밀번호찾기/재설정
     public boolean findPwd(MemberDto dto){
         dto.setMpwd(bcrypt.encode( dto.getMpwd() ) );
-
-        String randdomcode = String.valueOf(verification());
-
-        MemberDto member = memberMapper.findPwd(dto.getMid());
-        if (member == null) {
-            return false; // 회원 정보가 없으면 실패
-        }
-
-        String bcryptpass = bcrypt.encode( randdomcode );
-
-
-
         return memberMapper.findPwd(dto) > 0;
     }
-//    // 이메일 인증 요청 (requestPwdAuth)
-//    public boolean sendPwdAuthEmail(MemberDto dto) {
-//        int exists = memberMapper.existsByMidAndEmail(dto);
-//        if (exists == 0) return false; // 회원 없음
-//
-//        // ① 인증번호 생성
-//        String code = String.valueOf((int)(Math.random() * 900000) + 100000);
-//
-//        // ② 메일 발송 로직
-//        try {
-//            SimpleMailMessage message = new SimpleMailMessage();
-//            message.setTo(dto.getMemail());
-//            message.setSubject("[무브온] 비밀번호 재설정 인증번호");
-//            message.setText("인증번호는 [" + code + "] 입니다. 3분 내 입력해주세요.");
-//            mailSender.send(message);
-//        } catch (Exception e) {
-//            return false;
-//        }
-//
-//        // ③ 인증번호를 임시 저장 (DB 대신 메모리 캐시 or Redis)
-//        pwdAuthCodes.put(dto.getMid(), code);
-//        return true;
-//    }
-//
-//    // 인증번호 검증 (verifyPwdCode)
-//    private final Map<String, String> pwdAuthCodes = new HashMap<>();
-//
-//    public boolean verifyPwdCode(String mid, String code) {
-//        if (!pwdAuthCodes.containsKey(mid)) return false;
-//        boolean result = pwdAuthCodes.get(mid).equals(code);
-//        if (result) pwdAuthCodes.remove(mid); // 성공 시 제거
-//        return result;
-//    }
-//}
 
+    // 이메일 인증 요청 (requestPwdAuth)
+    public boolean sendPwdAuthEmail(MemberDto dto) {
+        int exists = memberMapper.existsByMidAndEmail(dto);
+        if (exists == 0) return false; // 회원 없음
 
+        // ① 인증번호 생성
+        String code = String.valueOf((int)(Math.random() * 900000) + 100000);
+
+        // ② 메일 발송 로직
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo(dto.getMemail());
+            message.setSubject("[무브온] 비밀번호 재설정 인증번호");
+            message.setText("인증번호는 [" + code + "] 입니다. 3분 내 입력해주세요.");
+            mailSender.send(message);
+        } catch (Exception e) {
+            return false;
+        }
+
+        // ③ 인증번호를 임시 저장 (DB 대신 메모리 캐시 or Redis)
+        pwdAuthCodes.put(dto.getMid(), code);
+        return true;
+    }
+
+    // 인증번호 검증 (verifyPwdCode)
+    private final Map<String, String> pwdAuthCodes = new HashMap<>();
+
+    public boolean verifyPwdCode(String mid, String code) {
+        if (!pwdAuthCodes.containsKey(mid)) return false;
+        boolean result = pwdAuthCodes.get(mid).equals(code);
+        if (result) pwdAuthCodes.remove(mid); // 성공 시 제거
+        return result;
+    }
 
     // 7. 회원정보수정
     public boolean updateInfo(MemberDto dto) {

@@ -122,45 +122,43 @@ public class MemberController {
         return ResponseEntity.ok(result);
     }
 
-    public int verification
 
+    // 6-1. 비밀번호 찾기용 인증 요청 (이메일 인증 전송)
+    @PostMapping("/requestPwdAuth")
+    public ResponseEntity<?> requestPwdAuth(@RequestBody MemberDto dto) {
+        boolean result = memberService.sendPwdAuthEmail(dto);
+        Map<String, Object> response = new HashMap<>();
 
-//    // 6-1. 비밀번호 찾기용 인증 요청 (이메일 인증 전송)
-//    @PostMapping("/requestPwdAuth")
-//    public ResponseEntity<?> requestPwdAuth(@RequestBody MemberDto dto) {
-//        boolean result = memberService.sendPwdAuthEmail(dto);
-//        Map<String, Object> response = new HashMap<>();
-//
-//        if (result) {
-//            response.put("success", true);
-//            response.put("message", "인증번호가 이메일로 전송되었습니다.");
-//            return ResponseEntity.ok(response);
-//        } else {
-//            response.put("success", false);
-//            response.put("message", "회원 정보를 찾을 수 없습니다.");
-//            return ResponseEntity.status(400).body(response);
-//        }
-//    }
-//
-//    // 6-2. 인증번호 확인
-//    @PostMapping("/verifyPwdCode")
-//    public ResponseEntity<?> verifyPwdCode(@RequestBody Map<String, String> payload) {
-//        String mid = payload.get("mid");
-//        String code = payload.get("verifyCode");
-//
-//        boolean verified = memberService.verifyPwdCode(mid, code);
-//        Map<String, Object> response = new HashMap<>();
-//
-//        if (verified) {
-//            response.put("success", true);
-//            response.put("message", "인증 완료");
-//            return ResponseEntity.ok(response);
-//        } else {
-//            response.put("success", false);
-//            response.put("message", "인증번호가 일치하지 않습니다.");
-//            return ResponseEntity.status(400).body(response);
-//        }
-//    }
+        if (result) {
+            response.put("success", true);
+            response.put("message", "인증번호가 이메일로 전송되었습니다.");
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("success", false);
+            response.put("message", "회원 정보를 찾을 수 없습니다.");
+            return ResponseEntity.status(400).body(response);
+        }
+    }
+
+    // 6-2. 인증번호 확인
+    @PostMapping("/verifyPwdCode")
+    public ResponseEntity<?> verifyPwdCode(@RequestBody Map<String, String> payload) {
+        String mid = payload.get("mid");
+        String code = payload.get("verifyCode");
+
+        boolean verified = memberService.verifyPwdCode(mid, code);
+        Map<String, Object> response = new HashMap<>();
+
+        if (verified) {
+            response.put("success", true);
+            response.put("message", "인증 완료");
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("success", false);
+            response.put("message", "인증번호가 일치하지 않습니다.");
+            return ResponseEntity.status(400).body(response);
+        }
+    }
 
     // 7. 회원정보수정
     @PutMapping("/update")
