@@ -45,28 +45,37 @@ public class GroupbulkbuyController {
 
     // 방장 방 나가기
     @PutMapping("play/gmnoout")
-    public ResponseEntity< ? > playgmnoout(@RequestParam int gmno ,  @RequestParam int bno) {
+    public ResponseEntity< ? > playgmnoout(@RequestParam Map<String,Object> maps) {
         System.out.println("GroupbulkbuyController.playgmnoout");
-        Map<String,Object> map = new HashMap<>();
-        map.put("gmno",gmno);
-        map.put("bno",bno);
-        map.put("msg",
+
+        boolean result =  groupbulkbuyService.playgmnoout(maps);
+
+         Map<String,Object> map = new HashMap<>();
+
+        map.put("gmno", maps.get("gmno"));
+        map.put("bno" , maps.get("bno"));
+        map.put("msg", result
+                    ?
                         "방장님이 나가셨습니다.\n" +
                         "읽기 모드로 변경됩니다.\n" +
                         "채팅방 나가기 클릭시 입장불가합니다."
+                : "나가기 실패"
         );
         return ResponseEntity.ok(map);
     }
 
     // 방장 나가기 후 채팅 읽기 전환
     @PutMapping("room/check")
-    public ResponseEntity< ? > roomcheck(@RequestParam int gmno ,  @RequestParam int bno) {
+    public ResponseEntity< ? > roomcheck(@RequestParam Map<String,Object> maps) {
         System.out.println("GroupbulkbuyController.roomcheck");
 
+        boolean result =  groupbulkbuyService.roomcheck(maps);
+
         Map<String,Object> map = new HashMap<>();
-        map.put("gmno",gmno);
-        map.put("bno",bno);
-        map.put("status","locked");
+
+        map.put("gmno", maps.get("gmno"));
+        map.put("bno" , maps.get("bno"));
+        map.put("status", result ? "locked" : "unlocked" );
         return ResponseEntity.ok(map);
     }
     // 읽기 확인

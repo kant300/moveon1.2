@@ -103,7 +103,7 @@ public class ChatHandler extends TextWebSocketHandler {
             }
             alarmMessage(bno, mname + "님이 방을 입장하셨습니다. ");
             BulkbuygroupDto countinfo = chatService.countChat(Integer.parseInt(bno));
-            countchecking(bno, countinfo.getBcount() , countinfo.getBtotal());
+            countchecking(bno, countinfo.getBcount(), countinfo.getBtotal());
 
         } else if (msg.get("type").equals("msg")) {
             // 채팅방에게 받은 모든 세션들에게 받은 메세지(내역) 보내기
@@ -124,15 +124,20 @@ public class ChatHandler extends TextWebSocketHandler {
             System.out.println("ChatHandler.handleTextMessage");
             System.out.println(player); // 확인용
         } else if ("leave".equals(type)) {
-            String bno =  (String) msg.get("bno");
+            String bno = (String) msg.get("bno");
             String mname = (String) msg.get("mname");
             String mmessage = (String) msg.get("message");
 
-            alarmMessage(bno , mmessage);
+            alarmMessage(bno, mmessage);
 
             List<WebSocketSession> list = player.get(bno);
             if (list != null) list.remove(session);
-            
+
+        } else if ("alarm".equals(type)) {
+            String bno = (String) msg.get("bno");
+            String mmessage =  String.valueOf(msg.get("message"));
+            alarmMessage(bno , mmessage);
+
         }
     } // TextMessage end
     

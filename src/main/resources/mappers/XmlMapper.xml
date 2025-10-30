@@ -15,10 +15,9 @@
 
     <!-- 전체 검색 (작성자 주소 포함) -->
     <select id="listGroup" resultType="web.model.dto.community.BulkbuygroupDto">
-        SELECT
-        b.bno, b.mno, b.btitle, b.bcontent, b.bcount, b.btotal, b.bdate, m.maddress1 , m.maddress2 , m.maddress3 FROM bulkbuygroup b
-        JOIN members m ON b.mno = m.mno
-        ORDER BY b.bdate DESC;
+        SELECT * FROM bulkbuygroup
+        WHERE read_only = 0
+        ORDER BY bno DESC
     </select>
 
     <!-- 본인 참여 방내역 -->

@@ -63,4 +63,29 @@
           AND active = 1
     </select>
 
+    <!-- 방장 나가기 -->
+    <update id="playgmnoout" parameterType="map">
+        UPDATE group_member
+        SET active = 0 ,
+            leavedate = NOW()
+        WHERE gmno = #{gmno}
+        AND  bno = #{bno}
+    </update>
+
+    <!-- 방장 나가기 이후 방 전환 -->
+    <!-- 1이 읽기모드 -->
+    <update id="roomcheck" parameterType="map" >
+        UPDATE bulkbuygroup
+        SET read_only = 1
+        WHERE bno = #{bno}
+    </update>
+
+    <!-- 방 읽기 모드 변경 -->
+    <!-- 조건식 only값이 1(읽기) (참) 일시 성공 / (참) 아니면 실패 후 종료 -->
+    <select id="roomlock" resultType="boolean">
+        SELECT CASE WHEN read_only = 1 THEN true ELSE false END
+        FROM bulkbuygroup
+        WHERE bno = #{bno}
+    </select>
+
 </mapper>

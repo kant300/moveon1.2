@@ -45,16 +45,18 @@ public class GroupbulkbuyService {
     }
 
     // 방장 방 나가기
-    public playgmnoout( int gmno , int bno) {
-
+    public boolean playgmnoout( Map<String,Object> maps) {
+        int result = groupbulkbuyMapper.playgmnoout(maps );
+        return result > 0;
     }
-
     // 방장 나가기 후 채팅 읽기 전환
-    public roomcheck( int gmno , int bno) {
-
+    public boolean roomcheck( Map<String,Object> maps) {
+        int result = groupbulkbuyMapper.roomcheck(maps );
+        return result > 0;
     }
     // 읽기 확인
-    public  roomlock(int bno) {
+    public boolean roomlock(int bno) {
+        return groupbulkbuyMapper.roomlock(bno);
 
     }
 

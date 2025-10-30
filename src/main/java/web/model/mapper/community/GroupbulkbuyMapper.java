@@ -19,5 +19,10 @@ public interface GroupbulkbuyMapper {
 
     void leaveGroup(int mno , int bno);
 
+    int playgmnoout(Map<String,Object> maps);
+
+    int roomcheck(Map<String,Object> maps);
+
+    boolean roomlock(int bno);
 
 }

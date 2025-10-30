@@ -48,6 +48,7 @@ export default function Chatting() {
   const [socket, setwebsocket] = useState(null);
   const [count, setcount] = useState({ btotal: 0, bcount: 0, host_mno: 0 });
   const [run, setrun] = useState({});
+  const [readonly, setreadonly] = useState(false);
 
   // ✅ 로그인 정보 가져오기
   const checkcookie = async () => {
@@ -85,6 +86,7 @@ export default function Chatting() {
     setchatprint(res.data);
   };
 
+
   // ✅ 최초 로그인 검사
   useEffect(() => {
     checkcookie();
@@ -120,6 +122,10 @@ export default function Chatting() {
             ...prev,
             { mname: "alarm", mmessage: smg.message },
           ]);
+
+          if(smg.message.includes("읽기모드로 변경")){
+            setreadonly(true);
+          }
         } else if (smg.type === "msg") {
           setchatprint((prev) => [
             ...prev,
@@ -147,8 +153,23 @@ export default function Chatting() {
     return () => socket && socket.close();
   }, [auth, num]);
 
+  const roomcheck = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/groupchat/room/lock", {
+        params: { bno: num },
+        withCredentials: true,
+      });
+      console.log(response.data);
+      setreadonly(response.data.read_only == 1);
+    } catch (error) { console.log(error + "읽기 모드 오류 발생 ") }
+  }
 
-  // ✅ 스크롤 자동 이동
+  //  useEffect 추가
+  useEffect(() => {
+    roomcheck();
+  }, [num]);
+
+  //  스크롤 자동 이동
   useEffect(() => {
     const chattingtop = document.querySelector(".chat-messages");
     if (chattingtop) chattingtop.scrollTop = chattingtop.scrollHeight;
@@ -156,7 +177,10 @@ export default function Chatting() {
 
   // ✅ 메시지 전송
   const textbtn = async () => {
+
+
     if (!mmessage.trim()) return;
+
 
     const obj = { bno: num, mmessage };
     const response = await axios.post("http://localhost:8080/chat/write", obj, {
@@ -181,8 +205,58 @@ export default function Chatting() {
     }
   };
 
+  // 방장 여부
+  const hostmember = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/chat/cocheck", {
+        params: { bno: num },
+        withCredentials: true,
+      });
+      return response.data.host_mno === auth.mno;
+    } catch (error) {
+      console.log("방장 여부 에러발생" + error)
+      return false;
+    }
+
+  }
+
   //  퇴장
   const 퇴장 = async () => {
+    const hostcheck = await hostmember();
+
+    if (hostcheck) {
+      const hostexit = window.confirm(
+        "방장님이 나가셨습니다.\n" +
+        "읽기 모드로 변경됩니다.\n" +
+        "채팅방 나가기 클릭시 입장불가합니다."
+      );
+      if (!hostexit) return;
+
+      if (socket && socket.readyState === WebSocket.OPEN) {
+        socket.send(
+          JSON.stringify({
+            type: "alarm",
+            bno: num,
+            message: "방장님이 나가셨습니다.\n" +
+              "읽기 모드로 변경됩니다.\n" +
+              "채팅방 나가기 클릭시 입장불가합니다.",
+          })
+        );
+      }
+      if(hostcheck){
+      await axios.put("http://localhost:8080/groupchat/room/check", null, {
+        params: { gmno: auth.mno, bno: num },
+        withCredentials: true,
+      });
+    
+
+    await axios.put("http://localhost:8080/groupchat/play/gmnoout", null, {
+      params: { gmno: auth.mno, bno: num },
+      withCredentials: true,
+    });
+  }
+}
+
     if (socket && socket.readyState === WebSocket.OPEN) {
       socket.send(
         JSON.stringify({
@@ -193,24 +267,18 @@ export default function Chatting() {
           message: `${auth.mname}님이 나갔습니다.`,
         })
       );
-
     }
 
     try {
-      // 1️ group_member 테이블에서 active=0 처리
       await axios.put("http://localhost:8080/groupchat/leave/Group", null, {
         params: { mno: auth.mno, bno: num },
         withCredentials: true,
       });
 
-      // 2️ bulkbuygroup 테이블의 bcount -1
       const response = await axios.put(
         "http://localhost:8080/chat/count/mm",
         null,
-        {
-          params: { bno: num },
-          withCredentials: true,
-        }
+        { params: { bno: num }, withCredentials: true }
       );
 
       if (response.status === 200) {
@@ -222,15 +290,9 @@ export default function Chatting() {
     }
   };
 
-  console.log("💬 chatprint:", chatprint);
 
-  // // 접속명단 이름 
-  // const menubar = async() => {
-  //   console.log('test memuber');
-  //   const response = await axios.get("http://localhost:8080/chat/play/name" , null {
+  console.log(" chatprint:", chatprint);
 
-  //   })
-  // }
 
 
 
@@ -319,17 +381,26 @@ export default function Chatting() {
 
 
       <div className="chat-input-area">
-        <input
-          className="chat-input"
-          value={mmessage}
-          onChange={(e) => setmmessage(e.target.value)}
-          placeholder="메시지를 입력하세요"
-          onKeyDown={(e) => e.key === "Enter" && textbtn()}
-        />
-        <button className="chat-btn" onClick={textbtn}>
-          ▶
-        </button>
-      </div>
+  {!readonly ? (
+    <>
+      <input
+        className="chat-input"
+        value={mmessage}
+        onChange={(e) => setmmessage(e.target.value)}
+        placeholder="메세지를 입력해주세요."
+        onKeyDown={(e) => e.key === "Enter" && textbtn()}
+      />
+      <button className="chat-btn" onClick={textbtn}>
+        ▶
+      </button>
+    </>
+  ) : (
+    <div className="readonly-box">
+       방장님이 나가 채팅이 잠겼습니다.
+    </div>
+  )}
+</div>
+
       <Footer />
     </>
   );
