@@ -1,12 +1,14 @@
 package web.controller.community;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import web.model.dto.community.GroupbulkbuyDto;
 import web.service.community.GroupbulkbuyService;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +41,43 @@ public class GroupbulkbuyController {
         System.out.println("GroupbulkbuyController.인스턴스 이니셜라이저");
         groupbulkbuyService.leaveGroup(mno , bno);
         return ResponseEntity.ok("퇴장");
-
     }
+
+    // 방장 방 나가기
+    @PutMapping("play/gmnoout")
+    public ResponseEntity< ? > playgmnoout(@RequestParam int gmno ,  @RequestParam int bno) {
+        System.out.println("GroupbulkbuyController.playgmnoout");
+        Map<String,Object> map = new HashMap<>();
+        map.put("gmno",gmno);
+        map.put("bno",bno);
+        map.put("msg",
+                        "방장님이 나가셨습니다.\n" +
+                        "읽기 모드로 변경됩니다.\n" +
+                        "채팅방 나가기 클릭시 입장불가합니다."
+        );
+        return ResponseEntity.ok(map);
+    }
+
+    // 방장 나가기 후 채팅 읽기 전환
+    @PutMapping("room/check")
+    public ResponseEntity< ? > roomcheck(@RequestParam int gmno ,  @RequestParam int bno) {
+        System.out.println("GroupbulkbuyController.roomcheck");
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("gmno",gmno);
+        map.put("bno",bno);
+        map.put("status","locked");
+        return ResponseEntity.ok(map);
+    }
+    // 읽기 확인
+    @GetMapping("/room/lock")
+    public ResponseEntity< ? > roomlock( @RequestParam int bno) {
+        System.out.println("GroupbulkbuyController.roomlock");
+        boolean readonly = groupbulkbuyService.roomlock(bno);
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("read_only" , readonly ? 1 : 0 );
+        return  ResponseEntity.ok(map);
+    }
+
 }

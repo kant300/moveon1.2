@@ -1,7 +1,11 @@
 package web.service.community;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import web.model.dto.community.BulkbuygroupDto;
 import web.model.dto.community.GroupbulkbuyDto;
 import web.model.mapper.community.GroupbulkbuyMapper;
@@ -39,4 +43,19 @@ public class GroupbulkbuyService {
         System.out.println("GroupbulkbuyService.leaveGroup");
         groupbulkbuyMapper.leaveGroup(mno , bno);
     }
+
+    // 방장 방 나가기
+    public playgmnoout( int gmno , int bno) {
+
+    }
+
+    // 방장 나가기 후 채팅 읽기 전환
+    public roomcheck( int gmno , int bno) {
+
+    }
+    // 읽기 확인
+    public  roomlock(int bno) {
+
+    }
+
 }

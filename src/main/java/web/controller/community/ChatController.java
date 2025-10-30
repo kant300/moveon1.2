@@ -84,5 +84,7 @@ public class ChatController {
         List<MemberDto> dto = chatService.playname(bno);
         return ResponseEntity.ok(dto);
     }
+
+
 }
 

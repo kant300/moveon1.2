@@ -25,4 +25,7 @@ public class GroupbulkbuyDto {
     private String joindate; // 참여 일시
     private String leavedate; //  퇴장 일시 (NULL 가능)
     private int active;      //  참여 여부 (1=참여중, 0=퇴장)
+
+//    // 방 여부 / 일반 | 읽기
+//    private int read_only; // 0 일반 : 1 읽기
 }

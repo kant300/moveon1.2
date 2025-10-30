@@ -32,6 +32,8 @@ CREATE TABLE bulkbuygroup (
      bdate DATE DEFAULT (CURRENT_DATE),         -- 날짜
      btotal INT NOT NULL,                       -- 인원(총)
      bcount INT NOT NULL,                       -- 인원(현재)
+     read_only TINYINT(1) DEFAULT 0,            -- 읽기전용 여부 ex) 0=일반 채팅방 , 1=링크 삭제? 안보이게(방장 나감)
+
      CONSTRAINT fk_bulk_member FOREIGN KEY (mno)
          REFERENCES members(mno)
          ON DELETE CASCADE
