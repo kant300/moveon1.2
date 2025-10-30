@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import arrow_back_ios_new from '../../assets/images/icons/arrow_back_ios_new_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg';
 import Header from "../Header";
 import '../../assets/css/member/ModifyPwd.css';
+import Footer from "../Footer";
 
 export default function ModifyPwd() {
   const navigate = useNavigate();
@@ -73,6 +74,8 @@ export default function ModifyPwd() {
           </div>
         </div>
       </div>
+    <Footer />
     </>
+      
   );
 }
