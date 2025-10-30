@@ -37,8 +37,6 @@ export default function Chatting() {
   };
   /* ---------------------- */
 
-
-
   const { bno } = useParams();
   const num = bno;
   const nav = useNavigate();
@@ -123,8 +121,8 @@ export default function Chatting() {
             { mname: "alarm", mmessage: smg.message },
           ]);
 
-          if(smg.message.includes("읽기모드로 변경")){
-            setreadonly(true);
+          if (smg.message.includes("읽기모드로 변경")) {
+            setreadonly(1);
           }
         } else if (smg.type === "msg") {
           setchatprint((prev) => [
@@ -177,8 +175,20 @@ export default function Chatting() {
 
   // ✅ 메시지 전송
   const textbtn = async () => {
+    const response2 = await axios.get("http://localhost:8080/groupchat/room/lock", {
+    params: { bno: num },
+    withCredentials: true,
+  });
 
 
+  const roomlock = response2.data.read_only === 1;
+  setreadonly(roomlock);
+
+  if (roomlock) {
+    alert("읽기 모드에서는 메시지를 전송할 수 없습니다.");
+    return;
+  }
+  
     if (!mmessage.trim()) return;
 
 
@@ -243,19 +253,19 @@ export default function Chatting() {
           })
         );
       }
-      if(hostcheck){
-      await axios.put("http://localhost:8080/groupchat/room/check", null, {
-        params: { gmno: auth.mno, bno: num },
-        withCredentials: true,
-      });
-    
+      if (hostcheck) {
+        await axios.put("http://localhost:8080/groupchat/room/check", null, {
+          params: { gmno: auth.mno, bno: num },
+          withCredentials: true,
+        });
 
-    await axios.put("http://localhost:8080/groupchat/play/gmnoout", null, {
-      params: { gmno: auth.mno, bno: num },
-      withCredentials: true,
-    });
-  }
-}
+
+        await axios.put("http://localhost:8080/groupchat/play/gmnoout", null, {
+          params: { gmno: auth.mno, bno: num },
+          withCredentials: true,
+        });
+      }
+    }
 
     if (socket && socket.readyState === WebSocket.OPEN) {
       socket.send(
@@ -324,13 +334,13 @@ export default function Chatting() {
               {player.length > 0 ? (
                 player.map((p, i) => (
 
-                  <div className="member-item" key={i}>
+                  <div className="member-item" key={i} style={count.host_mno == p.mno ? { color: 'red ' } : {}} >
                     <img
                       src={playicon}       // 백엔드에 이미지 없어 임시 프로필만 표시
                       alt="프로필"
                       className="member-img"
                     />
-                    {p.mname}</div>
+                    {p.mname}   {count.host_mno == p.mno ? '방장' : ''}  </div>
                 ))
               ) : (
                 <span className="offline">접속자가 없습니다.</span>
@@ -381,25 +391,25 @@ export default function Chatting() {
 
 
       <div className="chat-input-area">
-  {!readonly ? (
-    <>
-      <input
-        className="chat-input"
-        value={mmessage}
-        onChange={(e) => setmmessage(e.target.value)}
-        placeholder="메세지를 입력해주세요."
-        onKeyDown={(e) => e.key === "Enter" && textbtn()}
-      />
-      <button className="chat-btn" onClick={textbtn}>
-        ▶
-      </button>
-    </>
-  ) : (
-    <div className="readonly-box">
-       방장님이 나가 채팅이 잠겼습니다.
-    </div>
-  )}
-</div>
+        {!readonly ? (
+          <>
+            <input
+              className="chat-input"
+              value={mmessage}
+              onChange={(e) => setmmessage(e.target.value)}
+              placeholder="메세지를 입력해주세요."
+              onKeyDown={(e) => e.key === "Enter" && textbtn()}
+            />
+            <button className="chat-btn" onClick={textbtn}>
+              ▶
+            </button>
+          </>
+        ) : (
+          <div className="readonly-box">
+            방장님이 나가 채팅이 잠겼습니다.
+          </div>
+        )}
+      </div>
 
       <Footer />
     </>

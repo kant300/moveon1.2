@@ -9,15 +9,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import web.model.mapper.MemberMapper;
 import web.model.dto.MemberDto;
+import web.service.email.MessageService;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor    // final 필드에 대한 자동 생성자 주입
 public class MemberService {
     private final MemberMapper memberMapper;
     private final JwtService jwtService;
+    private final MessageService messageService;
 
     // 1-2 : 비크립트 라이브러리 객체 주입
     private final BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
@@ -87,9 +90,29 @@ public class MemberService {
 
     }
 
+    // 인증번호(랜덤)
+    public int verification() {
+        Random random = new Random();
+        int code = random.nextInt(900000) + 100000; // 100000 ~ 999999 사이 랜덤 정수
+        return code;
+    }
+
+
     // 6. 비밀번호찾기/재설정
     public boolean findPwd(MemberDto dto){
         dto.setMpwd(bcrypt.encode( dto.getMpwd() ) );
+
+        String randdomcode = String.valueOf(verification());
+
+        MemberDto member = memberMapper.findPwd(dto.getMid());
+        if (member == null) {
+            return false; // 회원 정보가 없으면 실패
+        }
+
+        String bcryptpass = bcrypt.encode( randdomcode );
+
+
+
         return memberMapper.findPwd(dto) > 0;
     }
 //    // 이메일 인증 요청 (requestPwdAuth)

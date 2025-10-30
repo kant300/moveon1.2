@@ -44,6 +44,8 @@ dependencies {
     runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
     // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
     implementation("org.apache.poi:poi-ooxml:5.4.1")
+    // email 전송
+    implementation 'org.springframework.boot:spring-boot-starter-mail'      // email 전송 spring boot 에서만 가능
 }
 
 
