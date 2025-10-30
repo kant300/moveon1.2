@@ -43,7 +43,9 @@ export default function App() {
           <Route path='/myinfo' element={<MyInfo />} />
           <Route path='/signout' element={<Signout />} />
           <Route path="/findPwd" element={<FindPwd />} />
-          <Route path="/resetPwd" element={<ResetPwd />} /> 
+          <Route path="/resetPwd" element={<ResetPwd />} />
+
+
           
          
 

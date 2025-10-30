@@ -3,6 +3,7 @@ package web.controller;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.apache.hc.core5.http.HttpStatus;
 import org.apache.ibatis.annotations.Delete;
@@ -163,6 +164,24 @@ public class MemberController {
         boolean result = memberService.updateInfo(dto);
         return ResponseEntity.ok(result);
     }
+    // 7-1 비밀번호 변경
+    @PutMapping("/updatePwd")
+    public boolean updatePwd(@RequestBody MemberDto dto, HttpSession session ){
+        MemberDto loginMember = (MemberDto) session.getAttribute("loginMember");
+        if( loginMember == null ) return false; // 로그인 안된 경우
+        // DB에 저장된 기존 비밀번호 비교
+        MemberDto dbMember = memberService.getMemberById(loginMember.getMid());
+        if(!dbMember.getMpwd().equals(dto.getMpwd())) return false;
+
+        // 새 비밀번호 업데이트
+        boolean result = memberService.updatePassword(loginMember.getMid(), dto.getNewPwd());
+        if (result){
+            dbMember.setMpwd(dto.getNewPwd());
+            session.setAttribute("loginMember" , dbMember); // 세션 갱신
+        }
+        return result;
+    }
+
 
     // 8. 회원탈퇴
     @DeleteMapping("/signout")

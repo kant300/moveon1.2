@@ -54,7 +54,6 @@ export default function Menu() {
                     <div id="menuTop">
                         <div>{ member == null ? <> 로그인해주세요 </> : <>  {member.mname}</>}</div>
                         <div>
-                            <Link to='/notification'><img src={notification_sound} /></Link>
                             <Link to='/setting'><img src={settings} /></Link>
                         </div>
                     </div>
