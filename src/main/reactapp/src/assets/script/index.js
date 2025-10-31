@@ -25,7 +25,7 @@ export function Weather() {
 
                     try {
                         // 날씨 데이터 가져오기
-                        const response = await axios.get(`http://localhost:8080/weather?lat=${parseInt(lat)}&lon=${parseInt(lon)}`);
+                        const response = await axios.get(`http://10.41.222.46:8080/weather?lat=${parseInt(lat)}&lon=${parseInt(lon)}`);
                         const data = response.data;
 
                         // 데이터가 없으면 콘솔과 HTML에 코드 출력 후 리턴
@@ -112,7 +112,7 @@ export function Weather() {
                                             </div>
                                         </div>
                                         <div>
-                                          <img src="http://localhost:5173/icons/${ icon }" style="width:95px"  />
+                                          <img src="http://10.41.222.46:5173/icons/${ icon }" style="width:95px"  />
                                         </div>
                                     </div>
                                 

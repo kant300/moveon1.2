@@ -48,7 +48,7 @@ export function Run() {
 // [3] 쓰레기 개별 배출정보 출력
 async function trashFind(tCity, tGu) {
     try {
-        const response = await axios.get(`http://localhost:8080/living/trash?tCity=${tCity}&tGu=${tGu}`);
+        const response = await axios.get(`http://10.41.222.46:8080/living/trash?tCity=${tCity}&tGu=${tGu}`);
         const data = await response.data;
         
         const html = `

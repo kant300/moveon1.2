@@ -13,7 +13,7 @@ export default function Bulkbuygroup() {
   //  글 목록 불러오기 // 참여중인 mno 기준으로 
   const fetchGroups = async ( mno ) => {
     try {
-      const response = await axios.get("http://localhost:8080/groupchat/my/Group" , {
+      const response = await axios.get("http://10.41.222.46:8080/groupchat/my/Group" , {
         params : { mno },
         withCredentials : true ,
       });
@@ -31,7 +31,7 @@ export default function Bulkbuygroup() {
       if (value.trim() == "") {
         fetchGroups();
       } else {
-        const response = await axios.get("http://localhost:8080/group/listprint", {
+        const response = await axios.get("http://10.41.222.46:8080/group/listprint", {
           params: { btitle: value, bcontent: value },
         });
         setGroups(response.data);
@@ -54,7 +54,7 @@ export default function Bulkbuygroup() {
   // 로그인 정보 가져오기
   const checkcookie = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/member/info", {
+      const res = await axios.get("http://10.41.222.46:8080/api/member/info", {
         params : { mno : auth.mno } , 
          withCredentials: true, 
         }

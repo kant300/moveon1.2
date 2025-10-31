@@ -79,7 +79,7 @@ export default function Signup() {
 
         try {
             const obj = { mid, mpwd, mname, memail, mphone, maddress1, maddress2, maddress3 };
-            const response = await axios.post("http://localhost:8080/api/member/signup", obj);
+            const response = await axios.post("http://10.41.222.46:8080/api/member/signup", obj);
             const data = response.data;
 
             if (data === true ) {

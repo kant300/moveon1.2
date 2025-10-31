@@ -55,7 +55,7 @@ export default function WheelchairCharger() {
         // Spring Boot API 호출
         const loadChargerData = async () => {
           try {
-            const res = await fetch("http://localhost:8080/api/chargers/all");
+            const res = await fetch("http://10.41.222.46:8080/api/chargers/all");
             const data = await res.json();
             console.log("전동휠체어 급속충전기 데이터:", data);
 

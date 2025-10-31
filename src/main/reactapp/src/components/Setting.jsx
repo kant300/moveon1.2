@@ -23,7 +23,7 @@ export default function Setting() {
     // 2. 최초로 컴포넌트 실행시 유저 정보 요청하기
     const getMyInfo = async()=>{
         try{
-            const url = "http://localhost:8080/api/member/info"
+            const url = "http://10.41.222.46:8080/api/member/info"
             const res = await axios.get( url , { withCredentials : true } );
             if (res.data != '') {
                 setMember( res.data ); // 반환된 유저 정보를 저장
@@ -35,7 +35,7 @@ export default function Setting() {
         // 3. 로그아웃 요청하기 
     const getLogout = async()=>{
         try{
-            const url = 'http://localhost:8080/api/member/logout'
+            const url = 'http://10.41.222.46:8080/api/member/logout'
             const res = await axios.get( url , { withCredentials : true } );
             alert('로그아웃 되었습니다.');
             // navigate("/login"); // 라우터( 클라이언트 사이드 렌더링 )

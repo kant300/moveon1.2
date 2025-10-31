@@ -49,7 +49,7 @@ export function Run(mapRef, pos) {
                 const getParkingData = async () => {
                     // 승강기 데이터를 가져와 필요한 데이터를 삽입합니다
                     // 1. 매핑된 데이터를 가져옵니다
-                    const response = await axios.get("http://localhost:8080/transport/parking");
+                    const response = await axios.get("http://10.41.222.46:8080/transport/parking");
                     const data = await response.data;
                     var positions = [];
                     for (let i = 0; i < data.length; i++) {

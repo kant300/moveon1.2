@@ -36,7 +36,7 @@ export default function ResetPwd(){
 
         try {
             // [API 3] Spring Controller의 @PutMapping("/findpwd") 호출
-            const response = await axios.put("http://localhost:8080/api/member/findpwd", { mid, mpwd: newPwd }); 
+            const response = await axios.put("http://10.41.222.46:8080/api/member/findpwd", { mid, mpwd: newPwd });
             
             if (response.data === true) { // 가정: 서버에서 true 반환 시 성공
                 setStatusMessage('비밀번호 재설정이 완료되었습니다. 로그인 페이지로 이동합니다.');

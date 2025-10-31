@@ -27,7 +27,7 @@ export default function FindId() {
         }
 
         try{
-            const response = await axios.get("http://localhost:8080/api/member/findid",{
+            const response = await axios.get("http://10.41.222.46:8080/api/member/findid",{
                 params: { memail: email, mphone: phone }
             });
             if( response.data && response.data.mid ){

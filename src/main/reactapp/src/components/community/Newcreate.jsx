@@ -17,7 +17,7 @@ export default function Newcreate(props){
     // 로그인 정보 가져오기 쿠키 
     const checkcookie = async() => {
         try{
-            const res = await axios.get("http://localhost:8080/api/member/info" ,
+            const res = await axios.get("http://10.41.222.46:8080/api/member/info" ,
                 { withCredentials : true } );
                 setAuth(res.data);
                 console.log(res.data);
@@ -41,7 +41,7 @@ export default function Newcreate(props){
 
         try{
         
-            const response = await axios.post("http://localhost:8080/group/create" , obj , { withCredentials : true }  )
+            const response = await axios.post("http://10.41.222.46:8080/group/create" , obj , { withCredentials : true }  )
             const data =  response.data;
 
             if(data == true){

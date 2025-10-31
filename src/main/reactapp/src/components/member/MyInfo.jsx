@@ -15,7 +15,7 @@ export default function MyInfo() {
     {/* 회원정보 불러오기 */}
     const getSignout = async()=>{
         try{
-            const url = "http://localhost:8080/api/member/info"
+            const url = "http://10.41.222.46:8080/api/member/info"
             const res = await axios.get(url,{ withCredentials : true } );
             if(res.data !=''){
                 setMember( res.data );

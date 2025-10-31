@@ -52,7 +52,7 @@ export function Run(mapRef, pos) {
                 const getLiftData = async () => {
                     // 승강기 데이터를 가져와 필요한 데이터를 삽입합니다
                     // 1. 매핑된 데이터를 가져옵니다
-                    const response = await axios.get("http://localhost:8080/transport/lift");
+                    const response = await axios.get("http://10.41.222.46:8080/transport/lift");
                     const data = await response.data;
                     var positions = [];
                     for (let i=0; i<data.length; i++) {
@@ -131,7 +131,7 @@ export function Run(mapRef, pos) {
                     
                     // 지하철 역사 위치 데이터를 가져와 필요한 데이터를 삽입합니다
                     // A-1. 매핑된 데이터를 가져옵니다
-                    const st_response = await axios.get("http://localhost:8080/transport/location");
+                    const st_response = await axios.get("http://10.41.222.46:8080/transport/location");
                     const st_data = await st_response.data;
                     var positions = [];
                     for (let i=0; i<st_data.length; i++) {
@@ -142,7 +142,7 @@ export function Run(mapRef, pos) {
 
                         // 지하철 배차 정보 데이터를 가져와 필요한 데이터를 삽입합니다
                         // B-1. 매핑된 데이터를 가져옵니다
-                        const sc_response = await axios.get("http://localhost:8080/transport/schedule?station_name="+obj.역사명);
+                        const sc_response = await axios.get("http://10.41.222.46:8080/transport/schedule?station_name="+obj.역사명);
                         const sc_data = await sc_response.data;
 
                         const time1 = parseTime(sc_data[0][0]);

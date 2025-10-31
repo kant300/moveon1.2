@@ -18,7 +18,7 @@ export default function MyPage() {
     const [auth, setAuth] = useState({ check: null })
     const checkcookie = async () => {
         try {
-            const res = await axios.get("http://localhost:8080/api/member/info",
+            const res = await axios.get("http://10.41.222.46:8080/api/member/info",
                 { withCredentials: true });
                 console.log(res.data);
             setAuth(res.data);

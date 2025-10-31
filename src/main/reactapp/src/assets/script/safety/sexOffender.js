@@ -144,7 +144,7 @@ async function loadCriminals(map, myLocation) {
         criminalMarkers = [];
     }
     // 서버에서 범죄자 목록 가져오기
-    const response = await axios.get("http://localhost:8080/safety/criminal");
+    const response = await axios.get("http://10.41.222.46:8080/safety/criminal");
     const criminalList = await response.data;
     console.log(criminalList);
 

@@ -26,7 +26,7 @@ export default function ModifyPwd() {
       return;
     }
     try {
-      const res = await axios.put("http://localhost:8080/api/member/updatePwd", form, { withCredentials: true });
+      const res = await axios.put("http://10.41.222.46:8080/api/member/updatePwd", form, { withCredentials: true });
       if (res.data === true) {
         alert("비밀번호가 성공적으로 변경되었습니다.");
         navigate("/myinfo");

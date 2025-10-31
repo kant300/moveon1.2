@@ -20,7 +20,7 @@ export default function Login() {
         const mpwd = document.querySelector("#pwdInput").value;
         const obj = { mid  , mpwd }; 
         try{
-            const response = await axios.post("http://localhost:8080/api/member/login", obj , { withCredentials: true } );
+            const response = await axios.post("http://10.41.222.46:8080/api/member/login", obj , { withCredentials: true } );
             const data = await response.data;
             if( data != ""){
                 alert('로그인 성공')

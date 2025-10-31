@@ -18,7 +18,7 @@ export default function Signout(){
         }
         if (window.confirm("정말로 탈퇴하시겠습니까?" )) {
             try{
-                const res = await axios.delete("http://localhost:8080/api/member/signout", {
+                const res = await axios.delete("http://10.41.222.46:8080/api/member/signout", {
                     withCredentials:true,
                 });
                 alert("탈퇴가 완료되었습니다.");

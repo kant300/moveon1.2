@@ -26,7 +26,7 @@ export default function Chatting() {
     if (inOpen == true) {
       console.log('mui 슬라이드바 열림');
       try {
-        const response = await axios.get("http://localhost:8080/chat/play/name", {
+        const response = await axios.get("http://10.41.222.46:8080/chat/play/name", {
           params: { bno: num },
           withCredentials: true,
         });
@@ -51,7 +51,7 @@ export default function Chatting() {
   // ✅ 로그인 정보 가져오기
   const checkcookie = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/member/info", {
+      const res = await axios.get("http://10.41.222.46:8080/api/member/info", {
         withCredentials: true,
       });
       setAuth(res.data);
@@ -67,7 +67,7 @@ export default function Chatting() {
 
   // ✅ 인원수 체크
   const playcount = async () => {
-    const res = await axios.get("http://localhost:8080/chat/cocheck", {
+    const res = await axios.get("http://10.41.222.46:8080/chat/cocheck", {
       withCredentials: true,
       params: { bno: num },
     });
@@ -77,7 +77,7 @@ export default function Chatting() {
 
   // ✅ 채팅 출력
   const chattingprint = async () => {
-    const res = await axios.get("http://localhost:8080/chat/print", {
+    const res = await axios.get("http://10.41.222.46:8080/chat/print", {
       withCredentials: true,
       params: { bno: num },
     });
@@ -96,7 +96,7 @@ export default function Chatting() {
 
     // ✅ playcount() 실행 후 WebSocket 연결
     playcount().then(() => {
-      const sc = new WebSocket("ws://localhost:8080/chatting");
+      const sc = new WebSocket("ws://10.41.222.46:8080/chatting");
       setwebsocket(sc);
 
       sc.onopen = () => {
@@ -153,7 +153,7 @@ export default function Chatting() {
 
   const roomcheck = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/groupchat/room/lock", {
+      const response = await axios.get("http://10.41.222.46:8080/groupchat/room/lock", {
         params: { bno: num },
         withCredentials: true,
       });
@@ -175,7 +175,7 @@ export default function Chatting() {
 
   // ✅ 메시지 전송
   const textbtn = async () => {
-    const response2 = await axios.get("http://localhost:8080/groupchat/room/lock", {
+    const response2 = await axios.get("http://10.41.222.46:8080/groupchat/room/lock", {
     params: { bno: num },
     withCredentials: true,
   });
@@ -193,7 +193,7 @@ export default function Chatting() {
 
 
     const obj = { bno: num, mmessage };
-    const response = await axios.post("http://localhost:8080/chat/write", obj, {
+    const response = await axios.post("http://10.41.222.46:8080/chat/write", obj, {
       withCredentials: true,
     });
 
@@ -218,7 +218,7 @@ export default function Chatting() {
   // 방장 여부
   const hostmember = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/chat/cocheck", {
+      const response = await axios.get("http://10.41.222.46:8080/chat/cocheck", {
         params: { bno: num },
         withCredentials: true,
       });
@@ -254,13 +254,13 @@ export default function Chatting() {
         );
       }
       if (hostcheck) {
-        await axios.put("http://localhost:8080/groupchat/room/check", null, {
+        await axios.put("http://10.41.222.46:8080/groupchat/room/check", null, {
           params: { gmno: auth.mno, bno: num },
           withCredentials: true,
         });
 
 
-        await axios.put("http://localhost:8080/groupchat/play/gmnoout", null, {
+        await axios.put("http://10.41.222.46:8080/groupchat/play/gmnoout", null, {
           params: { gmno: auth.mno, bno: num },
           withCredentials: true,
         });
@@ -280,13 +280,13 @@ export default function Chatting() {
     }
 
     try {
-      await axios.put("http://localhost:8080/groupchat/leave/Group", null, {
+      await axios.put("http://10.41.222.46:8080/groupchat/leave/Group", null, {
         params: { mno: auth.mno, bno: num },
         withCredentials: true,
       });
 
       const response = await axios.put(
-        "http://localhost:8080/chat/count/mm",
+        "http://10.41.222.46:8080/chat/count/mm",
         null,
         { params: { bno: num }, withCredentials: true }
       );

@@ -17,7 +17,7 @@ public class WebsocketConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry.addHandler(chatHandler  ,"/chatting")
-                .setAllowedOrigins("http://localhost:5173" , "http://localhost:5174");
+                .setAllowedOrigins("http://localhost:5173" , "http://localhost:5174" , "http://10.41.222.46:5173");
                     // Websocket을  5173 , 5174 리액트에 허용한다.
     }
 }

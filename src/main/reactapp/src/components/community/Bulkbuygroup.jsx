@@ -13,7 +13,7 @@ export default function Bulkbuygroup() {
   //  글 목록 불러오기
   const fetchGroups = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/group/list");
+      const response = await axios.get("http://10.41.222.46:8080/group/list");
       setGroups(response.data);
       console.log(response.data);
     } catch (error) {
@@ -28,7 +28,7 @@ export default function Bulkbuygroup() {
       if (value.trim() == "") {
         fetchGroups();
       } else {
-        const response = await axios.get("http://localhost:8080/group/listprint", {
+        const response = await axios.get("http://10.41.222.46:8080/group/listprint", {
           params: { btitle: value, bcontent: value },
         });
         setGroups(response.data);
@@ -48,7 +48,7 @@ export default function Bulkbuygroup() {
   // 로그인 정보 가져오기
   const checkcookie = async () => {
     try {
-      const res = await axios.get("http://localhost:8080/api/member/info",
+      const res = await axios.get("http://10.41.222.46:8080/api/member/info",
         { withCredentials: true });
       setAuth(res.data);
       console.log(res.data)
@@ -82,7 +82,7 @@ const 입장 = async (item) => {
 
   // 이미 참여중인 방인지 확인
   try{
-    const check = await axios.get("http://localhost:8080/groupchat/my/Group" , {
+    const check = await axios.get("http://10.41.222.46:8080/groupchat/my/Group" , {
       params : { mno : auth.mno },
       withCredentials : true,
     });
@@ -101,12 +101,12 @@ const 입장 = async (item) => {
   if (item.bcount < item.btotal) { // 인원 제한 조건 수정
     try {
       // 방입장시 마이페이지 저장 
-      await axios.post("http://localhost:8080/groupchat/join/Group" , null, {
+      await axios.post("http://10.41.222.46:8080/groupchat/join/Group" , null, {
         params: { mno: auth.mno, bno: item.bno },
         withCredentials: true,
       })
       const response = await axios.put(
-        "http://localhost:8080/chat/count/pp",
+        "http://10.41.222.46:8080/chat/count/pp",
         null,
         {
           params: { bno: item.bno },
@@ -160,7 +160,7 @@ const 입장 = async (item) => {
               <div key={item.bno} className="bulk-card" onClick={() => { 입장(item) }}>
               <div className="img">
                 <img
-                  src={`http://localhost:5173/upload/product/${item.bimg == null ? '이미지준비중.png' : item.bimg }`}
+                  src={`http://10.41.222.46:5173/upload/product/${item.bimg == null ? '이미지준비중.png' : item.bimg }`}
                 />
               </div>
                 <div className="itemInfo">

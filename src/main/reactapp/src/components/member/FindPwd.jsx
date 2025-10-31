@@ -56,7 +56,7 @@ export default function FindPwd() {
         setTimer(3 *60); // 3분 타이머 설정
         try{
             // [API 1] Spring Boot 인증메일 요청 API 호출
-            const response = await axios.post("http://localhost:8080/api/member/requestPwdAuth",
+            const response = await axios.post("http://10.41.222.46:8080/api/member/requestPwdAuth",
                 { mid, memail});
                 if( response.data.success ){
                     setStatusMessage("인증번호가 이메일로 전송되었습니다.");
@@ -78,7 +78,7 @@ export default function FindPwd() {
             setStatusMessage("인증번호를 확인중입니다...");
             try{
                 // [API 2] Spring Boot 인증번호 확인 API 호출
-                const response = await axios.post("http://localhost:8080/api/member/verifyPwdCode",
+                const response = await axios.post("http://10.41.222.46:8080/api/member/verifyPwdCode",
                 { mid,  verifyCode });
                 if(response.data.success){ // 인증 성공
                     setAuthComplete( true );
