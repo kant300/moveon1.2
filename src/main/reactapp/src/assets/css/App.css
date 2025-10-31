@@ -27,7 +27,7 @@ li {
 
 #wrap {
   height: 100vh; /* 💡 화면 높이 100% (모니터 전체) */
-  overflow-y: hidden;
+  overflow-y: scroll;
 }
 #container {
     display: flex;

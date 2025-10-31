@@ -108,8 +108,7 @@ export default function Index() {
                                         </div>
                                     </div>
                                     <div>
-                                        <div id="t1h">☀
-                                    </div>
+                                        <img src="http://localhost:5173/icons/icons8-sun.svg" style={{width:'95px'}} />
                                 </div>
                             
                             </div>

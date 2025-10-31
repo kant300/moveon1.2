@@ -189,7 +189,10 @@ export function Run(mapRef, pos) {
                             title : obj.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                             image : markerImage // 마커 이미지 
                         });
-        
+
+                          // 지도에 표시
+                          marker.setMap(mapRef.current);  // ✅ 추가
+
                         // 3. positions 배열에 삽입한 데이터를 꺼내옵니다
                         let iwContent = `
                             <div style="width:400px;text-align:center;padding:10px;font-family:'NanumGothic';">
