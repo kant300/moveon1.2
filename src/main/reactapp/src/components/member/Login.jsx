@@ -44,7 +44,7 @@ export default function Login() {
                         <div id='title'>로그인</div>
                         <div>　</div>
                     </div>
-                    <h2>mOveOn</h2>
+
                     <div>
                         <div><input type="text" id="idInput" className='input' placeholder="ID를 입력해주세요."/></div>
                         <div><input type="password" id="pwdInput" className='input' placeholder="비밀번호를 입력해주세요." /></div>
