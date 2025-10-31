@@ -29,6 +29,12 @@ import { Link } from "react-router-dom";
 import { Weather } from '../assets/script/index';
 import axios from "axios";
 
+// 로컬 이미지 import (Vite 기준)
+import ex1 from "../assets/images/imgs/전시ex1.jpg";
+import ex2 from "../assets/images/imgs/전시ex2.jpg";
+import ex3 from "../assets/images/imgs/전시ex3.png";
+import ex4 from "../assets/images/imgs/전시ex4.jpg";
+
 // 메인 페이지
 export default function Index() {
     const [category, setCategory] = useState(0);
@@ -52,6 +58,30 @@ export default function Index() {
         }catch( err ){ setMember(null); } // 오류시 null
     }
 
+      // 샘플 데이터 (placehold.co 이미지)
+  const eventList = {
+    0: [
+      { title: "모네 인사이드", price: "12,000원", sale: "20%", img: ex1 },
+      { title: "팀랩라이프 서울", price: "25,000원", sale: "10%", img: ex2 },
+      { title: "디뮤지엄 포스터展", price: "18,000원", sale: "15%", img: ex3 },
+      { title: "루브르 명화전", price: "22,000원", sale: "5%", img: ex4 },
+    ],
+    1: [
+      { title: "서울 불꽃축제", price: "무료", sale: "", img: "https://placehold.co/200x200" },
+      { title: "부평문화거리축제", price: "5,000원", sale: "30%", img: "https://placehold.co/200x200" },
+      { title: "벚꽃음악축제", price: "10,000원", sale: "25%", img: "https://placehold.co/200x200" },
+      { title: "송도맥주페스티벌", price: "20,000원", sale: "15%", img: "https://placehold.co/200x200" },
+    ],
+    2: [
+      { title: "인천 벼룩시장", price: "무료입장", sale: "", img: "https://placehold.co/200x200" },
+      { title: "신촌 플리마켓", price: "3,000원", sale: "", img: "https://placehold.co/200x200" },
+      { title: "홍대 주말마켓", price: "무료입장", sale: "", img: "https://placehold.co/200x200" },
+      { title: "부산 셀러마켓", price: "5,000원", sale: "10%", img: "https://placehold.co/200x200" },
+    ],
+  };
+
+
+
     return (<>
         <Header />
         <div id='wrap'>
@@ -60,22 +90,31 @@ export default function Index() {
                 <div id="weatherBox">
                     <div id="weather">
                         {/* 샘플 데이터 */}
-                        <div id="addr"><strong>인천 부평구 부평동</strong>의 날씨 (16시 기준)</div>
-                        <div id="t1h" >☀️ 30° 맑음</div>
-                        <div id="infoBox">
-                            <div id="item">
-                                <span id="label">습도 </span>
-                                <span>86%</span>
+                            <div class="w_cont">
+                                    <div class="w_inner">
+                                        <div class="w_addr"> <strong>인천 부평구 부평동</strong> (16시 기준)  </div>
+                                        <div class="w_pty"> 30° 맑음 </div>
+                                        <div id="infoBox">
+                                            <div id="item1">
+                                                <span id="label">습도</span>
+                                                <span class="reh">86%</span>
+                                            </div>
+                                            <div id="item2">
+                                                <span id="label">하늘</span>
+                                                <span class="sky">맑음</span>
+                                            </div>
+                                            <div id="item3">
+                                                <span id="label">풍속</span>
+                                                <span class="wsd">5m/s</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div id="t1h">☀️
+                                    </div>
+                                </div>
+                            
                             </div>
-                            <div id="item">
-                                <span id="label">하늘 </span>
-                                <span>맑음</span>
-                            </div>
-                            <div id="item">
-                                <span id="label">풍속 </span>
-                                <span>5m/s</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <ul id='categoryBox'>
@@ -131,55 +170,22 @@ export default function Index() {
                         <li className={event===0 ? 'active' : ''} onClick={() => {setEvent(0)}}>전시/문화</li>
                         <li className={event===1 ? 'active' : ''} onClick={() => {setEvent(1)}}>축제/행사</li>
                         <li className={event===2 ? 'active' : ''} onClick={() => {setEvent(2)}}>벼룩시장</li>
-                        <li className={event===3 ? 'active' : ''} onClick={() => {setEvent(3)}}>내위치반경</li>
                     </ul>
-                    <ul id='eventList'>
-                        {
-                            event==0?(
-                                <>
-                                    <Link to='/community/article?id=0'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                </>
-                            ):
-                            event==1?(
-                                <>
-                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                </>
-                            ):
-                            event==2?(
-                                <>
-                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                </>
-                            ):
-                            event==3?(
-                                <>
-                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역문화행사 - 박물관 전시회 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역축제행사 - 불꽃놀이 축제 (부평구) <span>2025.09.20</span></li></Link>
-                                    <Link to='/community/article'><li>지역벼룩시장 - 벼룩시장 일정 (부평구) <span>2025.09.20</span></li></Link>
-                                </>
-                            ):null
-                        }
+
+                    <ul id="eventList">
+                        {eventList[event].map((item, i) => (
+                        <li key={i} className="event-card">
+                            <div className="thumb">
+                            <img src={item.img} alt={item.title} />
+                            </div>
+                            <div className="info">
+                            <h4>{item.title}</h4>
+                            <p className="price">
+                                {item.sale && <span className="sale">{item.sale}</span>} {item.price}~
+                            </p>
+                            </div>
+                        </li>
+                        ))}
                     </ul>
                 </div>
                 <div id='alertBox'>

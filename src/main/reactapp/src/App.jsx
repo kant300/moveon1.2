@@ -26,6 +26,7 @@ import Gas from './components/transport/Gas.jsx';
 import Toilet from './components/safety/Toilet.jsx';
 import Gov from './components/living/Gov.jsx';
 import WheelchairCharger from './components/transport/WheelchairCharger.jsx';
+import Medical from './components/living/Medical.jsx';
 import ModifyPwd from './components/member/ModifyPwd.jsx';
 
 
@@ -51,11 +52,11 @@ export default function App() {
           <Route path="/resetPwd" element={<ResetPwd />} />
           <Route path="/modifyPwd" element={ <ModifyPwd />} />
 
-
           {/* living */}
           <Route path='/living/trashInfo' element={<Trash />} />
           <Route path='/living/clothingBin' element={<ClothingBin />} />
           <Route path='/living/government' element={<Gov />} />
+          <Route path='/living/night' element={<Medical />} />
 
           {/* safety */}
           <Route path='/safety/sexOffender' element={<SexOffender />} />
