@@ -42,7 +42,8 @@ public interface MemberMapper {
             "where mid = #{mid}")
     int updateInfo(MemberDto dto);
 
-    @Update("UPDATE member SET mpwd = #{newPwd}, mdateup = now() WHERE mid = #{mid}")
+    // 비밀번호 변경
+    @Update("UPDATE member SET mpwd = #{encodedPwd}, mdateup = now() WHERE mid = #{mid}")
     int updatePassword(@Param("mid") String mid, @Param("newPwd") String newPwd);
 
     @Select("SELECT * FROM member WHERE mid = #{mid}")

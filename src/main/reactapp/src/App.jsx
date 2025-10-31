@@ -27,6 +27,8 @@ import Toilet from './components/safety/Toilet.jsx';
 import Gov from './components/living/Gov.jsx';
 import WheelchairCharger from './components/transport/WheelchairCharger.jsx';
 import Medical from './components/living/Medical.jsx';
+import ModifyPwd from './components/member/ModifyPwd.jsx';
+
 
 // 현재 홈, 마이페이지, 전체메뉴, 설정까지 프로토타입 제작 완료
 export default function App() {
@@ -48,6 +50,7 @@ export default function App() {
           <Route path='/signout' element={<Signout />} />
           <Route path="/findPwd" element={<FindPwd />} />
           <Route path="/resetPwd" element={<ResetPwd />} />
+          <Route path="/modifyPwd" element={ <ModifyPwd />} />
 
           {/* living */}
           <Route path='/living/trashInfo' element={<Trash />} />
