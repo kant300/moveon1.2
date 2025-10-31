@@ -2,8 +2,8 @@ import "../assets/css/index.css"
 import Footer from "./Footer";
 import Header from "./Header";
 import calendar_clock from '../assets/images/icons/calendar_clock_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg'
-import paid from '../assets/images/icons/paid_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
-import movein from '../assets/images/icons/move_location_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
+import paid from '../assets/images/icons/paid_24dp_00BF63_FILL0_wght400_GRAD0_opsz24.svg'
+import movein from '../assets/images/icons/move_location_24dp_00BF63_FILL0_wght400_GRAD0_opsz24.svg'
 import recycling from '../assets/images/icons/recycling_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
 import apparel from '../assets/images/icons/apparel_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'
 import eco from '../assets/images/icons/eco_24dp_4DCCFF_FILL0_wght400_GRAD0_opsz24.svg'

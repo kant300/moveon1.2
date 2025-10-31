@@ -200,7 +200,6 @@ public class MemberController {
     public ResponseEntity<?> signout(HttpServletRequest request){
         MemberDto loginMember = memberService.myInfo(request);
         if(loginMember == null) return ResponseEntity.ok(false);
-
         boolean result = memberService.signout(loginMember.getMid());
         return ResponseEntity.ok(result);
     }
