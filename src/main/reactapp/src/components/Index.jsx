@@ -110,7 +110,7 @@ export default function Index() {
                                         </div>
                                     </div>
                                     <div>
-                                        <div id="t1h">☀️
+                                        <div id="t1h">☀
                                     </div>
                                 </div>
                             

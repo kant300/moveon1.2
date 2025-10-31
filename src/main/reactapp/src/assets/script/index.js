@@ -1,4 +1,9 @@
 import axios from "axios";
+import sun from '../images/icons/icons8-sun.svg'
+import cloud from '../images/icons/icons8-구름-48.png'
+import blur from '../images/icons/icons8-흐림-48.png'
+import rain from '../images/icons/icons8-rainy-weather-40.png'
+import snow from '../images/icons/icons8-snow-48.png'
 
 export function Weather() {
     const script = document.createElement('script');
@@ -78,11 +83,11 @@ export function Weather() {
 
                                 // 날씨에 따른 아이콘 그리기
                                 let icon;
-                                if (pty == "맑음" && sky == "맑음") icon = "☀️";
-                                else if (sky == "구름많음") icon = "⛅️";
-                                else if (sky == "흐림") icon = "☁️";
-                                else if (pty == "비" || pty == "비/눈" || pty == "소나기") icon = "🌧";
-                                else if (pty == "눈") icon = "🌨";
+                                if (pty == "맑음" && sky == "맑음") icon = {sun};
+                                else if (sky == "구름많음") icon = {cloud};
+                                else if (sky == "흐림") icon = { blur };
+                                else if (pty == "비" || pty == "비/눈" || pty == "소나기") icon = {rain};
+                                else if (pty == "눈") icon = {snow};
 
                                 // HTML에 그리기
                                 const weather = document.querySelector("#weather");
