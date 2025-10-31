@@ -29,11 +29,17 @@ import { Link } from "react-router-dom";
 import { Weather } from '../assets/script/index';
 import axios from "axios";
 
-// 로컬 이미지 import (Vite 기준)
-import ex1 from "../assets/images/imgs/전시ex1.jpg";
-import ex2 from "../assets/images/imgs/전시ex2.jpg";
-import ex3 from "../assets/images/imgs/전시ex3.png";
-import ex4 from "../assets/images/imgs/전시ex4.jpg";
+// 축제 샘플 이미지 import (Vite 기준)
+import ex1_1 from "../assets/images/imgs/ex1_1.jpg";
+import ex1_2 from "../assets/images/imgs/ex1_2.jpg";
+import ex1_3 from "../assets/images/imgs/ex1_3.png";
+import ex1_4 from "../assets/images/imgs/ex1_4.jpg";
+
+// 전시 샘플 이미지 import (Vite 기준)
+import ex2_1 from "../assets/images/imgs/ex2_1.jpg";
+import ex2_2 from "../assets/images/imgs/ex2_2.jpg";
+import ex2_3 from "../assets/images/imgs/ex2_3.jpg";
+import ex2_4 from "../assets/images/imgs/ex2_4.jpg";
 
 // 메인 페이지
 export default function Index() {
@@ -61,22 +67,16 @@ export default function Index() {
       // 샘플 데이터 (placehold.co 이미지)
   const eventList = {
     0: [
-      { title: "모네 인사이드", price: "12,000원", sale: "20%", img: ex1 },
-      { title: "팀랩라이프 서울", price: "25,000원", sale: "10%", img: ex2 },
-      { title: "디뮤지엄 포스터展", price: "18,000원", sale: "15%", img: ex3 },
-      { title: "루브르 명화전", price: "22,000원", sale: "5%", img: ex4 },
+        { title: "2025 인천공항 스카이페스티벌", addr: "인천광역시 중구 공항문화로 127 (운서동)", img: ex1_1 },
+        { title: "2025 인천원도사제&낙섬축제", addr: "인천광역시 미추홀구 매소홀로 120 (용현동)", img: ex1_2 },
+        { title: "인천개항장 국가유산 야행", addr: "인천광역시 중구 신포로27번길 80 (관동1가) 인천중구청", img: ex1_3 },
+        { title: "2025 인천공항 스카이페스티벌", addr: "인천광역시 중구 공항문화로 127 (운서동)", img: ex1_4 },
     ],
     1: [
-      { title: "서울 불꽃축제", price: "무료", sale: "", img: "https://placehold.co/200x200" },
-      { title: "부평문화거리축제", price: "5,000원", sale: "30%", img: "https://placehold.co/200x200" },
-      { title: "벚꽃음악축제", price: "10,000원", sale: "25%", img: "https://placehold.co/200x200" },
-      { title: "송도맥주페스티벌", price: "20,000원", sale: "15%", img: "https://placehold.co/200x200" },
-    ],
-    2: [
-      { title: "인천 벼룩시장", price: "무료입장", sale: "", img: "https://placehold.co/200x200" },
-      { title: "신촌 플리마켓", price: "3,000원", sale: "", img: "https://placehold.co/200x200" },
-      { title: "홍대 주말마켓", price: "무료입장", sale: "", img: "https://placehold.co/200x200" },
-      { title: "부산 셀러마켓", price: "5,000원", sale: "10%", img: "https://placehold.co/200x200" },
+        { title: '인천시립교향악단 2025 체임버 시리즈Ⅱ "목관앙상블"', addr: "아트센터 인천", img: ex2_1 },
+        { title: "아카펠라그룹 다이아 - 미리 메리 크리스마스", addr: "인천문화예술회관(소공연장)", img: ex2_2 },
+        { title: "뮤지컬 <오즈의 의류 수거함>", addr: "인천문화예술회관(소공연장)", img: ex2_3 },
+        { title: "해설이 있는 스트릿댄스 - 카르페디엠", addr: "인천문화예술회관(소공연장)", img: ex2_4 },
     ],
   };
 
@@ -167,13 +167,10 @@ export default function Index() {
                 </ul>
                 <div id='eventBox'>
                     <ul id='eventCategory'>
-                        <li className={event===0 ? 'active' : ''} onClick={() => {setEvent(0)}}>전시/문화</li>
-                        <li className={event===1 ? 'active' : ''} onClick={() => {setEvent(1)}}>축제/행사</li>
-                        <li className={event===2 ? 'active' : ''} onClick={() => {setEvent(2)}}>벼룩시장</li>
+                        <li className={ 'active' } >축제/행사</li>
                     </ul>
-
                     <ul id="eventList">
-                        {eventList[event].map((item, i) => (
+                        {eventList[0].map((item, i) => (
                         <li key={i} className="event-card">
                             <div className="thumb">
                             <img src={item.img} alt={item.title} />
@@ -181,12 +178,33 @@ export default function Index() {
                             <div className="info">
                             <h4>{item.title}</h4>
                             <p className="price">
-                                {item.sale && <span className="sale">{item.sale}</span>} {item.price}~
+                                {item.addr && <span className="sale">{item.addr}</span>}
                             </p>
                             </div>
                         </li>
                         ))}
                     </ul>
+
+                    <ul id='eventCategory'>
+                        <li className={ 'active' } >전시/문화</li>
+                    </ul>
+                    <ul id="eventList">
+                        {eventList[1].map((item, i) => (
+                        <li key={i} className="event-card">
+                            <div className="thumb">
+                            <img src={item.img} alt={item.title} />
+                            </div>
+                            <div className="info">
+                            <h4>{item.title}</h4>
+                            <p className="price">
+                                {item.addr && <span className="sale">{item.addr}</span>}
+                            </p>
+                            </div>
+                        </li>
+                        ))}
+                    </ul>
+
+
                 </div>
                 <div id='alertBox'>
                     <img src={calendar_clock} />

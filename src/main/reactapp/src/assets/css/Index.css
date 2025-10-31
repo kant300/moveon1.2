@@ -92,7 +92,7 @@ display: flex;
     padding: 15px 0px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     border-bottom: 2px solid rgb(77, 204, 255);
 }
 
@@ -115,7 +115,7 @@ display: flex;
     padding: 15px;
     color: black;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     border-bottom: 2px solid rgb(77, 204, 255);
 }
@@ -209,13 +209,12 @@ display: flex;
 }
 /* ✅ 선택된(active) 카테고리 */
 #categoryBox li.active {
-   font-weight: bold;
+  font-weight: bold;
   color: #4dccff;
   transform: scale(1.05);
 }
 /* ✅ 선택된(active) 카테고리 */
 #eventCategory li.active {
-   font-weight: bold;
   color: #4dccff;
   transform: scale(1.05);
 }
@@ -223,7 +222,7 @@ display: flex;
 
 #eventCategory {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   list-style: none;
   padding: 0;
   border-bottom: 2px solid #eee;
@@ -272,6 +271,15 @@ display: flex;
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 6px;
+
+      /*  텍스트 말줄임 처리 */
+  white-space: nowrap;      /* 줄바꿈 금지 */
+  overflow: hidden;         /* 넘친 텍스트 숨김 */
+  text-overflow: ellipsis;  /* 넘칠 경우 ... 표시 */
+  display: inline-block;    /* 말줄임 처리를 위해 inline-block 필요 */
+  max-width: 180px;          /* 적당한 폭 제한 (필요시 조정) */
+  vertical-align: middle;   /* 줄 정렬 맞추기 */
+
 }
 
 .event-card .info .price {
@@ -280,7 +288,15 @@ display: flex;
 }
 
 .event-card .info .sale {
-  color: #ff3b30;
-  font-weight: 700;
+  color: #333;
   margin-right: 5px;
+  font-size: 10px;
+
+    /*  텍스트 말줄임 처리 */
+  white-space: nowrap;      /* 줄바꿈 금지 */
+  overflow: hidden;         /* 넘친 텍스트 숨김 */
+  text-overflow: ellipsis;  /* 넘칠 경우 ... 표시 */
+  display: inline-block;    /* 말줄임 처리를 위해 inline-block 필요 */
+  max-width: 180px;          /* 적당한 폭 제한 (필요시 조정) */
+  vertical-align: middle;   /* 줄 정렬 맞추기 */
 }
