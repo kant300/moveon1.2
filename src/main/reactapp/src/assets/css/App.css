@@ -27,7 +27,7 @@ li {
 
 #wrap {
   height: 100vh; /* 💡 화면 높이 100% (모니터 전체) */
-  overflow-y: scroll; /* 내용이 넘칠 경우 스크롤 가능 */
+  overflow-y: hidden;
 }
 #container {
     display: flex;

@@ -5,7 +5,6 @@
   width: 420px;
   height: 86vh;
   margin: 0 auto;
-  background-color: #bdefff;
   border-radius: 10px;
   overflow: hidden;
   padding-bottom: 70px; /* ✅ Footer 높이에 맞춰 딱 정렬 */
@@ -13,7 +12,7 @@
 
 /* 헤더 */
 .bulk-header {
-  padding: 10px 20px;
+  padding: 0px 6px;
 }
 
 /* 🔍 검색 영역 + 글쓰기 버튼 한 줄 배치 */
@@ -29,7 +28,7 @@
 .search-input {
   flex: 1;
   padding: 10px 14px;
-  border: 2px solid #00aaff;
+  border: 2px solid #4dccff;
   border-radius: 25px;
   font-size: 14px;
   outline: none;
@@ -45,10 +44,10 @@
 
 /* ✏️ 심플 글쓰기 버튼 */
 .write-btn {
-  background-color: #00aaff;
+  background-color: #4dccff;
   width: 100px;
   color: white;
-  border: 1.5px solid #007acc;
+  border: none;
   border-radius: 6px; /* ✅ 살짝만 둥글게 */
   padding: 8px 18px;
   font-size: 14px;
@@ -89,7 +88,6 @@
 
 /* 카드 */
 .bulk-card {
-  background-color: #fff8dc;
   border: 2px solid #000;
   border-radius: 12px;
   padding: 12px;
@@ -105,7 +103,7 @@
 /* 카드 텍스트 */
 .bulk-card h5 {
   margin: 0;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 600;
 }
 
@@ -117,17 +115,30 @@
 
 /* 인원 + 지역 */
 .bulk-card .info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   font-size: 13px;
   color: #333;
 }
 
 .bulk-card .region {
   flex: 1;
-  text-align: right;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.bulk-card{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border: none;
+    box-shadow: 1px 1px 3px #4dccff;
+}
+.bulk-card > .img > img{
+  object-fit: cover;
+  border-radius: 20px;
+  margin-right: 10px;
+  width: 80px; height: 80px;
+}
+.bulk-card .itemInfo .count{
+  color: #f69299;
 }

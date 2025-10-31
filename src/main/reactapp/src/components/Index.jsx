@@ -80,8 +80,6 @@ export default function Index() {
     ],
   };
 
-
-
     return (<>
         <Header />
         <div id='wrap'>

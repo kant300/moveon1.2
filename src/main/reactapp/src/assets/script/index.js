@@ -78,11 +78,11 @@ export function Weather() {
 
                                 // 날씨에 따른 아이콘 그리기
                                 let icon;
-                                if (pty == "맑음" && sky == "맑음") icon = "☀️";
-                                else if (sky == "구름많음") icon = "⛅️";
-                                else if (sky == "흐림") icon = "☁️";
-                                else if (pty == "비" || pty == "비/눈" || pty == "소나기") icon = "🌧";
-                                else if (pty == "눈") icon = "🌨";
+                                if (pty == "맑음" && sky == "맑음") icon = "icons8-sun.svg";
+                                else if (sky == "구름많음") icon = "icons8-구름-48.png";
+                                else if (sky == "흐림") icon = "icons8-흐림-48.png";
+                                else if (pty == "비" || pty == "비/눈" || pty == "소나기") icon = "icons8-rainy-weather-40.png";
+                                else if (pty == "눈") icon = "icons8-snow-48.png";
 
                                 // HTML에 그리기
                                 const weather = document.querySelector("#weather");
@@ -107,7 +107,7 @@ export function Weather() {
                                             </div>
                                         </div>
                                         <div>
-                                            <div id="t1h">${icon}
+                                          <img src="http://localhost:5173/icons/${ icon }" style="width:95px"  />
                                         </div>
                                     </div>
                                 

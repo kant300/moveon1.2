@@ -138,15 +138,15 @@ const 입장 = async (item) => {
   return (
     <>
       <Header />
-      <div id="main" className="bulk-container">
+      <div id="wrap">
+      <div id="main" className="container">
         <div className="bulk-header">
-          <h4>소분모임</h4>
           <div className="search-bar">
             <input type="text" value={keyword} onChange={keybod} placeholder="제목 또는 내용 검색..." className="search-input" />
           </div>
-          <button onClick={handleWriteClick} className="write-btn">
-            + 글쓰기
-          </button>
+            <button onClick={handleWriteClick} className="write-btn">
+              +소분등록
+            </button>
         </div>
 
         {/*  소분모임 카드 목록 */}
@@ -158,16 +158,23 @@ const 입장 = async (item) => {
           ) : (
             groups.map((item) => (
               <div key={item.bno} className="bulk-card" onClick={() => { 입장(item) }}>
-                <h5>{item.btitle}</h5>
-                <p className="content">{item.bcontent}</p>
-                <div className="info">
-                  <span>인원 : {item.bcount}/{item.btotal}</span>
-                  <span className="region">{item.maddress1} {item.maddress2} {item.maddress3}</span>
+              <div className="img">
+                <img
+                  src={`http://localhost:5173/upload/product/${item.bimg == null ? '이미지준비중.png' : item.bimg }`}
+                />
+              </div>
+                <div className="itemInfo">
+                  <h5>{item.btitle}</h5>
+                  <p className="content">{item.bcontent}</p>
+                  <div className="info"> 인원 : <span className="count">{item.bcount}/{item.btotal}</span></div>
+                  <div className="region">{item.maddress1} {item.maddress2} {item.maddress3}</div>
                 </div>
+
               </div>
             ))
           )}
         </div>
+      </div>
       </div>
       <Footer />
     </>
