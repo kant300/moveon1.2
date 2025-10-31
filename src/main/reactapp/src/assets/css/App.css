@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: 'NanumGothic';
     src: url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css') format('font-woff');
@@ -19,23 +20,16 @@ li {
     cursor: pointer;
 }
 
-body {
-    background-color: #e0f7fa;
-    display: flex;
-    justify-content: center;
-}
-
-#wrap { 
+#root{
     width: 420px;
-    height: 86vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin:  0 auto;
 }
 
+#wrap {
+  height: 100vh; /* 💡 화면 높이 100% (모니터 전체) */
+  overflow-y: scroll; /* 내용이 넘칠 경우 스크롤 가능 */
+}
 #container {
-    width: 420px;
-    height: 86vh;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -45,4 +39,12 @@ body {
 #content_gray {
     height: 86vh;
     background-color: rgb(248, 248, 248);
+}
+
+/* 반응형 CSS */
+/* ✅ 반응형 설정: 720px 이하일 때 가로 420px 고정 */
+@media screen and (max-width: 720px) {
+  #root {
+    width: 100%;
+  }
 }

@@ -28,7 +28,7 @@ export function Weather() {
                             const weather = document.querySelector("#weather");
                             console.log(data.response.header.resultCode);
                             console.log(data.response.header.resultMsg);
-                            weather.innerHTML = 'NO DATA';
+                            //weather.innerHTML = 'NO DATA';
                             return;
                         }
 
@@ -59,6 +59,9 @@ export function Weather() {
                                             if (pty == 2) pty = "비/눈";
                                             if (pty == 3) pty = "눈";
                                             if (pty == 4) pty = "소나기";
+                                            if (pty == 5) pty = "빗방울";
+                                            if (pty == 6) pty = "빗방울눈날림";
+                                            if (pty == 7) pty = "눈날림";
                                         }
                                         if (obj.category == "SKY") {
                                             sky = obj.fcstValue; // 하늘상태
@@ -83,22 +86,31 @@ export function Weather() {
 
                                 // HTML에 그리기
                                 const weather = document.querySelector("#weather");
-                                let html = `<div id="addr"><strong>${addr}</strong>의 날씨 (${hour}시 기준)</div>
-                                    <div id="t1h">${icon} ${t1h}° ${pty}</div>
-                                    <div id="infoBox">
-                                        <div id="item">
-                                            <span id="label">습도</span>
-                                            <span>${reh}%</span>
+                                let html = `
+                                    <div class="w_cont">
+                                        <div class="w_inner">
+                                            <div class="w_addr"> <strong>${addr}</strong> (${hour}시 기준)  </div>
+                                            <div class="w_pty"> ${t1h}° ${pty}</div>
+                                            <div id="infoBox">
+                                                <div id="item1">
+                                                    <span id="label">습도</span>
+                                                    <span class="reh">${reh}%</span>
+                                                </div>
+                                                <div id="item2">
+                                                    <span id="label">하늘</span>
+                                                    <span class="sky">${sky}</span>
+                                                </div>
+                                                <div id="item3">
+                                                    <span id="label">풍속</span>
+                                                    <span class="wsd">${wsd}m/s</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div id="item">
-                                            <span id="label">하늘</span>
-                                            <span>${sky}</span>
-                                        </div>
-                                        <div id="item">
-                                            <span id="label">풍속</span>
-                                            <span>${wsd}m/s</span>
+                                        <div>
+                                            <div id="t1h">${icon}
                                         </div>
                                     </div>
+                                
                                 </div>`;
                                 weather.innerHTML = html;
                             }
