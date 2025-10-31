@@ -77,7 +77,7 @@ public class StationService {
             String path = "src/main/resources/static/data/승강설비_운영고장현황_" + today + ".csv";
             File file = new File(path);
 
-            if (file.exists()) {
+            /*if (file.exists()) {
                 // CSV 파일 읽기
                 FileReader fileReader = new FileReader(path, StandardCharsets.UTF_8);
                 CSVReader csvReader = new CSVReader(fileReader);
@@ -98,7 +98,7 @@ public class StationService {
                     webList.add(item);
                 }
                 csvReader.close();
-            } else {
+            } else {*/
                 // 웹사이트 크롤링 시 새 창을 띄우지 않도록 설정
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
@@ -133,7 +133,7 @@ public class StationService {
                 item.put("호기", "3");
                 webList.add(item);
 
-                // csv 파일 작성
+                /*// csv 파일 작성
                 CSVWriter csvWriter = new CSVWriter(new FileWriter(path));
                 String[] header = {"역사", "장비", "호기"};
                 csvWriter.writeNext(header);
@@ -142,13 +142,13 @@ public class StationService {
                     String[] data = {result.get("역사"), result.get("장비"), result.get("호기")};
                     csvWriter.writeNext(data);
                 }
-                csvWriter.close();
+                csvWriter.close();*/
                 driver.quit();
 
                 // for (Map<String, String> resultData : webList) {
                 //     System.out.println(resultData);
                 // }
-            }
+            //}
             return webList;
         } catch (Exception e) {
             throw new RuntimeException(e);
