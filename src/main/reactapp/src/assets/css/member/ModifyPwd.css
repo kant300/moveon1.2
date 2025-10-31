@@ -33,8 +33,8 @@
 
 .btnCancel, .btnChange {
   border-radius: 10px;
-  width: 90px;
-  height: 38px;
+  width: 100px;
+  height: 50px;
   font-weight: bold;
   cursor: pointer;
   border: none;
@@ -46,7 +46,7 @@
 }
 
 .btnChange {
-  background-color: #52D1C9;
+  background-color: #1e90ff;
   color: white;
 }
 
