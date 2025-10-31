@@ -188,7 +188,7 @@ export default function Chatting() {
     alert("읽기 모드에서는 메시지를 전송할 수 없습니다.");
     return;
   }
-  
+
     if (!mmessage.trim()) return;
 
 
@@ -309,30 +309,32 @@ export default function Chatting() {
   return (
     <>
       <Header />
-      <div className="chat-header">
+      <div className="wrap">
+        <div className="container">
+        <div className="chat-header">
 
-        <div className="chat-title-box">
-          <span className="chat-title">{count?.btitle || "같이 구매할 분 구해요"}</span>
-          <span className="countcheck">{count.bcount} / {count.btotal}</span>
-        </div>
+                <div className="chat-title-box">
+                  <span className="chat-title">{count?.btitle || "같이 구매할 분 구해요"}</span>
+                  <span className="countcheck">{count.bcount} / {count.btotal}</span>
+                </div>
 
-        <Button variant="" className="menu-btn" onClick={toggleDrawer(true)}>≡</Button>
+                <Button variant="" className="menu-btn" onClick={toggleDrawer(true)}>≡</Button>
 
-        <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
-          <Box
-            className="drawer-box"
-            role="presentation"
-            onClick={toggleDrawer(false)}
-            onKeyDown={toggleDrawer(false)}
-          >
-            <h3>현재 채팅방 접속 명단</h3>
-            <div className="member-list">
-              {/* <img src={p.membersimg || playicon } alt="프로필" className="profile"
-        onError={ (e) => {e.target.src = playicon; } }  // 기본적으로 프로필 가져오는데 프로필이 없을 경우 playicon 기본 프로필 사용
-        //  back 이미지 없어서 사용xx
-        /> */}
-              {player.length > 0 ? (
-                player.map((p, i) => (
+                <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
+                  <Box
+                    className="drawer-box"
+                    role="presentation"
+                    onClick={toggleDrawer(false)}
+                    onKeyDown={toggleDrawer(false)}
+                  >
+                    <h3>현재 채팅방 접속 명단</h3>
+                    <div className="member-list">
+                      {/* <img src={p.membersimg || playicon } alt="프로필" className="profile"
+                onError={ (e) => {e.target.src = playicon; } }  // 기본적으로 프로필 가져오는데 프로필이 없을 경우 playicon 기본 프로필 사용
+                //  back 이미지 없어서 사용xx
+                /> */}
+                      {player.length > 0 ? (
+                        player.map((p, i) => (
 
                   <div className="member-item" key={i} style={count.host_mno == p.mno ? { color: 'red ' } : {}} >
                     <img
@@ -356,38 +358,38 @@ export default function Chatting() {
       </div>
 
 
-      <div className="chat-messages">
-        {chatprint.map((c, index) => (
-          <div
-            key={index}
-            className={`chat-item ${c.mname === auth?.mname ? "chat-my" : ""
-              } ${c.mname === "alarm" ? "chat-system" : ""}`}
-          >
-            {c.mname === "alarm" ? (
-              <div className="chat-system-message">{c.mmessage}</div>
-            ) : (
-              <>
-                <div className="chat-name">{c.mname}
-                  {c.mno === count.host_mno && <span className="host-badge">방장</span>}
-                </div>
+              <div className="chat-messages">
+                {chatprint.map((c, index) => (
+                  <div
+                    key={index}
+                    className={`chat-item ${c.mname === auth?.mname ? "chat-my" : ""
+                      } ${c.mname === "alarm" ? "chat-system" : ""}`}
+                  >
+                    {c.mname === "alarm" ? (
+                      <div className="chat-system-message">{c.mmessage}</div>
+                    ) : (
+                      <>
+                        <div className="chat-name">{c.mname}
+                          {c.mno === count.host_mno && <span className="host-badge">방장</span>}
+                        </div>
 
-                {/*  말풍선 + 시간 같이 묶기 */}
-                <div className="chat-bubble-wrapper">
-                  <div className="chat-bubble">{c.mmessage}</div>
-                  {c.cdate && (
-                    <div className="chat-time">
-                      {new Date(c.cdate).toLocaleTimeString("ko-KR", {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </div>
-                  )}
-                </div>
-              </>
-            )}
-          </div>
-        ))}
-      </div>
+                        {/*  말풍선 + 시간 같이 묶기 */}
+                        <div className="chat-bubble-wrapper">
+                          <div className="chat-bubble">{c.mmessage}</div>
+                          {c.cdate && (
+                            <div className="chat-time">
+                              {new Date(c.cdate).toLocaleTimeString("ko-KR", {
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                ))}
+              </div>
 
 
       <div className="chat-input-area">

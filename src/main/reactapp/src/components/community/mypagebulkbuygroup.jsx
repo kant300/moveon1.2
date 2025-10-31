@@ -90,35 +90,40 @@ export default function Bulkbuygroup() {
   return (
     <>
       <Header />
-      <div id="main" className="bulk-container">
-        <div className="bulk-header">
-          <h4>소분모임</h4>
-          <div className="search-bar">
-            <input type="text" value={keyword} onChange={keybod} placeholder="제목 또는 내용 검색..." className="search-input" />
-          </div>
-          <button onClick={handleWriteClick} className="write-btn">
-            + 글쓰기
-          </button>
-        </div>
-
-        {/*  소분모임 카드 목록 */}
-        <div className="bulk-list">
-          {groups.length === 0 ? (
-            <p style={{ textAlign: "center", marginTop: "30px" }}>
-              등록된 소분모임이 없습니다.
-            </p>
-          ) : (
-            groups.map((item) => (
-              <div key={item.bno} className="bulk-card" onClick={() => { 입장(item) }}>
-                <h5>{item.btitle}</h5>
-                <p className="content">{item.bcontent}</p>
-                <div className="info">
-                  <span>인원 : {item.bcount}/{item.btotal}</span>
-                  <span className="region">{item.maddress1} {item.maddress2} {item.maddress3}</span>
-                </div>
+      <div className="wrap">
+        <div className="container"> 
+          <div id="main" className="bulk-container">
+            
+            <h4 style={{ textAlign : 'center'}}> 참여중인 소분모임</h4>
+            <div className="bulk-header">
+              <div className="search-bar">
+                <input type="text" value={keyword} onChange={keybod} placeholder="제목 또는 내용 검색..." className="search-input" />
               </div>
-            ))
-          )}
+              <button onClick={handleWriteClick} className="write-btn">
+                + 글쓰기
+              </button>
+            </div>
+
+            {/*  소분모임 카드 목록 */}
+            <div className="bulk-list"  >
+              {groups.length === 0 ? (
+                <p style={{ textAlign: "center", marginTop: "30px" }}>
+                  등록된 소분모임이 없습니다.
+                </p>
+              ) : (
+                groups.map((item) => (
+                  <div key={item.bno} style={{ margin : "0 0 20px 0"}}  className="bulk-card" onClick={() => { 입장(item) }}>
+                    <h5>{item.btitle}</h5>
+                    <p className="content">{item.bcontent}</p>
+                    <div className="info">
+                      <span>인원 : {item.bcount}/{item.btotal}</span>
+                      <span className="region">{item.maddress1} {item.maddress2} {item.maddress3}</span>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
         </div>
       </div>
       <Footer />

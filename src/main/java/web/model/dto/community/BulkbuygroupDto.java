@@ -18,4 +18,5 @@ public class BulkbuygroupDto {
     private String maddress2;
     private String maddress3;
     private int read_only;
+    private String bimg;
 }

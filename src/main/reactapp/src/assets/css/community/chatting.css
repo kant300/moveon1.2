@@ -46,7 +46,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  max-width: 80%;
   word-break: break-word;
   white-space: pre-wrap;
   scroll-snap-align: start;
@@ -197,11 +196,10 @@
 /* 🔹 채팅 상단 헤더 */
 .chat-header {
   position: fixed;
-  top: 52px;
+  top: 69px;
   left: 50%;
   transform: translateX(-50%);
   width: 420px;
-  height: 55px;
   background-color: #e7f6ff;
   display: flex;
   align-items: center;
@@ -366,7 +364,6 @@
 @media (max-width: 480px) {
   .chat-header {
     width: 100%;
-    border-radius: 0;
   }
   .drawer-box {
     width: 75%;
