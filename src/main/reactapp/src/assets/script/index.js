@@ -1,4 +1,9 @@
 import axios from "axios";
+import sun from '../images/icons/icons8-sun.svg'
+import cloud from '../images/icons/icons8-구름-48.png'
+import blur from '../images/icons/icons8-흐림-48.png'
+import rain from '../images/icons/icons8-rainy-weather-40.png'
+import snow from '../images/icons/icons8-snow-48.png'
 
 export function Weather() {
     const script = document.createElement('script');
