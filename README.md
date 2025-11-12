@@ -37,9 +37,12 @@
 ## 🧑‍🤝‍🧑 개발자 소개 
 김재영 : 팀장 , 백엔드/프론트 개발자
 GitHub : [ https://github.com/kant300/moveon1.2/tree/kjy ]
+
 박옥선 : 백엔드/프론트 개발자
 GitHub : [ https://github.com/kant300/moveon1.2/tree/parkoaksun ]
+
 송지훈 : 백엔드/프론트 개발자
 GitHub : [ https://github.com/kant300/moveon1.2/tree/jihoon ]
+
 신승민 : 백엔드/프론트 개발자
 GitHub : [ https://github.com/kant300/moveon1.2/tree/Ssm ]
